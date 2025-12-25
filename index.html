@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termin Monitor - Final</title>
+    <title>Termin Monitor - Pro</title>
     <style>
         body { 
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
@@ -20,43 +20,51 @@
         }
         .pin-box { background: #1a1a1a; padding: 30px; border-radius: 15px; border: 1px solid #00cae3; text-align: center; }
         .pin-input { padding: 12px; font-size: 24px; text-align: center; border-radius: 8px; border: 2px solid #00cae3; background: #000; color: #00cae3; width: 140px; margin-bottom: 20px; }
-        #status-log { font-family: monospace; font-size: 11px; color: #555; background: #000; padding: 8px; border-radius: 5px; width: 220px; height: 50px; overflow-y: auto; margin-top: 15px; text-align: left; }
 
-        #main-content { display: none; width: 100%; max-width: 800px; }
+        #main-content { display: none; width: 100%; max-width: 850px; }
         h1 { border-bottom: 3px solid #00cae3; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 10px rgba(0, 202, 227, 0.5); text-align: center; }
-        .input-box { background: rgba(26, 26, 26, 0.8); padding: 20px; border-radius: 12px; margin-bottom: 30px; display: flex; gap: 10px; flex-wrap: wrap; }
+        
+        .input-box { background: rgba(26, 26, 26, 0.8); padding: 20px; border-radius: 12px; margin-bottom: 30px; display: flex; gap: 10px; flex-wrap: wrap; border: 1px solid rgba(0, 202, 227, 0.3); }
         input { padding: 10px; border-radius: 5px; border: 1px solid #444; background: rgba(0, 0, 0, 0.5); color: white; flex: 1; min-width: 150px; }
+        
         .btn { padding: 10px 20px; border-radius: 5px; border: none; background: #00cae3; color: black; font-weight: bold; cursor: pointer; }
+        .btn-edit { background: #ffcc00; color: black; margin-right: 5px; }
+        .btn-del { background: #ff4d4d; color: white; }
+        .btn-action { padding: 5px 10px; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; font-size: 0.9em; }
 
         .termin-card { 
             background: rgba(30, 30, 30, 0.7); margin: 10px 0; padding: 15px 20px; border-radius: 12px; 
             display: flex; justify-content: space-between; align-items: center; 
             border-left: 8px solid #00cae3; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); 
         }
-        .zeit { color: #00cae3; font-family: 'Courier New', monospace; font-size: 1.3em; font-weight: bold; }
-        .btn-del { background: #ff4d4d; color: white; padding: 5px 12px; border-radius: 5px; border: none; cursor: pointer; font-weight: bold; }
+        .zeit { color: #00cae3; font-family: 'Courier New', monospace; font-size: 1.2em; font-weight: bold; min-width: 160px; text-align: right; }
+        
+        @media (max-width: 650px) {
+            .termin-card { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .zeit { text-align: left; min-width: unset; }
+        }
     </style>
 </head>
 <body>
 
     <div id="login-overlay">
         <div class="pin-box">
-            <h2 style="margin-top:0">SYSTEM LOGIN</h2>
-            <input type="password" id="pin-field" class="pin-input" placeholder="PIN" inputmode="numeric" maxlength="4">
+            <h2>SYSTEM LOGIN</h2>
+            <input type="password" id="pin-field" class="pin-input" inputmode="numeric" maxlength="4">
             <br>
             <button class="btn" onclick="entsperren()">LOGIN</button>
-            <div id="status-log">Warte auf Eingabe...</div>
         </div>
     </div>
 
     <div id="main-content">
         <h1>Termin Monitor</h1>
         <div class="input-box">
+            <input type="hidden" id="edit-index" value="-1">
             <input type="text" id="new-name" placeholder="Was steht an?">
             <input type="datetime-local" id="new-date">
-            <button class="btn" onclick="speichereTermin()">OK</button>
+            <button class="btn" id="save-btn" onclick="speichereTermin()">OK</button>
         </div>
-        <div id="liste">Verbinde zum Server...</div>
+        <div id="liste">Lade Orbital-Daten...</div>
     </div>
 
     <script>
@@ -70,12 +78,9 @@
         let currentSha = "";
         let isLogged = false;
 
-        function log(msg) { document.getElementById('status-log').innerHTML += "<br>> " + msg; }
-
         function entsperren() {
             if (document.getElementById('pin-field').value === RICHTIGE_PIN) {
                 isLogged = true;
-                log("PIN OK. Lade Daten...");
                 document.getElementById('login-overlay').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 holeDaten();
@@ -91,7 +96,6 @@
                 if (response.ok) {
                     const data = await response.json();
                     currentSha = data.sha;
-                    // Korrekte Dekodierung für Umlaute
                     const str = atob(data.content);
                     const bytes = new Uint8Array(str.length);
                     for (let i = 0; i < str.length; i++) bytes[i] = str.charCodeAt(i);
@@ -99,11 +103,10 @@
                     termineDaten.sort((a, b) => new Date(a.ziel) - new Date(b.ziel));
                     updateAnzeige();
                 }
-            } catch (e) { log("Netzwerk-Fehler!"); }
+            } catch (e) { console.error("Fehler beim Laden"); }
         }
 
         async function pushToGithub(neueListe) {
-            // Korrekte Kodierung für Umlaute beim Senden
             const jsonStr = JSON.stringify(neueListe, null, 4);
             const bytes = new TextEncoder().encode(jsonStr);
             const base64 = btoa(String.fromCharCode(...bytes));
@@ -113,14 +116,41 @@
                 headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: "Update", content: base64, sha: currentSha })
             });
-            if (response.ok) holeDaten();
+            if (response.ok) {
+                resetInput();
+                holeDaten();
+            }
         }
 
         function speichereTermin() {
-            const n = document.getElementById('new-name'), d = document.getElementById('new-date');
+            const n = document.getElementById('new-name'), d = document.getElementById('new-date'), idx = document.getElementById('edit-index').value;
             if (!n.value || !d.value) return;
-            pushToGithub([...termineDaten, { "name": n.value, "ziel": d.value + ":00" }]);
-            n.value = ''; d.value = '';
+
+            let neueListe = [...termineDaten];
+            const neuerEintrag = { "name": n.value, "ziel": d.value.includes(":00") ? d.value : d.value + ":00" };
+
+            if (idx === "-1") {
+                neueListe.push(neuerEintrag);
+            } else {
+                neueListe[idx] = neuerEintrag;
+            }
+            pushToGithub(neueListe);
+        }
+
+        function editTermin(i) {
+            const t = termineDaten[i];
+            document.getElementById('new-name').value = t.name;
+            document.getElementById('new-date').value = t.ziel.substring(0, 16);
+            document.getElementById('edit-index').value = i;
+            document.getElementById('save-btn').innerText = "UPDATE";
+            document.getElementById('new-name').focus();
+        }
+
+        function resetInput() {
+            document.getElementById('new-name').value = '';
+            document.getElementById('new-date').value = '';
+            document.getElementById('edit-index').value = "-1";
+            document.getElementById('save-btn').innerText = "OK";
         }
 
         function loescheTermin(i) {
@@ -129,22 +159,27 @@
 
         function updateAnzeige() {
             const listeDiv = document.getElementById('liste');
-            listeDiv.innerHTML = '';
             const jetzt = new Date();
+            let html = "";
+
             termineDaten.forEach((t, index) => {
                 const ziel = new Date(t.ziel), diff = ziel - jetzt;
                 let zeitStr = "Fällig";
                 if (diff > 0) {
-                    const d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000);
-                    zeitStr = `${d}t ${h}h ${m}m`;
+                    const d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
+                    zeitStr = `${d}t ${h}h ${m}m ${s}s`;
                 }
-                const card = document.createElement('div');
-                card.className = 'termin-card';
-                card.innerHTML = `<div><div style="font-weight:bold">${t.name}</div><small style="color:#666">${new Date(t.ziel).toLocaleString()}</small></div>
-                                  <div style="display:flex; align-items:center; gap:15px;"><span class="zeit">${zeitStr}</span>
-                                  <button class="btn-del" onclick="loescheTermin(${index})">✕</button></div>`;
-                listeDiv.appendChild(card);
+                html += `
+                    <div class="termin-card">
+                        <div><div style="font-weight:bold; font-size:1.1em;">${t.name}</div><small style="color:#888">${new Date(t.ziel).toLocaleString()}</small></div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span class="zeit">${zeitStr}</span>
+                            <button class="btn-action btn-edit" onclick="editTermin(${index})">✎</button>
+                            <button class="btn-action btn-del" onclick="loescheTermin(${index})">✕</button>
+                        </div>
+                    </div>`;
             });
+            listeDiv.innerHTML = html;
         }
 
         setInterval(() => { if(isLogged) updateAnzeige(); }, 1000);
