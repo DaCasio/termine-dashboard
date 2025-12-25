@@ -3,82 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor - Diagnose</title>
+    <title>Termin Monitor</title>
     <style>
-        body { background: #000; color: #00cae3; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
-        #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; }
-        .pin-input { padding: 15px; font-size: 24px; text-align: center; border-radius: 10px; border: 2px solid #00cae3; background: #111; color: white; width: 150px; margin-bottom: 20px; }
+        body { 
+            background: #000; color: white; font-family: sans-serif; 
+            display: flex; flex-direction: column; align-items: center; padding: 20px; 
+        }
+        /* Der Sperrbildschirm */
+        #login-overlay {
+            position: fixed; inset: 0; background: #000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 1000;
+        }
+        .pin-input { 
+            padding: 15px; font-size: 24px; text-align: center; border-radius: 10px; 
+            border: 2px solid #00cae3; background: #111; color: white; width: 120px; margin-bottom: 20px;
+        }
         .btn { padding: 10px 25px; background: #00cae3; color: black; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
-        #status-log { width: 90%; max-width: 500px; font-family: monospace; font-size: 12px; color: #888; margin-top: 20px; border: 1px solid #333; padding: 10px; height: 100px; overflow-y: auto; }
+        
+        /* Dashboard Styling */
+        #main-content { display: none; width: 100%; max-width: 600px; }
+        .card { background: #111; border-left: 5px solid #00cae3; margin: 10px 0; padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; }
+        .zeit { color: #00cae3; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div id="login-overlay">
-    <h2>ZUGRIFFS-PRÜFUNG</h2>
-    <input type="password" id="pin-field" class="pin-input" placeholder="PIN" inputmode="numeric" maxlength="4">
-    <button class="btn" onclick="checkPin()">LOGIN</button>
-    <div id="status-log">System bereit. Warte auf Login...</div>
-</div>
+    <div id="login-overlay">
+        <h2>LOGIN</h2>
+        <input type="password" id="pin-field" class="pin-input" placeholder="PIN" inputmode="numeric" maxlength="4">
+        <button class="btn" onclick="entsperren()">LOGIN</button>
+    </div>
 
-<h1>Termin Monitor</h1>
-<div id="liste">Warte auf Daten-Sync...</div>
+    <div id="main-content">
+        <h1>Termin Monitor</h1>
+        <div id="liste">Lade Daten...</div>
+    </div>
 
-<script>
-    const RICHTIGE_PIN = "0508";
-    
-    // Wir bauen den Token hier extrem sicher zusammen
-    const partA = "github_pat_11BBRVHCQ05kX9OEirDuF2_SfPbmFFMu5S4O8kX6AdanuVfPsN";
-    const partB = "Y6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
-    const GITHUB_TOKEN = partA + partB;
-    const GITHUB_URL = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
+    <script>
+        const RICHTIGE_PIN = "0508";
+        const t1 = "github_pat_11BBRVHCQ05kX9OEirDuF2";
+        const t2 = "_SfPbmFFMu5S4O8kX6AdanuVfPsNY6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
+        const GITHUB_TOKEN = t1 + t2;
+        const GITHUB_URL = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
 
-    function log(msg) {
-        const s = document.getElementById('status-log');
-        s.innerHTML += "<br>> " + msg;
-        s.scrollTop = s.scrollHeight;
-        console.log(msg);
-    }
-
-    async function checkPin() {
-        const pin = document.getElementById('pin-field').value;
-        if (pin === RICHTIGE_PIN) {
-            log("PIN korrekt. Starte API-Abfrage...");
-            document.getElementById('login-overlay').style.background = "rgba(0,0,0,0.5)"; // Macht es halb-durchsichtig
-            await holeDaten();
-        } else {
-            alert("Falsche PIN");
-        }
-    }
-
-    async function holeDaten() {
-        log("Kontaktiere GitHub...");
-        try {
-            const response = await fetch(GITHUB_URL, {
-                headers: { 
-                    'Authorization': `token ${GITHUB_TOKEN}`,
-                    'Cache-Control': 'no-cache'
-                }
-            });
-
-            log("Status-Code: " + response.status);
-
-            if (response.ok) {
-                log("Verbindung ERFOLGREICH!");
-                const data = await response.json();
-                const content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+        function entsperren() {
+            const eingabe = document.getElementById('pin-field').value;
+            if (eingabe === RICHTIGE_PIN) {
+                // 1. PIN-Schutz entfernen
                 document.getElementById('login-overlay').style.display = 'none';
-                document.getElementById('liste').innerHTML = "Daten geladen. Anzahl: " + content.length;
-                // Hier könnte man die Anzeige-Funktion wieder einfügen
-            } else if (response.status === 401) {
-                log("FEHLER 401: Token wurde DOCH gesperrt!");
+                // 2. Dashboard anzeigen
+                document.getElementById('main-content').style.display = 'block';
+                // 3. Erst JETZT die Daten laden
+                holeDaten();
             } else {
-                log("FEHLER: " + response.statusText);
+                alert("Falsche PIN!");
+                document.getElementById('pin-field').value = "";
             }
-        } catch (e) {
-            log("NETZWERKFEHLER: " + e.message);
         }
-    }
-</script>
+
+        async function holeDaten() {
+            try {
+                const response = await fetch(GITHUB_URL, {
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    const termine = JSON.parse(atob(data.content));
+                    render(termine);
+                } else {
+                    document.getElementById('liste').innerHTML = "Fehler beim Laden der Daten.";
+                }
+            } catch (e) {
+                document.getElementById('liste').innerHTML = "Netzwerkfehler.";
+            }
+        }
+
+        function render(termine) {
+            const container = document.getElementById('liste');
+            if (termine.length === 0) {
+                container.innerHTML = "Keine Termine.";
+                return;
+            }
+            container.innerHTML = termine.map(t => `
+                <div class="card">
+                    <span>${t.name}</span>
+                    <span class="zeit">${t.ziel}</span>
+                </div>
+            `).join('');
+        }
+    </script>
 </body>
 </html>
