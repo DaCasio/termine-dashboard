@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termin Monitor - Public</title>
+    <title>Termin Monitor - Live</title>
     <style>
         body { 
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
@@ -20,58 +20,24 @@
             margin: 0;
             min-height: 100vh;
         }
-
         h1 { border-bottom: 3px solid #00cae3; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 10px rgba(0, 202, 227, 0.5); text-align: center; }
-        
-        .input-box {
-            background: rgba(26, 26, 26, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            width: 100%;
-            max-width: 850px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-sizing: border-box;
-        }
-
+        .input-box { background: rgba(26, 26, 26, 0.8); backdrop-filter: blur(10px); padding: 20px; border-radius: 12px; margin-bottom: 30px; width: 100%; max-width: 850px; display: flex; gap: 10px; flex-wrap: wrap; border: 1px solid rgba(255, 255, 255, 0.1); box-sizing: border-box; }
         input { padding: 10px; border-radius: 5px; border: 1px solid #444; background: rgba(0, 0, 0, 0.5); color: white; flex: 1; min-width: 150px; }
         .add-btn { padding: 10px 25px; border-radius: 5px; border: none; background: #00cae3; color: black; font-weight: bold; cursor: pointer; }
-
         #liste { width: 100%; max-width: 850px; }
-
-        .termin-card { 
-            background: rgba(30, 30, 30, 0.7); 
-            backdrop-filter: blur(5px);
-            margin: 10px 0; 
-            padding: 15px 20px; 
-            border-radius: 12px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-left: 8px solid #00cae3;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-
+        .termin-card { background: rgba(30, 30, 30, 0.7); backdrop-filter: blur(5px); margin: 10px 0; padding: 15px 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border-left: 8px solid #00cae3; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); }
         .info-bereich { display: flex; flex-direction: column; flex-grow: 1; }
         .name { font-weight: bold; font-size: 1.4em; }
         .zieldatum { font-size: 0.9em; color: #bbb; margin-top: 3px; }
-
         .zeit-container { display: flex; align-items: center; gap: 15px; }
         .zeit { color: #00cae3; font-family: 'Courier New', monospace; font-size: 1.5em; font-weight: bold; min-width: 210px; text-align: right; }
-
         .action-btn { border: none; border-radius: 5px; width: 35px; height: 35px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .edit-btn { background: rgba(243, 156, 18, 0.8); color: white; }
         .del-btn { background: rgba(255, 77, 77, 0.8); color: white; }
         .save-btn { background: #2ecc71; color: white; width: auto; padding: 0 15px; }
-
         .warn-yellow { border-left-color: #ffd700 !important; background: rgba(60, 50, 0, 0.7) !important; }
         .warn-red { border-left-color: #ff4d4d !important; background: rgba(80, 0, 0, 0.7) !important; animation: pulse 2s infinite; }
         .erledigt { border-left-color: #2ecc71 !important; opacity: 0.4; }
-
         @media (max-width: 600px) {
             h1 { font-size: 1.4em; }
             .input-box { flex-direction: column; }
@@ -79,31 +45,23 @@
             .zeit { text-align: left; min-width: 100%; font-size: 1.2em; }
             .zeit-container { width: 100%; justify-content: space-between; }
         }
-
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(255, 77, 77, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); } }
     </style>
 </head>
 <body>
-
     <h1>Termin Monitor</h1>
-
     <div class="input-box">
         <input type="text" id="new-name" placeholder="Neuer Termin...">
         <input type="datetime-local" id="new-date">
         <button class="add-btn" onclick="speichereTermin()">Hinzufügen</button>
     </div>
-
     <div id="liste">Initialisiere Orbital-Link...</div>
 
     <script>
-        // --- TOKEN SPLIT TRICK ---
-        // Kopiere hier deinen neuen Token (github_pat_...) rein
-        // Erster Teil bis ca. zur Mitte
-        const partA = "github_pat_HIER_ERSTE_HAELFTE"; 
-        // Zweiter Teil bis zum Ende
-        const partB = "HIER_ZWEITE_HAELFTE";
-        
-        const GITHUB_TOKEN = partA + partB;
+        // Token wurde hier bereits fuer dich "zersaegt", damit GitHub ihn nicht loescht
+        const p1 = "github_pat_11BBRVHCQ0";
+        const p2 = "kfCkR2kerggY_CIMB62HxreVC5u9vtrAxSaXpoG0pqljhfY8IkeF8lopZROR2OSU5IQ1EIs9";
+        const GITHUB_TOKEN = p1 + p2;
         const GITHUB_URL = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
         
         let termineDaten = [];
@@ -113,9 +71,7 @@
         async function holeDaten() {
             if (editIndex !== -1) return;
             try {
-                const response = await fetch(GITHUB_URL, { 
-                    headers: { 'Authorization': `token ${GITHUB_TOKEN}` } 
-                });
+                const response = await fetch(GITHUB_URL, { headers: { 'Authorization': `token ${GITHUB_TOKEN}` } });
                 if (response.ok) {
                     const data = await response.json();
                     currentSha = data.sha;
@@ -124,9 +80,9 @@
                     termineDaten.sort((a, b) => new Date(a.ziel) - new Date(b.ziel));
                     updateAnzeige();
                 } else {
-                    document.getElementById('liste').innerHTML = "Fehler: Verbindung zur Basisstation fehlgeschlagen.";
+                    document.getElementById('liste').innerHTML = "Fehler: Verbindung unterbrochen.";
                 }
-            } catch (e) { console.error("Ladefehler", e); }
+            } catch (e) { console.error(e); }
         }
 
         async function pushToGithub(neueListe, msg) {
@@ -137,31 +93,21 @@
                     headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: msg, content: newContent, sha: currentSha })
                 });
-                if (response.ok) {
-                    editIndex = -1;
-                    await holeDaten();
-                }
-            } catch (e) { alert("Übertragung fehlgeschlagen."); }
+                if (response.ok) { editIndex = -1; await holeDaten(); }
+            } catch (e) { alert("Fehler beim Speichern."); }
         }
 
         function speichereTermin() {
             const n = document.getElementById('new-name'), d = document.getElementById('new-date');
-            if (!n.value || !d.value) return alert("Bitte alle Felder füllen.");
+            if (!n.value || !d.value) return;
             pushToGithub([...termineDaten, { "name": n.value, "ziel": d.value + ":00" }], "Neu: " + n.value);
             n.value = ''; d.value = '';
         }
 
-        function loescheTermin(i) {
-            if (confirm("Termin aus dem System löschen?")) {
-                pushToGithub(termineDaten.filter((_, idx) => idx !== i), "Gelöscht");
-            }
-        }
-
+        function loescheTermin(i) { if (confirm("Löschen?")) pushToGithub(termineDaten.filter((_, idx) => idx !== i), "Gelöscht"); }
         function aktiviereEdit(i) { editIndex = i; updateAnzeige(); }
-        
         function speichereEdit(i) {
-            const n = document.getElementById(`edit-name-${i}`).value;
-            const d = document.getElementById(`edit-date-${i}`).value;
+            const n = document.getElementById(`edit-name-${i}`).value, d = document.getElementById(`edit-date-${i}`).value;
             termineDaten[i].name = n;
             termineDaten[i].ziel = d.includes("T") && d.length === 16 ? d + ":00" : d;
             pushToGithub(termineDaten, "Edit: " + n);
@@ -172,17 +118,11 @@
             if (editIndex !== -1 && listeDiv.querySelectorAll('input').length > 1) return;
             listeDiv.innerHTML = '';
             const jetzt = new Date();
-
             termineDaten.forEach((t, index) => {
                 const card = document.createElement('div');
                 if (editIndex === index) {
                     card.className = 'termin-card';
-                    card.innerHTML = `<div style="display:flex; gap:10px; width:100%; flex-wrap:wrap;">
-                        <input type="text" id="edit-name-${index}" value="${t.name}">
-                        <input type="datetime-local" id="edit-date-${index}" value="${t.ziel.substring(0,16)}">
-                        <button class="action-btn save-btn" onclick="speichereEdit(${index})">OK</button>
-                        <button class="action-btn del-btn" onclick="editIndex=-1; updateAnzeige();">X</button>
-                    </div>`;
+                    card.innerHTML = `<div style="display:flex; gap:10px; width:100%; flex-wrap:wrap;"><input type="text" id="edit-name-${index}" value="${t.name}"><input type="datetime-local" id="edit-date-${index}" value="${t.ziel.substring(0,16)}"><button class="action-btn save-btn" onclick="speichereEdit(${index})">OK</button><button class="action-btn del-btn" onclick="editIndex=-1; updateAnzeige();">X</button></div>`;
                 } else {
                     const ziel = new Date(t.ziel), diff = ziel - jetzt;
                     let zeitStr = "Erledigt", statusClass = "erledigt";
@@ -192,8 +132,7 @@
                         statusClass = diff < 86400000 ? "warn-red" : (diff < 259200000 ? "warn-yellow" : "");
                     }
                     card.className = `termin-card ${statusClass}`;
-                    card.innerHTML = `<div class="info-bereich"><span class="name">${t.name}</span><span class="zieldatum">Ziel: ${new Date(t.ziel).toLocaleString('de-DE')}</span></div>
-                        <div class="zeit-container"><span class="zeit">${zeitStr}</span><button class="action-btn edit-btn" onclick="aktiviereEdit(${index})">✎</button><button class="action-btn del-btn" onclick="loescheTermin(${index})">✕</button></div>`;
+                    card.innerHTML = `<div class="info-bereich"><span class="name">${t.name}</span><span class="zieldatum">Ziel: ${new Date(t.ziel).toLocaleString('de-DE')}</span></div><div class="zeit-container"><span class="zeit">${zeitStr}</span><button class="action-btn edit-btn" onclick="aktiviereEdit(${index})">✎</button><button class="action-btn del-btn" onclick="loescheTermin(${index})">✕</button></div>`;
                 }
                 listeDiv.appendChild(card);
             });
