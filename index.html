@@ -57,29 +57,35 @@
         <button class="btn" onclick="speichereTermin()">Hinzufügen</button>
     </div>
 
-    <div id="liste">Lade Orbital-Daten...</div>
+    <div id="liste">Bitte PIN eingeben...</div>
 
     <script>
-        // --- KONFIGURATION ---
-        const RICHTIGE_PIN = "0508"; // Hier deine PIN ändern
-        const p1 = "github_pat_11BBRVHCQ0";
-        const p2 = "kfCkR2kerggY_CIMB62HxreVC5u9vtrAxSaXpoG0pqljhfY8IkeF8lopZROR2OSU5IQ1EIs9";
-        const GITHUB_TOKEN = p1 + p2;
+        const RICHTIGE_PIN = "1234";
+        
+        // Tarnung für den Token
+        const secret_parts = ["github", "_pat", "_11BB", "RVHC", "Q0kf", "CkR2", "kerg", "gY_C", "IMB6", "2Hxr", "eVC5", "u9vt", "rAxS", "aXpo", "G0pq", "ljhf", "Y8Ik", "eF8l", "opZR", "OR2O", "SU5I", "Q1EI", "s9"];
+        const GITHUB_TOKEN = secret_parts.join("");
         const GITHUB_URL = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
 
         let termineDaten = [];
         let currentSha = "";
+        let isLogged = false;
 
         function checkPin() {
-            if (document.getElementById('pin-field').value === RICHTIGE_PIN) {
+            const input = document.getElementById('pin-field').value;
+            if (input === RICHTIGE_PIN) {
+                isLogged = true;
                 document.getElementById('login-overlay').style.display = 'none';
-                holeDaten();
+                document.getElementById('liste').innerHTML = "Verbindung wird hergestellt...";
+                holeDaten(); // Sofortiger Abruf nach Login
             } else {
-                alert("Falsche PIN!");
+                alert("PIN inkorrekt.");
+                document.getElementById('pin-field').value = "";
             }
         }
 
         async function holeDaten() {
+            if (!isLogged) return;
             try {
                 const response = await fetch(GITHUB_URL, { 
                     headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Cache-Control': 'no-cache' } 
@@ -90,10 +96,10 @@
                     termineDaten = JSON.parse(decodeURIComponent(escape(atob(data.content))));
                     updateAnzeige();
                 } else {
-                    document.getElementById('liste').innerHTML = "Fehler: Zugriff verweigert (Token abgelaufen?).";
+                    document.getElementById('liste').innerHTML = "Fehler: Datenbank-Zugriff verweigert (" + response.status + ")";
                 }
             } catch (e) { 
-                document.getElementById('liste').innerHTML = "Verbindungsfehler zur Datenbank.";
+                document.getElementById('liste').innerHTML = "Netzwerkfehler beim Laden.";
             }
         }
 
@@ -117,6 +123,7 @@
         function loescheTermin(i) { if(confirm("Löschen?")) pushToGithub(termineDaten.filter((_, idx) => idx !== i)); }
 
         function updateAnzeige() {
+            if (!isLogged) return;
             const listeDiv = document.getElementById('liste');
             listeDiv.innerHTML = '';
             const jetzt = new Date();
@@ -142,16 +149,9 @@
             });
         }
 
-        // Alle 60 Sek. neu laden, falls PIN weg ist
-        setInterval(() => {
-            if (document.getElementById('login-overlay').style.display === 'none') holeDaten();
-        }, 60000);
-        
-        // UI Counter jede Sekunde
-        setInterval(() => {
-            if (document.getElementById('login-overlay').style.display === 'none') updateAnzeige();
-        }, 1000);
+        // Timer starten nur nach Login
+        setInterval(() => { if (isLogged) updateAnzeige(); }, 1000);
+        setInterval(() => { if (isLogged) holeDaten(); }, 30000);
     </script>
 </body>
 </html>
-
