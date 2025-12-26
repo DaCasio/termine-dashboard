@@ -37,7 +37,7 @@
             display: flex; justify-content: space-between; align-items: center; 
             border-left: 8px solid #00cae3; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); 
         }
-        .zeit { color: #00cae3; font-family: 'Courier New', monospace; font-size: 1.2em; font-weight: bold; min-width: 160px; text-align: right; }
+        .zeit { color: #00cae3; font-family: 'Courier New', monospace; font-size: 1.2em; font-weight: bold; min-width: 180px; text-align: right; }
         
         @media (max-width: 650px) {
             .termin-card { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -166,7 +166,10 @@
                 const ziel = new Date(t.ziel), diff = ziel - jetzt;
                 let zeitStr = "Fällig";
                 if (diff > 0) {
-                    const d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
+                    const d = Math.floor(diff/86400000).toString().padStart(2, '0');
+                    const h = Math.floor((diff%86400000)/3600000).toString().padStart(2, '0');
+                    const m = Math.floor((diff%3600000)/60000).toString().padStart(2, '0');
+                    const s = Math.floor((diff%60000)/1000).toString().padStart(2, '0');
                     zeitStr = `${d}t ${h}h ${m}m ${s}s`;
                 }
                 html += `
