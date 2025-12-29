@@ -20,6 +20,7 @@
         }
         .pin-box { background: #1a1a1a; padding: 30px; border-radius: 15px; border: 1px solid #00cae3; text-align: center; }
         .pin-input { padding: 12px; font-size: 24px; text-align: center; border-radius: 8px; border: 2px solid #00cae3; background: #000; color: #00cae3; width: 140px; margin-bottom: 20px; }
+        .pin-input:disabled { border-color: #ff4d4d; color: #ff4d4d; opacity: 0.5; cursor: not-allowed; }
 
         #main-content { display: none; width: 100%; max-width: 850px; }
         h1 { border-bottom: 3px solid #00cae3; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 10px rgba(0, 202, 227, 0.5); text-align: center; }
@@ -28,6 +29,7 @@
         input { padding: 10px; border-radius: 5px; border: 1px solid #444; background: rgba(0, 0, 0, 0.5); color: white; flex: 1; min-width: 150px; }
         
         .btn { padding: 10px 20px; border-radius: 5px; border: none; background: #00cae3; color: black; font-weight: bold; cursor: pointer; }
+        .btn:disabled { background: #444; cursor: not-allowed; }
         .btn-secondary { background: #444; color: #00cae3; font-size: 0.85em; margin-top: 10px; border: 1px solid #00cae3; }
         .btn-edit { background: #ffcc00; color: black; }
         .btn-copy { background: #00cae3; color: black; }
@@ -46,8 +48,7 @@
             padding: 20px; overflow-y: auto;
         }
         .import-list-item { background: #222; padding: 10px; margin: 5px 0; border-radius: 5px; display: flex; align-items: center; gap: 15px; border: 1px solid #333; }
-        .duplicate-info { color: #ffcc00; font-size: 0.8em; font-style: italic; }
-
+        
         @media (max-width: 650px) {
             .termin-card { flex-direction: column; align-items: flex-start; gap: 10px; }
             .zeit { text-align: left; min-width: unset; }
@@ -58,10 +59,10 @@
 
     <div id="login-overlay">
         <div class="pin-box">
-            <h2>SYSTEM LOGIN</h2>
+            <h2 id="login-status">SYSTEM LOGIN</h2>
             <input type="password" id="pin-field" class="pin-input" inputmode="numeric" maxlength="4">
             <br>
-            <button class="btn" onclick="entsperren()">LOGIN</button>
+            <button class="btn" id="login-btn" onclick="entsperren()">LOGIN</button>
         </div>
     </div>
 
@@ -91,7 +92,9 @@
     </div>
 
     <script>
-        const RICHTIGE_PIN = "0508";
+        // SHA-256 Hash der PIN "0508"
+        const PIN_HASH = "8677c385675543e061730044675e9b72445b23e7f45778401309f7b03a67710c";
+        
         const t1 = "github_pat_11BBRVHCQ05kX9OEirDuF2";
         const t2 = "_SfPbmFFMu5S4O8kX6AdanuVfPsNY6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
         const GITHUB_TOKEN = t1 + t2;
@@ -101,21 +104,47 @@
         let importKandidaten = [];
         let currentSha = "";
         let isLogged = false;
+        let versuche = parseInt(sessionStorage.getItem('pin_versuche')) || 0;
 
-        // Auto-Login Check beim Start
         window.onload = function() {
+            checkSperre();
             if (localStorage.getItem('termin_monitor_auth') === 'true') {
                 isLogged = true;
                 showDashboard();
             }
         };
 
-        function entsperren() {
-            if (document.getElementById('pin-field').value === RICHTIGE_PIN) {
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        function checkSperre() {
+            if (versuche >= 3) {
+                document.getElementById('pin-field').disabled = true;
+                document.getElementById('login-btn').disabled = true;
+                document.getElementById('login-status').innerText = "SYSTEM GESPERRT";
+                document.getElementById('login-status').style.color = "#ff4d4d";
+            }
+        }
+
+        async function entsperren() {
+            const eingabe = document.getElementById('pin-field').value;
+            const hashedEingabe = await sha256(eingabe);
+
+            if (hashedEingabe === PIN_HASH) {
                 isLogged = true;
+                sessionStorage.setItem('pin_versuche', 0);
                 localStorage.setItem('termin_monitor_auth', 'true');
                 showDashboard();
-            } else { alert("Falsche PIN!"); }
+            } else {
+                versuche++;
+                sessionStorage.setItem('pin_versuche', versuche);
+                alert(`Falsche PIN! Versuch ${versuche} von 3.`);
+                checkSperre();
+            }
         }
 
         function logout() {
@@ -217,7 +246,7 @@
                 return `
                 <div class="import-list-item" style="${dupe ? 'opacity:0.6' : ''}">
                     <input type="checkbox" id="imp-${i}" ${dupe ? '' : 'checked'}>
-                    <label for="imp-${i}"><strong>${e.name}</strong><br><small>${new Date(e.ziel).toLocaleString()}</small>${dupe ? '<br><span class="duplicate-info">(Vorhanden)</span>' : ''}</label>
+                    <label for="imp-${i}"><strong>${e.name}</strong><br><small>${new Date(e.ziel).toLocaleString()}</small></label>
                 </div>`;
             }).join('');
             document.getElementById('import-modal').style.display = 'block';
