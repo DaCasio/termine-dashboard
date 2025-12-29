@@ -120,6 +120,10 @@
         "ziel": "2026-08-31T08:37:00"
     },
     {
+        "name": "Urlaub Kanaren Check Konto 21-27.9.",
+        "ziel": "2026-09-01T12:00"
+    },
+    {
         "name": "Urlaub",
         "ziel": "2026-09-18T17:00"
     },
@@ -142,9 +146,5 @@
     {
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00"
-    },
-    {
-        "name": "Urlaub Kanaren Check Konto 2",
-        "ziel": "2026-09-01T12:00"
     }
 ]
