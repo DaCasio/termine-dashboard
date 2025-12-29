@@ -29,9 +29,10 @@
         
         .btn { padding: 10px 20px; border-radius: 5px; border: none; background: #00cae3; color: black; font-weight: bold; cursor: pointer; }
         .btn-secondary { background: #444; color: #00cae3; font-size: 0.85em; margin-top: 10px; border: 1px solid #00cae3; }
-        .btn-edit { background: #ffcc00; color: black; margin-right: 5px; }
+        .btn-edit { background: #ffcc00; color: black; }
+        .btn-copy { background: #00cae3; color: black; }
         .btn-del { background: #ff4d4d; color: white; }
-        .btn-action { padding: 5px 10px; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; font-size: 0.9em; }
+        .btn-action { padding: 5px 10px; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; font-size: 0.9em; margin-left: 2px; }
 
         .termin-card { 
             background: rgba(30, 30, 30, 0.7); margin: 10px 0; padding: 15px 20px; border-radius: 12px; 
@@ -66,7 +67,6 @@
 
     <div id="import-modal">
         <h2 style="color:#00cae3">TERMINE IMPORTIEREN</h2>
-        <p>Wähle aus, welche Orbital-Daten synchronisiert werden sollen:</p>
         <div id="import-items-container"></div>
         <div style="margin-top: 20px; display: flex; gap: 10px;">
             <button class="btn" onclick="confirmImport()">AUSWAHL BESTÄTIGEN</button>
@@ -167,7 +167,6 @@
             const events = [];
             const lines = icsText.split(/\r?\n/);
             let currentEvent = null;
-
             lines.forEach(line => {
                 if (line.startsWith("BEGIN:VEVENT")) currentEvent = {};
                 if (line.startsWith("SUMMARY:") && currentEvent) currentEvent.name = line.replace("SUMMARY:", "").trim();
@@ -199,13 +198,9 @@
                 return `
                 <div class="import-list-item" style="${dupe ? 'opacity:0.6' : ''}">
                     <input type="checkbox" id="imp-${i}" ${dupe ? '' : 'checked'}>
-                    <label for="imp-${i}">
-                        <strong>${e.name}</strong><br>
-                        <small>${new Date(e.ziel).toLocaleString()}</small>
-                        ${dupe ? '<br><span class="duplicate-info">(Bereits vorhanden)</span>' : ''}
-                    </label>
-                </div>
-            `}).join('');
+                    <label for="imp-${i}"><strong>${e.name}</strong><br><small>${new Date(e.ziel).toLocaleString()}</small>${dupe ? '<br><span class="duplicate-info">(Vorhanden)</span>' : ''}</label>
+                </div>`;
+            }).join('');
             document.getElementById('import-modal').style.display = 'block';
         }
 
@@ -216,9 +211,7 @@
 
         function confirmImport() {
             const ausgewaehlt = [];
-            importKandidaten.forEach((e, i) => {
-                if (document.getElementById(`imp-${i}`).checked) ausgewaehlt.push(e);
-            });
+            importKandidaten.forEach((e, i) => { if (document.getElementById(`imp-${i}`).checked) ausgewaehlt.push(e); });
             if(ausgewaehlt.length > 0) pushToGithub([...termineDaten, ...ausgewaehlt]);
             closeImport();
         }
@@ -229,6 +222,15 @@
             document.getElementById('new-date').value = t.ziel.substring(0, 16);
             document.getElementById('edit-index').value = i;
             document.getElementById('save-btn').innerText = "UPDATE";
+            document.getElementById('new-name').focus();
+        }
+
+        function kopiereTermin(i) {
+            const t = termineDaten[i];
+            document.getElementById('new-name').value = t.name + " (Kopie)";
+            document.getElementById('new-date').value = t.ziel.substring(0, 16);
+            document.getElementById('edit-index').value = "-1";
+            document.getElementById('save-btn').innerText = "OK";
             document.getElementById('new-name').focus();
         }
 
@@ -260,10 +262,11 @@
                 html += `
                     <div class="termin-card">
                         <div><div style="font-weight:bold; font-size:1.1em;">${t.name}</div><small style="color:#888">${new Date(t.ziel).toLocaleString()}</small></div>
-                        <div style="display:flex; align-items:center; gap:10px;">
+                        <div style="display:flex; align-items:center; gap:5px;">
                             <span class="zeit">${zeitStr}</span>
-                            <button class="btn-action btn-edit" onclick="editTermin(${index})">✎</button>
-                            <button class="btn-action btn-del" onclick="loescheTermin(${index})">✕</button>
+                            <button class="btn-action btn-copy" title="Kopieren" onclick="kopiereTermin(${index})">📄</button>
+                            <button class="btn-action btn-edit" title="Bearbeiten" onclick="editTermin(${index})">✎</button>
+                            <button class="btn-action btn-del" title="Löschen" onclick="loescheTermin(${index})">✕</button>
                         </div>
                     </div>`;
             });
