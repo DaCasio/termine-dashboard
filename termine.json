@@ -1,5 +1,9 @@
 [
     {
+        "name": "Feierabend",
+        "ziel": "2025-12-29T18:00"
+    },
+    {
         "name": "Frei",
         "ziel": "2025-12-30T18:00"
     },
@@ -48,7 +52,71 @@
         "ziel": "2026-11-27T18:00"
     },
     {
-        "name": "Feierabend",
-        "ziel": "2025-12-29T18:00"
+        "name": "Elster Zerti Casi läuft aus",
+        "ziel": "2028-03-24T09:24:00"
+    },
+    {
+        "ziel": "2026-01-10T10:00:00",
+        "name": "Thorsten Türen"
+    },
+    {
+        "ziel": "2026-02-10T16:00:00",
+        "name": "Fußpflege 💅🏽"
+    },
+    {
+        "ziel": "2026-01-07T10:45:00",
+        "name": "Frauenarzt 🎀"
+    },
+    {
+        "ziel": "2026-03-22T19:00:00",
+        "name": "Bülent Ceylan - Diktatürk - TICKETS IN ESSEN"
+    },
+    {
+        "ziel": "2026-01-28T07:00:00",
+        "name": "Sperrmüll wird abgeholt 🥳"
+    },
+    {
+        "ziel": "2026-03-11T09:00:00",
+        "name": "Dr Stickelbruck Reinigung"
+    },
+    {
+        "ziel": "2026-01-19T08:00:00",
+        "name": "Lieferung 🚚 Esstisch ❤️"
+    },
+    {
+        "ziel": "2027-09-13T12:00:00",
+        "name": "Termin - Christoph Knierim"
+    },
+    {
+        "name": "Elster Zerti Kersti läuft aus",
+        "ziel": "2028-09-11T21:04:00"
+    },
+    {
+        "ziel": "2026-01-13T08:00:00",
+        "name": "Telekom VDSL Umschaltung"
+    },
+    {
+        "name": "C1E Verlängern 21.6.26",
+        "ziel": "2026-04-06T12:00:00"
+    },
+    {
+        "ziel": "2025-12-31T14:40:00",
+        "name": "Lieferung von Picnic"
+    },
+    {
+        "ziel": "2026-01-12T14:00:00",
+        "name": "Fußpflege 💅🏽"
+    },
+    {
+        "ziel": "2026-01-27T15:00:00",
+        "name": "Sperrmüll rausstellen"
+    },
+    {
+        "name": "Elster Zerti Mutti läuft aus",
+        "ziel": "2026-08-31T08:37:00"
+    },
+    {
+        "ziel": "2026-04-07T16:44:00",
+        "name": "Dezor gekündigt-Abo trotzdem prüfen"
     }
 ]
