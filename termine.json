@@ -106,5 +106,9 @@
     {
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00"
+    },
+    {
+        "name": "Langes WE",
+        "ziel": "2026-04-02T17:00"
     }
 ]
