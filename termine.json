@@ -1,5 +1,10 @@
 [
     {
+        "name": "test",
+        "ziel": "2025-12-30T10:38:00",
+        "notiz": "test"
+    },
+    {
         "name": "Bodenverleger Marcel Nachhaken",
         "ziel": "2025-12-30T19:00",
         "notiz": "Klärung mit Marcel:\nMüssen alle Böden nochmals gespachtelt werden?\nWenn ja: wann und wie lange ist die Trocknungszeit?\n\nWann kann der PVC nach oben?\nEr sollte warm verlegt werden (mindestens 2 Tage vorher) vor dem 9.10.\nWie kriegen wir den PVC hoch?"
@@ -131,11 +136,6 @@
     {
         "name": "Konto glatt 🏦",
         "ziel": "2026-11-27T15:00"
-    },
-    {
-        "name": "test",
-        "ziel": "2025-12-30T10:37:00",
-        "notiz": "test"
     },
     {
         "name": "Termin - Christoph Knierim🥼",
