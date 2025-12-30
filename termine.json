@@ -5,6 +5,11 @@
         "notiz": "Klärung mit Marcel:\nMüssen alle Böden nochmals gespachtelt werden? Wenn ja: wann und wie lange ist die Trocknungszeit?\nWann kann der PVC nach oben? Er sollte warm verlegt werden (mindestens 2 Tage vorher)"
     },
     {
+        "name": "Klärung Irman",
+        "ziel": "2025-12-30T19:00",
+        "notiz": "Heizungen lackieren?"
+    },
+    {
         "name": "New Life 🏠",
         "ziel": "2026-01-01T00:00"
     },
@@ -139,8 +144,8 @@
         "ziel": "2030-05-15T18:00"
     },
     {
-        "name": "Klärung Irman",
-        "ziel": "2025-12-30T19:00",
-        "notiz": "Heizungen lackieren?"
+        "name": "Gianni sprechen👨‍🔧",
+        "ziel": "2026-01-02T10:00",
+        "notiz": "Wegen der Küche sprechen.\nRahmen: müssen diese noch verspachtelt werden?\nKlären, was der Fliesenleger genau macht."
     }
 ]
