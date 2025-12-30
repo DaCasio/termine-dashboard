@@ -27,21 +27,22 @@
         
         .input-box { background: rgba(26, 26, 26, 0.8); padding: 20px; border-radius: 12px; margin-bottom: 30px; display: flex; gap: 10px; flex-wrap: wrap; border: 1px solid rgba(0, 202, 227, 0.3); }
         input { padding: 10px; border-radius: 5px; border: 1px solid #444; background: rgba(0, 0, 0, 0.5); color: white; flex: 1; min-width: 150px; }
-        
+        .full-width { flex-basis: 100%; }
+
         .btn { padding: 10px 20px; border-radius: 5px; border: none; background: #00cae3; color: black; font-weight: bold; cursor: pointer; }
         .btn-secondary { background: #444; color: #00cae3; font-size: 0.85em; margin-top: 10px; border: 1px solid #00cae3; }
         
-        /* Button Farben in der Liste */
         .btn-action { padding: 5px 10px; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; font-size: 0.9em; margin-left: 2px; }
-        .btn-copy { background: #00cae3; color: black; } /* Hellblau/Cyan */
-        .btn-edit { background: #ffcc00; color: black; } /* Gelb */
-        .btn-del { background: #ff4d4d; color: white; } /* Rot */
+        .btn-copy { background: #00cae3; color: black; }
+        .btn-edit { background: #ffcc00; color: black; }
+        .btn-del { background: #ff4d4d; color: white; }
 
         .termin-card { 
             background: rgba(30, 30, 30, 0.7); margin: 10px 0; padding: 15px 20px; border-radius: 12px; 
             display: flex; justify-content: space-between; align-items: center; 
             border-left: 8px solid #00cae3; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); 
         }
+        .notiz-text { color: #aaa; font-size: 0.9em; margin-top: 4px; font-style: italic; white-space: pre-wrap; }
         .zeit { color: #00cae3; font-family: 'Courier New', monospace; font-size: 1.2em; font-weight: bold; min-width: 180px; text-align: right; }
         
         #import-modal {
@@ -80,8 +81,9 @@
         <h1>Termin Monitor</h1>
         <div class="input-box">
             <input type="hidden" id="edit-index" value="-1">
-            <input type="text" id="new-name" placeholder="Was steht an?">
+            <input type="text" id="new-name" placeholder="Name des Termins">
             <input type="datetime-local" id="new-date">
+            <input type="text" id="new-note" class="full-width" placeholder="Notizen (optional)">
             <button class="btn" id="save-btn" onclick="speichereTermin()">OK</button>
             <div style="width: 100%; text-align: center;">
                 <input type="file" id="ics-file" accept=".ics" style="display:none" onchange="handleIcsUpload(event)">
@@ -185,13 +187,51 @@
         }
 
         function speichereTermin() {
-            const n = document.getElementById('new-name'), d = document.getElementById('new-date'), idx = document.getElementById('edit-index').value;
+            const n = document.getElementById('new-name'), 
+                  d = document.getElementById('new-date'), 
+                  notiz = document.getElementById('new-note'),
+                  idx = document.getElementById('edit-index').value;
+            
             if (!n.value || !d.value) return;
+            
             let neueListe = [...termineDaten];
-            const neuerEintrag = { "name": n.value, "ziel": d.value.includes(":00") ? d.value : d.value + ":00" };
+            const neuerEintrag = { 
+                "name": n.value, 
+                "ziel": d.value.includes(":00") ? d.value : d.value + ":00",
+                "notiz": notiz.value || ""
+            };
+            
             if (idx === "-1") neueListe.push(neuerEintrag);
             else neueListe[idx] = neuerEintrag;
             pushToGithub(neueListe);
+        }
+
+        function editTermin(i) {
+            const t = termineDaten[i];
+            document.getElementById('new-name').value = t.name;
+            document.getElementById('new-date').value = t.ziel.substring(0, 16);
+            document.getElementById('new-note').value = t.notiz || "";
+            document.getElementById('edit-index').value = i;
+            document.getElementById('save-btn').innerText = "UPDATE";
+            document.getElementById('new-name').focus();
+        }
+
+        function kopiereTermin(i) {
+            const t = termineDaten[i];
+            document.getElementById('new-name').value = t.name + " (Kopie)";
+            document.getElementById('new-date').value = t.ziel.substring(0, 16);
+            document.getElementById('new-note').value = t.notiz || "";
+            document.getElementById('edit-index').value = "-1";
+            document.getElementById('save-btn').innerText = "OK";
+            document.getElementById('new-name').focus();
+        }
+
+        function resetInput() {
+            document.getElementById('new-name').value = '';
+            document.getElementById('new-date').value = '';
+            document.getElementById('new-note').value = '';
+            document.getElementById('edit-index').value = "-1";
+            document.getElementById('save-btn').innerText = "OK";
         }
 
         function handleIcsUpload(event) {
@@ -207,8 +247,9 @@
             const lines = icsText.split(/\r?\n/);
             let currentEvent = null;
             lines.forEach(line => {
-                if (line.startsWith("BEGIN:VEVENT")) currentEvent = {};
+                if (line.startsWith("BEGIN:VEVENT")) currentEvent = { notiz: "" };
                 if (line.startsWith("SUMMARY:") && currentEvent) currentEvent.name = line.replace("SUMMARY:", "").trim();
+                if (line.startsWith("DESCRIPTION:") && currentEvent) currentEvent.notiz = line.replace("DESCRIPTION:", "").trim();
                 if (line.startsWith("DTSTART") && currentEvent) {
                     let datePart = line.split(":")[1];
                     if (datePart) {
@@ -226,27 +267,6 @@
             showImportModal();
         }
 
-        function istDuplikat(neu) {
-            return termineDaten.some(alt => alt.name === neu.name && alt.ziel === neu.ziel);
-        }
-
-        function showImportModal() {
-            const container = document.getElementById('import-items-container');
-            container.innerHTML = importKandidaten.map((e, i) => {
-                const dupe = istDuplikat(e);
-                return `<div class="import-list-item" style="${dupe ? 'opacity:0.6' : ''}">
-                    <input type="checkbox" id="imp-${i}" ${dupe ? '' : 'checked'}>
-                    <label for="imp-${i}"><strong>${e.name}</strong><br><small>${new Date(e.ziel).toLocaleString()}</small></label>
-                </div>`;
-            }).join('');
-            document.getElementById('import-modal').style.display = 'block';
-        }
-
-        function closeImport() { 
-            document.getElementById('import-modal').style.display = 'none'; 
-            document.getElementById('ics-file').value = "";
-        }
-
         function confirmImport() {
             const ausgewaehlt = [];
             importKandidaten.forEach((e, i) => { if (document.getElementById(`imp-${i}`).checked) ausgewaehlt.push(e); });
@@ -254,29 +274,21 @@
             closeImport();
         }
 
-        function editTermin(i) {
-            const t = termineDaten[i];
-            document.getElementById('new-name').value = t.name;
-            document.getElementById('new-date').value = t.ziel.substring(0, 16);
-            document.getElementById('edit-index').value = i;
-            document.getElementById('save-btn').innerText = "UPDATE";
-            document.getElementById('new-name').focus();
+        function closeImport() { 
+            document.getElementById('import-modal').style.display = 'none'; 
+            document.getElementById('ics-file').value = "";
         }
 
-        function kopiereTermin(i) {
-            const t = termineDaten[i];
-            document.getElementById('new-name').value = t.name + " (Kopie)";
-            document.getElementById('new-date').value = t.ziel.substring(0, 16);
-            document.getElementById('edit-index').value = "-1";
-            document.getElementById('save-btn').innerText = "OK";
-            document.getElementById('new-name').focus();
-        }
-
-        function resetInput() {
-            document.getElementById('new-name').value = '';
-            document.getElementById('new-date').value = '';
-            document.getElementById('edit-index').value = "-1";
-            document.getElementById('save-btn').innerText = "OK";
+        function showImportModal() {
+            const container = document.getElementById('import-items-container');
+            container.innerHTML = importKandidaten.map((e, i) => {
+                const dupe = termineDaten.some(alt => alt.name === e.name && alt.ziel === e.ziel);
+                return `<div class="import-list-item" style="${dupe ? 'opacity:0.6' : ''}">
+                    <input type="checkbox" id="imp-${i}" ${dupe ? '' : 'checked'}>
+                    <label for="imp-${i}"><strong>${e.name}</strong><br><small>${new Date(e.ziel).toLocaleString()}</small></label>
+                </div>`;
+            }).join('');
+            document.getElementById('import-modal').style.display = 'block';
         }
 
         function loescheTermin(i) {
@@ -297,9 +309,17 @@
                     const s = Math.floor((diff%60000)/1000).toString().padStart(2, '0');
                     zeitStr = `${d}t ${h}h ${m}m ${s}s`;
                 }
+                
+                // Notiz-HTML generieren, falls eine Notiz existiert
+                const notizHtml = t.notiz ? `<div class="notiz-text">${t.notiz}</div>` : "";
+
                 html += `
                     <div class="termin-card">
-                        <div><div style="font-weight:bold; font-size:1.1em;">${t.name}</div><small style="color:#888">${new Date(t.ziel).toLocaleString()}</small></div>
+                        <div>
+                            <div style="font-weight:bold; font-size:1.1em;">${t.name}</div>
+                            <small style="color:#888">${new Date(t.ziel).toLocaleString()}</small>
+                            ${notizHtml}
+                        </div>
                         <div style="display:flex; align-items:center; gap:5px;">
                             <span class="zeit">${zeitStr}</span>
                             <button class="btn-action btn-copy" title="Kopieren" onclick="kopiereTermin(${index})">📄</button>
