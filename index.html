@@ -27,7 +27,8 @@
         .input-box { background: rgba(26, 26, 26, 0.8); padding: 20px; border-radius: 12px; margin-bottom: 30px; display: flex; gap: 10px; flex-wrap: wrap; border: 1px solid rgba(0, 202, 227, 0.3); }
         input, textarea { padding: 10px; border-radius: 5px; border: 1px solid #444; background: rgba(0, 0, 0, 0.5); color: white; flex: 1; min-width: 150px; font-family: inherit; }
         
-        textarea { flex-basis: 100%; min-height: 80px; resize: vertical; }
+        /* ANGEPASST: min-height verringert, damit es auf eine Zeile schrumpfen kann */
+        textarea { flex-basis: 100%; min-height: 20px; height: 40px; resize: vertical; }
 
         .btn { padding: 10px 20px; border-radius: 5px; border: none; background: #00cae3; color: black; font-weight: bold; cursor: pointer; }
         .btn-secondary { background: #444; color: #00cae3; font-size: 0.85em; margin-top: 10px; border: 1px solid #00cae3; }
@@ -41,7 +42,7 @@
             background: rgba(30, 30, 30, 0.7); margin: 10px 0; padding: 15px 20px; border-radius: 12px; 
             display: flex; justify-content: space-between; align-items: center; 
             border-left: 8px solid #00cae3; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            min-height: min-content; /* Karte wächst mit Inhalt */
+            min-height: min-content;
         }
         
         .notiz-text { 
