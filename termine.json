@@ -1,8 +1,8 @@
 [
     {
-        "name": "test",
-        "ziel": "2025-12-30T11:12:00",
-        "notiz": "test"
+        "name": "Timer",
+        "ziel": "2025-12-30T12:00",
+        "notiz": "Test Timer"
     },
     {
         "name": "Bodenverleger Marcel Nachhaken",
