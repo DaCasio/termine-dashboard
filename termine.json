@@ -167,5 +167,10 @@
     {
         "name": "Darlehen Ende🏦",
         "ziel": "2030-05-15T18:00"
+    },
+    {
+        "name": "Marcel Boden Leisten",
+        "ziel": "2026-01-09T10:00",
+        "notiz": "Marcel legt am 09.01 die Fußbodenleisten"
     }
 ]
