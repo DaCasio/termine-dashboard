@@ -1,5 +1,10 @@
 [
     {
+        "name": "PVC unten zuschneiden 🗞️",
+        "ziel": "2026-01-02T08:00",
+        "notiz": "Hochtragen schwierig\nMit Irmi alternativ Hebebühne, Marcel sollte das wissen mit zuschneiden\nGgf Hebebühne oder so?"
+    },
+    {
         "name": "Irmi",
         "ziel": "2026-01-02T09:00",
         "notiz": "* Heizungen werden noch lackiert!\n* Boden Arbeitszimmer"
@@ -32,11 +37,6 @@
     {
         "name": "UP-IP-TV 📺",
         "ziel": "2026-01-07T00:00"
-    },
-    {
-        "name": "PVC unten zuschneiden 🗞️",
-        "ziel": "2026-01-02T08:00",
-        "notiz": "Hochtragen schwierig\nMit Irmi alternativ Hebebühne, Marcel sollte das wissen mit zuschneiden\nGgf Hebebühne oder so?"
     },
     {
         "name": "Marcel PVC Zuschneiden / Verlegen👨‍🔧",
@@ -164,5 +164,10 @@
     {
         "name": "Darlehen Ende🏦",
         "ziel": "2030-05-15T18:00"
+    },
+    {
+        "name": "Türen Hassan 1/2",
+        "ziel": "2026-01-12T17:00",
+        "notiz": "12.1 17 uhr abgeschliffen grundiert\n13.1 17 zweite mal lackiert"
     }
 ]
