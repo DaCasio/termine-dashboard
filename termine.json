@@ -77,6 +77,11 @@
         "ziel": "2026-01-10T10:00"
     },
     {
+        "name": "Sabina Jeckes Putzen",
+        "ziel": "2026-01-12T09:00",
+        "notiz": "9 bis 11"
+    },
+    {
         "name": "Türen Hassan 1/2 🚪",
         "ziel": "2026-01-12T17:00",
         "notiz": "Abschleifen grundieren."
@@ -192,7 +197,7 @@
     },
     {
         "name": "Sabina Jeckes Putzen",
-        "ziel": "2026-01-12T09:00",
+        "ziel": "2026-01-13T09:00",
         "notiz": "9 bis 11"
     }
 ]
