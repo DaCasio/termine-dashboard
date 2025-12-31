@@ -35,13 +35,18 @@
     },
     {
         "name": "PVC unten zuschneiden 🗞️",
-        "ziel": "2026-01-07T08:00",
+        "ziel": "2026-01-02T08:00",
         "notiz": "Hochtragen schwierig\nMit Irmi alternativ Hebebühne, Marcel sollte das wissen mit zuschneiden\nGgf Hebebühne oder so?"
     },
     {
         "name": "Marcel PVC Zuschneiden / Verlegen👨‍🔧",
         "ziel": "2026-01-09T08:00",
         "notiz": ""
+    },
+    {
+        "name": "Marcel PVC Zuschneiden 👨‍🔧",
+        "ziel": "2026-01-09T08:00",
+        "notiz": "Marcel bescheid geben das unten zugeschnitten werden muss\nRolle zu schwer und geht nicht durch den Flur\nAnsonsten Hebebühne"
     },
     {
         "name": "Urlaub⛱️🌴🌞",
@@ -159,10 +164,5 @@
     {
         "name": "Darlehen Ende🏦",
         "ziel": "2030-05-15T18:00"
-    },
-    {
-        "name": "Marcel PVC Zuschneiden 👨‍🔧",
-        "ziel": "2026-01-09T08:00",
-        "notiz": "Marcel bescheid geben das unten zugeschnitten werden muss\nRolle zu schwer und geht nicht durch den Flur\nAnsonsten Hebebühne"
     }
 ]
