@@ -16,63 +16,87 @@
     <div id="liste"></div>
 
     <script>
-        // Wir tunneln die GitHub API durch einen Proxy
-        var t1 = "github_pat_11BBRVHCQ05kX9OEirDuF2";
-        var t2 = "_SfPbmFFMu5S4O8kX6AdanuVfPsNY6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
-        var rawUrl = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
-        
-        // Der Proxy-Tunnel
-        var proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(rawUrl);
+    var t1 = "github_pat_11BBRVHCQ05kX9OEirDuF2";
+    var t2 = "_SfPbmFFMu5S4O8kX6AdanuVfPsNY6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
+    var rawUrl = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
+    var proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(rawUrl);
 
-        function holeDaten() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", proxyUrl, true);
-            xhr.setRequestHeader("Authorization", "token " + t1 + t2);
-            
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        document.getElementById('status').innerHTML = "TERMINE";
+    function holeDaten() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", proxyUrl, true);
+        xhr.setRequestHeader("Authorization", "token " + t1 + t2);
+        
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    try {
                         var response = JSON.parse(xhr.responseText);
                         var jsonString = decodeURIComponent(escape(window.atob(response.content)));
                         var daten = JSON.parse(jsonString);
+                        
+                        // Einfache Sortierung nach dem "ziel" String
+                        daten.sort(function(a, b) {
+                            return a.ziel < b.ziel ? -1 : 1;
+                        });
+                        
                         updateAnzeige(daten);
-                    } else {
-                        document.getElementById('status').innerHTML = "Fehler: " + xhr.status + " (Proxy blocked?)";
+                        document.getElementById('status').innerHTML = "TERMINE AKTUELL";
+                    } catch(e) {
+                        document.getElementById('status').innerHTML = "Parse Fehler: " + e.message;
                     }
+                } else {
+                    document.getElementById('status').innerHTML = "Hole Fehler: " + xhr.status;
                 }
-            };
-            xhr.send();
-        }
-
-        function updateAnzeige(daten) {
-            var html = "";
-            var jetzt = new Date();
-            for (var i = 0; i < daten.length; i++) {
-                var t = daten[i];
-                var ziel = new Date(t.ziel.replace(' ', 'T'));
-                var diff = ziel - jetzt;
-                var zeitStr = "HEUTE";
-                var urgent = (diff <= 0) ? " urgent" : "";
-
-                if (diff > 0) {
-                    var d = Math.floor(diff / 86400000);
-                    var h = Math.floor((diff % 86400000) / 3600000);
-                    zeitStr = d + "d " + h + "h";
-                }
-
-                html += '<div class="termin-card' + urgent + '">';
-                html += '<strong>' + t.name + '</strong><br>';
-                html += '<small>' + ziel.toLocaleString() + '</small>';
-                if (t.notiz) html += '<p>' + t.notiz + '</p>';
-                html += '<div class="zeit">' + zeitStr + '</div>';
-                html += '</div>';
             }
-            document.getElementById('liste').innerHTML = html || "Keine Termine gefunden.";
-        }
+        };
+        xhr.send();
+    }
 
-        holeDaten();
-        setInterval(holeDaten, 300000);
-    </script>
+    function updateAnzeige(daten) {
+        var html = "";
+        var jetzt = new Date().getTime();
+
+        for (var i = 0; i < daten.length; i++) {
+            var t = daten[i];
+            
+            // Datum manuell parsen (Kindle-sicher)
+            // Erwartet "YYYY-MM-DDTHH:MM:SS"
+            var z = t.ziel.replace(" ", "T");
+            var zielZeit = new Date(z).getTime();
+            var diff = zielZeit - jetzt;
+            
+            var zeitStr = "Fällig";
+            var urgent = (diff <= 0) ? " urgent" : "";
+
+            if (diff > 0) {
+                var gesamtMin = Math.floor(diff / 60000);
+                var tage = Math.floor(gesamtMin / 1440);
+                var restStunden = Math.floor((gesamtMin % 1440) / 60);
+                zeitStr = tage + "t " + restStunden + "h";
+            }
+
+            // HTML ganz primitiv zusammenbauen
+            html += '<div class="termin-card' + urgent + '">';
+            html += '<div style="font-size:20px; font-weight:bold;">' + t.name + '</div>';
+            html += '<div style="font-size:14px;">' + t.ziel.substring(0,16).replace("T", " ") + '</div>';
+            
+            if (t.notiz && t.notiz !== "") {
+                html += '<div style="margin-top:5px; border-top:1px dashed gray; font-size:14px;">' + t.notiz + '</div>';
+            }
+            
+            html += '<div class="zeit">' + zeitStr + '</div>';
+            html += '</div>';
+        }
+        
+        document.getElementById('liste').innerHTML = html;
+        if (daten.length === 0) {
+            document.getElementById('liste').innerHTML = "Keine Termine in der Datei.";
+        }
+    }
+
+    holeDaten();
+    // Alle 5 Minuten aktualisieren
+    setInterval(holeDaten, 300000);
+</script>
 </body>
 </html>
