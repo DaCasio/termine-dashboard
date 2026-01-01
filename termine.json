@@ -116,17 +116,17 @@
         "ziel": "2026-02-01T00:00"
     },
     {
+        "name": "Steuern rausschicken",
+        "ziel": "2026-03-01T18:00",
+        "notiz": ""
+    },
+    {
         "name": "Dr Stickelbruck Reinigung 🦷🪥",
         "ziel": "2026-03-11T09:00"
     },
     {
         "name": "Eurowings Glatt",
         "ziel": "2026-03-15T15:00",
-        "notiz": ""
-    },
-    {
-        "name": "Steuern rausschicken",
-        "ziel": "2026-03-01T18:00",
         "notiz": ""
     },
     {
@@ -204,5 +204,10 @@
     {
         "name": "Darlehen Ende🏦",
         "ziel": "2030-05-15T18:00"
+    },
+    {
+        "name": "X-Schicht",
+        "ziel": "2026-01-05T08:00",
+        "notiz": ""
     }
 ]
