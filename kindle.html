@@ -14,12 +14,29 @@
 
     <h2 id="status">Lade Daten via Proxy...</h2>
     <div id="liste"></div>
-
-    <script>
+<script>
     var t1 = "github_pat_11BBRVHCQ05kX9OEirDuF2";
     var t2 = "_SfPbmFFMu5S4O8kX6AdanuVfPsNY6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
     var rawUrl = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
     var proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(rawUrl);
+
+    // Eigene robuste Base64-Dekodierung für alte Browser
+    function kindleDecode(str) {
+        try {
+            // Entfernt Leerzeichen und Zeilenumbrüche vor dem Dekodieren
+            var base64 = str.replace(/\s/g, '');
+            var binary = window.atob(base64);
+            var bytes = new Uint8Array(binary.length);
+            for (var i = 0; i < binary.length; i++) {
+                bytes[i] = binary.charCodeAt(i);
+            }
+            // UTF-8 fähige Dekodierung für Umlaute
+            return decodeURIComponent(escape(binary));
+        } catch(e) {
+            // Falls escape/unescape scheitert, nehmen wir den Rohstring
+            return window.atob(str.replace(/\s/g, ''));
+        }
+    }
 
     function holeDaten() {
         var xhr = new XMLHttpRequest();
@@ -31,21 +48,21 @@
                 if (xhr.status === 200) {
                     try {
                         var response = JSON.parse(xhr.responseText);
-                        var jsonString = decodeURIComponent(escape(window.atob(response.content)));
+                        // Hier nutzen wir die neue robuste Funktion
+                        var jsonString = kindleDecode(response.content);
                         var daten = JSON.parse(jsonString);
                         
-                        // Einfache Sortierung nach dem "ziel" String
                         daten.sort(function(a, b) {
                             return a.ziel < b.ziel ? -1 : 1;
                         });
                         
                         updateAnzeige(daten);
-                        document.getElementById('status').innerHTML = "TERMINE AKTUELL";
-                    } catch(e) {
-                        document.getElementById('status').innerHTML = "Parse Fehler: " + e.message;
+                        document.getElementById('status').innerHTML = "SYSTEM AKTUELL";
+                    } catch(err) {
+                        document.getElementById('status').innerHTML = "DATENFEHLER: " + err.message;
                     }
                 } else {
-                    document.getElementById('status').innerHTML = "Hole Fehler: " + xhr.status;
+                    document.getElementById('status').innerHTML = "HTTP FEHLER: " + xhr.status;
                 }
             }
         };
@@ -58,30 +75,26 @@
 
         for (var i = 0; i < daten.length; i++) {
             var t = daten[i];
-            
-            // Datum manuell parsen (Kindle-sicher)
-            // Erwartet "YYYY-MM-DDTHH:MM:SS"
             var z = t.ziel.replace(" ", "T");
             var zielZeit = new Date(z).getTime();
             var diff = zielZeit - jetzt;
             
-            var zeitStr = "Fällig";
+            var zeitStr = "AKTIV";
             var urgent = (diff <= 0) ? " urgent" : "";
 
             if (diff > 0) {
                 var gesamtMin = Math.floor(diff / 60000);
                 var tage = Math.floor(gesamtMin / 1440);
-                var restStunden = Math.floor((gesamtMin % 1440) / 60);
-                zeitStr = tage + "t " + restStunden + "h";
+                var h = Math.floor((gesamtMin % 1440) / 60);
+                zeitStr = tage + "t " + h + "h";
             }
 
-            // HTML ganz primitiv zusammenbauen
             html += '<div class="termin-card' + urgent + '">';
-            html += '<div style="font-size:20px; font-weight:bold;">' + t.name + '</div>';
-            html += '<div style="font-size:14px;">' + t.ziel.substring(0,16).replace("T", " ") + '</div>';
+            html += '<div style="font-size:22px; font-weight:bold;">' + t.name + '</div>';
+            html += '<div style="font-size:16px;">' + t.ziel.substring(0,16).replace("T", " ") + '</div>';
             
-            if (t.notiz && t.notiz !== "") {
-                html += '<div style="margin-top:5px; border-top:1px dashed gray; font-size:14px;">' + t.notiz + '</div>';
+            if (t.notiz) {
+                html += '<div style="margin-top:8px; border-top:1px dashed gray; font-size:15px; padding-top:5px;">' + t.notiz + '</div>';
             }
             
             html += '<div class="zeit">' + zeitStr + '</div>';
@@ -90,12 +103,11 @@
         
         document.getElementById('liste').innerHTML = html;
         if (daten.length === 0) {
-            document.getElementById('liste').innerHTML = "Keine Termine in der Datei.";
+            document.getElementById('liste').innerHTML = "Keine Daten vorhanden.";
         }
     }
 
     holeDaten();
-    // Alle 5 Minuten aktualisieren
     setInterval(holeDaten, 300000);
 </script>
 </body>
