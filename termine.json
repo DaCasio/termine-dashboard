@@ -109,6 +109,11 @@
         "name": "Lieferung 🚚 Esstisch ❤️"
     },
     {
+        "name": "X-Schicht",
+        "ziel": "2026-01-19T08:00",
+        "notiz": ""
+    },
+    {
         "name": "Sperrmüll rausstellen🚮",
         "ziel": "2026-01-27T15:00"
     },
@@ -211,8 +216,8 @@
         "ziel": "2030-05-15T18:00"
     },
     {
-        "name": "X-Schicht",
-        "ziel": "2026-01-19T08:00",
+        "name": "Spätschicht",
+        "ziel": "2026-01-26T09:30:00",
         "notiz": ""
     }
 ]
