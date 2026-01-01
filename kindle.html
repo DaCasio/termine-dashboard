@@ -4,111 +4,134 @@
     <meta charset="UTF-8">
     <title>Kindle Monitor</title>
     <style>
-        body { background-color: white; color: black; font-family: sans-serif; padding: 10px; }
-        .termin-card { border: 4px solid black; margin: 15px 0; padding: 10px; }
-        .zeit { font-size: 24px; font-weight: bold; text-align: right; border-top: 1px solid black; }
-        .urgent { background-color: black; color: white; }
+        /* Massive Skalierung für das Paperwhite Display */
+        body { 
+            background-color: white; 
+            color: black; 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            margin: 0; 
+        }
+        
+        #status { 
+            font-size: 18px; 
+            border-bottom: 2px solid black; 
+            margin-bottom: 20px; 
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        .termin-card { 
+            border: 5px solid black; 
+            margin-bottom: 30px; 
+            padding: 20px; 
+        }
+
+        .name { 
+            font-size: 42px; /* Sehr groß für gute Lesbarkeit */
+            font-weight: bold; 
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .datum { 
+            font-size: 24px; 
+            color: #333;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .notiz { 
+            font-size: 26px; 
+            border-top: 3px dashed black; 
+            margin-top: 15px; 
+            padding-top: 15px;
+            line-height: 1.2;
+        }
+
+        .zeit-box { 
+            font-size: 48px; 
+            font-weight: 900; 
+            text-align: right; 
+            margin-top: 20px;
+            border-top: 2px solid black;
+            padding-top: 10px;
+        }
+
+        .urgent { 
+            background-color: black; 
+            color: white; 
+        }
+        .urgent .notiz { border-top-color: white; }
     </style>
 </head>
 <body>
 
-    <h2 id="status">Lade Daten via Proxy...</h2>
+    <div id="status">LADE SYSTEM...</div>
     <div id="liste"></div>
-<script>
-    var t1 = "github_pat_11BBRVHCQ05kX9OEirDuF2";
-    var t2 = "_SfPbmFFMu5S4O8kX6AdanuVfPsNY6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
-    var rawUrl = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
-    var proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(rawUrl);
 
-    // Eigene robuste Base64-Dekodierung für alte Browser
-    function kindleDecode(str) {
-        try {
-            // Entfernt Leerzeichen und Zeilenumbrüche vor dem Dekodieren
-            var base64 = str.replace(/\s/g, '');
-            var binary = window.atob(base64);
-            var bytes = new Uint8Array(binary.length);
-            for (var i = 0; i < binary.length; i++) {
-                bytes[i] = binary.charCodeAt(i);
-            }
-            // UTF-8 fähige Dekodierung für Umlaute
-            return decodeURIComponent(escape(binary));
-        } catch(e) {
-            // Falls escape/unescape scheitert, nehmen wir den Rohstring
-            return window.atob(str.replace(/\s/g, ''));
-        }
-    }
+    <script>
+        var t1 = "github_pat_11BBRVHCQ05kX9OEirDuF2";
+        var t2 = "_SfPbmFFMu5S4O8kX6AdanuVfPsNY6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
+        var proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent('https://api.github.com/repos/dacasio/info-board/contents/termine.json');
 
-    function holeDaten() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", proxyUrl, true);
-        xhr.setRequestHeader("Authorization", "token " + t1 + t2);
-        
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
+        function holeDaten() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", proxyUrl, true);
+            xhr.setRequestHeader("Authorization", "token " + t1 + t2);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
                     try {
-                        var response = JSON.parse(xhr.responseText);
-                        // Hier nutzen wir die neue robuste Funktion
-                        var jsonString = kindleDecode(response.content);
-                        var daten = JSON.parse(jsonString);
+                        var res = JSON.parse(xhr.responseText);
+                        var daten = JSON.parse(decodeURIComponent(escape(window.atob(res.content.replace(/\s/g, '')))));
                         
-                        daten.sort(function(a, b) {
-                            return a.ziel < b.ziel ? -1 : 1;
-                        });
-                        
+                        daten.sort(function(a, b) { return a.ziel < b.ziel ? -1 : 1; });
                         updateAnzeige(daten);
-                        document.getElementById('status').innerHTML = "SYSTEM AKTUELL";
-                    } catch(err) {
-                        document.getElementById('status').innerHTML = "DATENFEHLER: " + err.message;
-                    }
-                } else {
-                    document.getElementById('status').innerHTML = "HTTP FEHLER: " + xhr.status;
+                        document.getElementById('status').innerHTML = "LETZTES UPDATE: " + new Date().getHours() + ":" + (new Date().getMinutes()<10?'0':'') + new Date().getMinutes();
+                    } catch(e) { document.getElementById('status').innerHTML = "FEHLER: " + e.message; }
                 }
-            }
-        };
-        xhr.send();
-    }
-
-    function updateAnzeige(daten) {
-        var html = "";
-        var jetzt = new Date().getTime();
-
-        for (var i = 0; i < daten.length; i++) {
-            var t = daten[i];
-            var z = t.ziel.replace(" ", "T");
-            var zielZeit = new Date(z).getTime();
-            var diff = zielZeit - jetzt;
-            
-            var zeitStr = "AKTIV";
-            var urgent = (diff <= 0) ? " urgent" : "";
-
-            if (diff > 0) {
-                var gesamtMin = Math.floor(diff / 60000);
-                var tage = Math.floor(gesamtMin / 1440);
-                var h = Math.floor((gesamtMin % 1440) / 60);
-                zeitStr = tage + "t " + h + "h";
-            }
-
-            html += '<div class="termin-card' + urgent + '">';
-            html += '<div style="font-size:22px; font-weight:bold;">' + t.name + '</div>';
-            html += '<div style="font-size:16px;">' + t.ziel.substring(0,16).replace("T", " ") + '</div>';
-            
-            if (t.notiz) {
-                html += '<div style="margin-top:8px; border-top:1px dashed gray; font-size:15px; padding-top:5px;">' + t.notiz + '</div>';
-            }
-            
-            html += '<div class="zeit">' + zeitStr + '</div>';
-            html += '</div>';
+            };
+            xhr.send();
         }
-        
-        document.getElementById('liste').innerHTML = html;
-        if (daten.length === 0) {
-            document.getElementById('liste').innerHTML = "Keine Daten vorhanden.";
-        }
-    }
 
-    holeDaten();
-    setInterval(holeDaten, 300000);
-</script>
+        function updateAnzeige(daten) {
+            var html = "";
+            var jetzt = new Date().getTime();
+
+            for (var i = 0; i < daten.length; i++) {
+                var t = daten[i];
+                
+                // Extrem vorsichtiges parsen für den Kindle
+                // Ersetzt Leerzeichen durch T für ISO-Format
+                var zielISO = t.ziel.replace(" ", "T");
+                var zielZeit = new Date(zielISO).getTime();
+                
+                var zeitStr = "FÄLLIG";
+                var isUrgent = (zielZeit - jetzt <= 0);
+
+                if (zielZeit > jetzt) {
+                    var diffSek = Math.floor((zielZeit - jetzt) / 1000);
+                    var d = Math.floor(diffSek / 86400);
+                    var h = Math.floor((diffSek % 86400) / 3600);
+                    zeitStr = d + " TAG(E) " + h + "H";
+                }
+
+                html += '<div class="termin-card ' + (isUrgent ? 'urgent' : '') + '">';
+                html += '<div class="name">' + t.name + '</div>';
+                html += '<div class="datum">' + t.ziel.substring(8,10) + "." + t.ziel.substring(5,7) + ". " + t.ziel.substring(11,16) + " UHR</div>";
+                
+                if (t.notiz) {
+                    html += '<div class="notiz">' + t.notiz + '</div>';
+                }
+                
+                html += '<div class="zeit-box">' + zeitStr + '</div>';
+                html += '</div>';
+            }
+            document.getElementById('liste').innerHTML = html;
+        }
+
+        holeDaten();
+        setInterval(holeDaten, 300000); // 5 Min Sync
+    </script>
 </body>
 </html>
