@@ -24,14 +24,13 @@
             padding: 15px; margin-bottom: 20px; box-shadow: 0 0 25px rgba(0,0,0,0.6);
         }
         
-        /* Toolbar Styling */
         .toolbar { display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap; }
         .tool-btn { background: #2a2a2a; color: var(--accent); border: 1px solid var(--accent); padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 0.75em; font-weight: bold; }
 
         input, textarea { background: rgba(0,0,0,0.6); border: 1px solid #444; color: white; padding: 10px; border-radius: 5px; width: 100%; box-sizing: border-box; margin-bottom: 8px; font-size: 0.95em; }
         textarea { min-height: 60px; font-family: inherit; resize: vertical; }
 
-        /* NEUES LAYOUT FÜR DIE TERMIN-KARTEN */
+        /* Optimiertes Layout nach deiner Skizze */
         .termin-card { 
             background: rgba(30,30,30,0.8); backdrop-filter: blur(4px);
             border-left: 6px solid var(--accent); padding: 15px; border-radius: 8px; 
@@ -49,7 +48,8 @@
         .notiz-display { font-size: 0.95em; line-height: 1.4; color: #ddd; white-space: pre-wrap; }
 
         .btn-main { background: var(--accent); color: black; border: none; padding: 12px; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%; font-size: 1em; text-transform: uppercase; }
-        .btn-action { padding: 6px 8px; border-radius: 4px; border: none; cursor: pointer; font-size: 0.9em; }
+        .btn-action { padding: 6px 10px; border-radius: 4px; border: none; cursor: pointer; font-size: 0.9em; transition: transform 0.1s; }
+        .btn-action:active { transform: scale(0.9); }
         
         .cb-line { cursor: pointer; display: block; padding: 2px 0; }
         .cb-line.done { text-decoration: line-through; color: #777; }
@@ -140,6 +140,7 @@
                     <div class="titel-box">${t.name}</div>
                     <div class="countdown-box ${diff <= 0 ? 'faellig' : ''}">${zStr}</div>
                     <div class="actions-box">
+                        <button class="btn-action" style="background:#00cae3" onclick="copy(${i})">📄</button>
                         <button class="btn-action" style="background:#ffcc00" onclick="edit(${i})">✎</button>
                         <button class="btn-action" style="background:#ff4d4d; color:white" onclick="del(${i})">✕</button>
                     </div>
@@ -177,7 +178,7 @@
         const div = document.createElement('div');
         div.style.display = "flex"; div.style.gap = "5px"; div.style.marginBottom = "5px";
         div.className = "cb-edit-row";
-        div.innerHTML = `<input type="checkbox" ${checked ? 'checked' : ''} style="width:20px;"><input type="text" value="${val}" style="margin-bottom:0;"><button class="tool-btn" onclick="this.parentElement.remove()">✕</button>`;
+        div.innerHTML = `<input type="checkbox" ${checked ? 'checked' : ''} style="width:20px;"><input type="text" value="${val}" style="flex:1; margin-bottom:0;"><button class="tool-btn" onclick="this.parentElement.remove()">✕</button>`;
         document.getElementById('cb-list').appendChild(div);
     }
 
@@ -198,6 +199,13 @@
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
+    function copy(i) {
+        edit(i);
+        document.getElementById('edit-id').value = "-1";
+        document.getElementById('t-name').value += " (Kopie)";
+        document.getElementById('save-btn').innerText = "Als Kopie speichern";
+    }
+
     async function save() {
         const name = document.getElementById('t-name').value, date = document.getElementById('t-date').value, note = document.getElementById('t-note').value, id = document.getElementById('edit-id').value;
         if(!name || !date) return;
@@ -210,6 +218,7 @@
         if(id === "-1") data.push(entry); else data[id] = entry;
         saveToGit();
         document.getElementById('edit-id').value = "-1"; document.getElementById('cb-list').innerHTML = ""; document.getElementById('t-note').value = ""; document.getElementById('t-name').value = "";
+        document.getElementById('save-btn').innerText = "TERMIN SPEICHERN";
     }
 
     async function saveToGit() {
