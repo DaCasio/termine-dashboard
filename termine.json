@@ -247,5 +247,10 @@
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00",
         "notiz": ""
+    },
+    {
+        "name": "Fliesenleger Bajrami",
+        "ziel": "2026-01-04T08:00",
+        "notiz": "[color:#00ff00]Ganztägig[/color]"
     }
 ]
