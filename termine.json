@@ -35,6 +35,11 @@
         "notiz": "Marcel spachtelt am 06.01 den kompletten Boden"
     },
     {
+        "name": "Urlaub⛱️🌴🌞",
+        "ziel": "2026-01-06T17:00",
+        "notiz": "Ab 9.1 Uhr sicher\nKero ab 7.1. bis 21.1. sicher\nCasi ab 7.1. bis 21.1. noch in Genehmigung"
+    },
+    {
         "name": "UP-IP-TV 📺",
         "ziel": "2026-01-07T00:00"
     },
@@ -47,11 +52,6 @@
         "name": "Marcel PVC Zuschneiden / Verlegen👨‍🔧",
         "ziel": "2026-01-09T08:00",
         "notiz": ""
-    },
-    {
-        "name": "Urlaub⛱️🌴🌞",
-        "ziel": "2026-01-06T17:00",
-        "notiz": "Ab 9.1 Uhr sicher\nKero ab 7.1. bis 21.1. sicher\nCasi ab 7.1. bis 21.1. noch in Genehmigung"
     },
     {
         "name": "Marcel Boden Leisten 🪵",
@@ -200,5 +200,10 @@
     {
         "name": "Darlehen Ende🏦",
         "ziel": "2030-05-15T18:00"
+    },
+    {
+        "name": "test",
+        "ziel": "2026-01-02T12:00",
+        "notiz": "[] checkbox\n**fett**\n[color:red]"
     }
 ]
