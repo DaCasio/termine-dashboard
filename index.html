@@ -3,194 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termin Monitor - Control Center</title>
+    <title>Termin Monitor - Pro</title>
     <style>
-        :root { --accent: #00cae3; --bg: #121212; }
+        :root { --accent: #00cae3; }
         body { 
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images-assets.nasa.gov/image/PIA08653/PIA08653~medium.jpg');
-            background-size: cover; background-attachment: fixed; color: white; font-family: 'Segoe UI', sans-serif; 
-            display: flex; flex-direction: column; align-items: center; padding: 20px; margin: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images-assets.nasa.gov/image/PIA08653/PIA08653~medium.jpg');
+            background-size: cover; background-attachment: fixed; background-position: center;
+            color: white; font-family: 'Segoe UI', sans-serif; 
+            display: flex; flex-direction: column; align-items: center; 
+            padding: 10px; margin: 0; min-height: 100vh;
         }
-        #main-content { width: 100%; max-width: 900px; display: none; }
-        .card { background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(0, 202, 227, 0.3); border-radius: 15px; padding: 25px; margin-bottom: 30px; }
-        .toolbar { display: flex; gap: 5px; margin-bottom: 5px; flex-wrap: wrap; }
-        .tool-btn { background: #333; color: var(--accent); border: 1px solid var(--accent); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8em; }
-        .tool-btn:hover { background: var(--accent); color: black; }
-        input, textarea { background: rgba(0,0,0,0.5); border: 1px solid #444; color: white; padding: 12px; border-radius: 8px; width: 100%; box-sizing: border-box; margin-bottom: 15px; }
-        textarea { min-height: 80px; font-family: monospace; }
-        #cb-editor-zone { border: 1px dashed #555; padding: 15px; border-radius: 8px; margin-bottom: 15px; background: rgba(0,0,0,0.3); }
-        .cb-edit-row { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
-        .btn-main { background: var(--accent); color: black; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; font-size: 1.1em; }
-        .termin-card { background: rgba(30,30,30,0.8); border-left: 10px solid var(--accent); padding: 20px; border-radius: 12px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .notiz-display { margin-top: 10px; padding-top: 10px; border-top: 1px solid #333; font-size: 0.95em; white-space: pre-wrap; }
-        .cb-line { cursor: pointer; display: block; padding: 2px 0; }
-        .cb-line.done { text-decoration: line-through; color: #777; }
-        .zeit-display { color: var(--accent); font-family: 'Courier New', monospace; font-size: 1.3em; font-weight: bold; text-align: right; min-width: 160px; }
+
+        #login-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000;
+        }
+        .pin-box { background: #1a1a1a; padding: 30px; border-radius: 15px; border: 1px solid var(--accent); text-align: center; }
+        .pin-input { padding: 12px; font-size: 24px; text-align: center; border-radius: 8px; border: 2px solid var(--accent); background: #000; color: var(--accent); width: 140px; margin-bottom: 20px; }
+        
+        #main-content { display: none; width: 100%; max-width: 850px; }
+        h1 { font-size: 1.5em; border-bottom: 2px solid var(--accent); padding-bottom: 5px; text-transform: uppercase; letter-spacing: 3px; text-align: center; margin: 10px 0; }
+        
+        /* Kompakte Input Box */
+        .input-box { background: rgba(26, 26, 26, 0.8); padding: 15px; border-radius: 12px; margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap; border: 1px solid rgba(0, 202, 227, 0.3); align-items: flex-end; }
+        .input-group { display: flex; flex-direction: column; flex: 1; min-width: 150px; gap: 5px; }
+        input, textarea { padding: 8px; border-radius: 5px; border: 1px solid #444; background: rgba(0, 0, 0, 0.5); color: white; font-family: inherit; font-size: 0.9em; }
+        
+        textarea { flex-basis: 100%; min-height: 35px; height: 35px; resize: vertical; }
+
+        .btn { padding: 8px 15px; border-radius: 5px; border: none; background: var(--accent); color: black; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn:hover { opacity: 0.8; }
+        .btn-secondary { background: #333; color: var(--accent); font-size: 0.8em; border: 1px solid var(--accent); padding: 5px 10px; }
+        
+        .btn-action { padding: 5px 8px; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; font-size: 0.9em; }
+        .btn-copy { background: #00cae3; color: black; }
+        .btn-edit { background: #ffcc00; color: black; }
+        .btn-del { background: #ff4d4d; color: white; }
+
+        .termin-counter { width: 100%; text-align: right; color: var(--accent); font-size: 0.75em; margin-bottom: 5px; opacity: 0.7; }
+
+        .termin-card { 
+            background: rgba(30, 30, 30, 0.7); margin: 6px 0; padding: 10px 15px; border-radius: 8px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            border-left: 5px solid var(--accent); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .notiz-text { 
+            color: #ccc; font-size: 0.85em; margin-top: 5px; white-space: pre-wrap; line-height: 1.3; 
+            border-top: 1px solid rgba(0, 202, 227, 0.1); padding-top: 4px;
+        }
+        
+        .zeit { color: var(--accent); font-family: 'Courier New', monospace; font-size: 1.1em; font-weight: bold; margin-right: 10px; }
         .faellig { color: #ff4d4d; }
-        #login-overlay { position: fixed; inset: 0; background: black; display: flex; justify-content: center; align-items: center; z-index: 9999; }
+
+        @media (max-width: 650px) {
+            .termin-card { flex-direction: column; align-items: flex-start; }
+            .zeit { margin: 5px 0; }
+        }
     </style>
 </head>
 <body>
 
     <div id="login-overlay">
-        <div style="text-align:center">
-            <h2 style="color:var(--accent)">SYSTEM ACCESS</h2>
-            <input type="password" id="pin" placeholder="PIN" style="width:120px; text-align:center; font-size:24px;">
-            <br><button class="btn-main" onclick="login()">ENTER</button>
+        <div class="pin-box">
+            <h2 id="login-status">SYSTEM LOGIN</h2>
+            <input type="password" id="pin-field" class="pin-input" inputmode="numeric" maxlength="4">
+            <br>
+            <button class="btn" id="login-btn" onclick="entsperren()">LOGIN</button>
         </div>
     </div>
 
     <div id="main-content">
-        <div class="card">
-            <h2>Neuer / Edit Termin</h2>
-            <input type="hidden" id="edit-id" value="">
-            <input type="text" id="t-name" placeholder="Titel">
-            <input type="datetime-local" id="t-date">
+        <h1>Termin Monitor</h1>
+        <div class="input-box">
+            <input type="hidden" id="edit-index" value="-1">
+            <div class="input-group">
+                <input type="text" id="new-name" placeholder="Titel">
+                <input type="datetime-local" id="new-date">
+            </div>
+            <textarea id="new-note" placeholder="Notizen..."></textarea>
+            <button class="btn" id="save-btn" onclick="speichereTermin()" style="height: 35px; width: 80px;">OK</button>
             
-            <div class="toolbar">
-                <button class="tool-btn" onclick="wrapText('**','**')"><b>Fett</b></button>
-                <button class="tool-btn" onclick="wrapText('--','--')"><s>Durch</s></button>
-                <button class="tool-btn" onclick="wrapText('[color:red]','[/color]')">Rot</button>
-                <button class="tool-btn" onclick="wrapText('[color:green]','[/color]')">Grün</button>
-                <button class="tool-btn" onclick="addCB()">+ Checkbox</button>
+            <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
+                <button class="btn btn-secondary" onclick="document.getElementById('ics-file').click()">+ ICS IMPORT</button>
+                <input type="file" id="ics-file" accept=".ics" style="display:none" onchange="handleIcsUpload(event)">
+                <button class="btn btn-secondary" style="background:transparent; border:none; color:#666;" onclick="logout()">LOGOUT</button>
             </div>
-            <textarea id="t-note" placeholder="Notizen..."></textarea>
-            <div id="cb-editor-zone">
-                <small style="color:var(--accent)">Checklisten-Editor:</small>
-                <div id="cb-list"></div>
-            </div>
-            <button class="btn-main" id="save-btn" onclick="save()">TERMIN SPEICHERN</button>
         </div>
-        <div id="liste">Lade Orbital-Daten...</div>
+        
+        <div id="counter-display" class="termin-counter">Termine: 0</div>
+        <div id="liste">Lade Daten...</div>
     </div>
 
-<script>
-    const t1 = "github_pat_11BBRVHCQ05kX9OEirDuF2";
-    const t2 = "_SfPbmFFMu5S4O8kX6AdanuVfPsNY6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
-    const G_URL = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
-    let data = [], currentSha = "", isLogged = false;
+    <script>
+        const P_ENC = "MDUwOA==";
+        const t1 = "github_pat_11BBRVHCQ05kX9OEirDuF2";
+        const t2 = "_SfPbmFFMu5S4O8kX6AdanuVfPsNY6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
+        const GITHUB_TOKEN = t1 + t2;
+        const GITHUB_URL = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
 
-    function login() {
-        if(btoa(document.getElementById('pin').value) === "MDUwOA==") {
-            document.getElementById('login-overlay').style.display='none';
-            document.getElementById('main-content').style.display='block';
-            isLogged = true;
-            load();
-        } else { alert("ACCESS DENIED"); }
-    }
+        let termineDaten = [];
+        let currentSha = "";
+        let isLogged = false;
 
-    function wrapText(before, after) {
-        const area = document.getElementById('t-note');
-        const start = area.selectionStart, end = area.selectionEnd;
-        area.value = area.value.substring(0, start) + before + area.value.substring(start, end) + after + area.value.substring(end);
-        area.focus();
-    }
-
-    function addCB(val = "", checked = false) {
-        const div = document.createElement('div');
-        div.className = "cb-edit-row";
-        div.innerHTML = `<input type="checkbox" ${checked ? 'checked' : ''}><input type="text" value="${val}" style="margin:0"><button class="tool-btn" style="color:red" onclick="this.parentElement.remove()">X</button>`;
-        document.getElementById('cb-list').appendChild(div);
-    }
-
-    async function load() {
-        const res = await fetch(G_URL, { headers: { 'Authorization': `token ${t1+t2}` } });
-        if(res.ok) {
-            const j = await res.json();
-            currentSha = j.sha;
-            data = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(j.content), c => c.charCodeAt(0))));
-            render();
-        }
-    }
-
-    function render() {
-        const jetzt = new Date();
-        let h = "";
-        data.sort((a,b) => new Date(a.ziel) - new Date(b.ziel)).forEach((t, i) => {
-            const ziel = new Date(t.ziel), diff = ziel - jetzt;
-            let zeitStr = "FÄLLIG";
-            if(diff > 0) {
-                const d = Math.floor(diff/86400000).toString().padStart(2,'0');
-                const h = Math.floor((diff%86400000)/3600000).toString().padStart(2,'0');
-                const m = Math.floor((diff%3600000)/60000).toString().padStart(2,'0');
-                const s = Math.floor((diff%60000)/1000).toString().padStart(2,'0');
-                zeitStr = `${d}d ${h}h ${m}m ${s}s`;
+        // Login Logik repariert für Reload
+        window.onload = function() {
+            if (localStorage.getItem('termin_monitor_auth') === 'true') {
+                showDashboard();
             }
-            h += `<div class="termin-card">
-                <div style="flex:1; padding-right:15px;">
-                    <strong style="font-size:1.2em">${t.name}</strong><br>
-                    <small style="color:#888">${ziel.toLocaleString()}</small>
-                    <div class="notiz-display">${format(t.notiz, i)}</div>
-                </div>
-                <div style="text-align:right">
-                    <div class="zeit-display ${diff <= 0 ? 'faellig' : ''}">${zeitStr}</div>
-                    <div style="margin-top:10px">
-                        <button class="tool-btn" onclick="edit(${i})">EDIT</button>
-                        <button class="tool-btn" style="color:red" onclick="del(${i})">DEL</button>
-                    </div>
-                </div>
-            </div>`;
-        });
-        document.getElementById('liste').innerHTML = h;
-    }
+        };
 
-    function format(txt, tIdx) {
-        if(!txt) return "";
-        let lines = txt.split('\n').map((l, lIdx) => {
-            if(l.startsWith('[ ]')) return `<span class="cb-line" onclick="toggle(${tIdx},${lIdx})">☐ ${l.slice(3)}</span>`;
-            if(l.startsWith('[x]')) return `<span class="cb-line done" onclick="toggle(${tIdx},${lIdx})">☑ ${l.slice(3)}</span>`;
-            return l;
-        });
-        return lines.join('\n').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/--(.*?)--/g, '<s>$1</s>').replace(/\[color:(.*?)\](.*?)\[\/color\]/g, '<span style="color:$1">$2</span>');
-    }
+        function entsperren() {
+            const field = document.getElementById('pin-field');
+            if (btoa(field.value.trim()) === P_ENC) {
+                localStorage.setItem('termin_monitor_auth', 'true');
+                showDashboard();
+            } else {
+                alert("Falsche PIN!");
+                field.value = "";
+            }
+        }
 
-    async function toggle(tIdx, lIdx) {
-        let l = data[tIdx].notiz.split('\n');
-        l[lIdx] = l[lIdx].startsWith('[ ]') ? l[lIdx].replace('[ ]','[x]') : l[lIdx].replace('[x]','[ ]');
-        data[tIdx].notiz = l.join('\n');
-        saveToGit();
-    }
+        function logout() {
+            localStorage.removeItem('termin_monitor_auth');
+            location.reload();
+        }
 
-    function edit(i) {
-        const t = data[i];
-        document.getElementById('edit-id').value = i;
-        document.getElementById('t-name').value = t.name;
-        document.getElementById('t-date').value = t.ziel.substring(0,16);
-        document.getElementById('cb-list').innerHTML = "";
-        let textPart = [];
-        t.notiz.split('\n').forEach(line => {
-            if(line.startsWith('[ ]')) addCB(line.slice(3), false);
-            else if(line.startsWith('[x]')) addCB(line.slice(3), true);
-            else textPart.push(line);
-        });
-        document.getElementById('t-note').value = textPart.join('\n');
-        window.scrollTo(0,0);
-    }
+        function showDashboard() {
+            isLogged = true;
+            document.getElementById('login-overlay').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            holeDaten();
+        }
 
-    async function save() {
-        const name = document.getElementById('t-name').value, date = document.getElementById('t-date').value, note = document.getElementById('t-note').value, id = document.getElementById('edit-id').value;
-        if(!name || !date) return;
-        let fullNote = note;
-        document.querySelectorAll('.cb-edit-row').forEach(row => {
-            const txt = row.querySelector('input[type="text"]').value, chk = row.querySelector('input[type="checkbox"]').checked;
-            if(txt) fullNote += `\n${chk ? '[x]' : '[ ]'}${txt}`;
-        });
-        const entry = { name, ziel: date, notiz: fullNote.trim() };
-        if(id === "") data.push(entry); else data[id] = entry;
-        saveToGit();
-        document.getElementById('edit-id').value = ""; document.getElementById('cb-list').innerHTML = ""; document.getElementById('t-note').value = ""; document.getElementById('t-name').value = "";
-    }
+        async function holeDaten() {
+            try {
+                const response = await fetch(GITHUB_URL, {
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    currentSha = data.sha;
+                    const str = atob(data.content);
+                    const bytes = new Uint8Array(str.length);
+                    for (let i = 0; i < str.length; i++) bytes[i] = str.charCodeAt(i);
+                    termineDaten = JSON.parse(new TextDecoder().decode(bytes));
+                    termineDaten.sort((a, b) => new Date(a.ziel) - new Date(b.ziel));
+                    updateAnzeige();
+                }
+            } catch (e) { console.error("Sync Error"); }
+        }
 
-    async function saveToGit() {
-        const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 4))));
-        await fetch(G_URL, { method: 'PUT', headers: { 'Authorization': `token ${t1+t2}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ message: "Update", content, sha: currentSha }) });
-        load();
-    }
+        async function pushToGithub(neueListe) {
+            const bytes = new TextEncoder().encode(JSON.stringify(neueListe, null, 4));
+            const base64 = btoa(String.fromCharCode(...bytes));
+            const response = await fetch(GITHUB_URL, {
+                method: 'PUT',
+                headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: "Update", content: base64, sha: currentSha })
+            });
+            if (response.ok) { resetInput(); holeDaten(); }
+        }
 
-    function del(i) { if(confirm("Löschen?")) { data.splice(i,1); saveToGit(); } }
+        function speichereTermin() {
+            const n = document.getElementById('new-name'), d = document.getElementById('new-date'), 
+                  notiz = document.getElementById('new-note'), idx = document.getElementById('edit-index').value;
+            if (!n.value || !d.value) return;
+            let neueListe = [...termineDaten];
+            const eintr = { "name": n.value, "ziel": d.value.includes(":00") ? d.value : d.value + ":00", "notiz": notiz.value || "" };
+            if (idx === "-1") neueListe.push(eintr); else neueListe[idx] = eintr;
+            pushToGithub(neueListe);
+        }
 
-    setInterval(() => { if(isLogged) render(); }, 1000); // Sekunden-Update
-    setInterval(() => { if(isLogged) load(); }, 30000); // GitHub-Sync
-</script>
+        function editTermin(i) {
+            const t = termineDaten[i];
+            document.getElementById('new-name').value = t.name;
+            document.getElementById('new-date').value = t.ziel.substring(0, 16);
+            document.getElementById('new-note').value = t.notiz || "";
+            document.getElementById('edit-index').value = i;
+            document.getElementById('save-btn').innerText = "Update";
+            window.scrollTo(0,0);
+        }
+
+        function kopiereTermin(i) {
+            const t = termineDaten[i];
+            document.getElementById('new-name').value = t.name + " (Kopie)";
+            document.getElementById('new-date').value = t.ziel.substring(0, 16);
+            document.getElementById('new-note').value = t.notiz || "";
+            document.getElementById('edit-index').value = "-1";
+            document.getElementById('save-btn').innerText = "OK";
+            window.scrollTo(0,0);
+        }
+
+        function loescheTermin(i) {
+            if (confirm("Löschen?")) pushToGithub(termineDaten.filter((_, idx) => idx !== i));
+        }
+
+        function resetInput() {
+            document.getElementById('new-name').value = ''; document.getElementById('new-date').value = '';
+            document.getElementById('new-note').value = ''; document.getElementById('edit-index').value = "-1";
+            document.getElementById('save-btn').innerText = "OK";
+        }
+
+        function updateAnzeige() {
+            const listeDiv = document.getElementById('liste');
+            const jetzt = new Date();
+            document.getElementById('counter-display').innerText = `Termine: ${termineDaten.length}`;
+
+            let html = "";
+            termineDaten.forEach((t, index) => {
+                const ziel = new Date(t.ziel), diff = ziel - jetzt;
+                let zeitStr = "Fällig";
+                if (diff > 0) {
+                    const d = Math.floor(diff/86400000).toString().padStart(2, '0');
+                    const h = Math.floor((diff%86400000)/3600000).toString().padStart(2, '0');
+                    const m = Math.floor((diff%3600000)/60000).toString().padStart(2, '0');
+                    const s = Math.floor((diff%60000)/1000).toString().padStart(2, '0');
+                    zeitStr = `${d}t ${h}h ${m}m ${s}s`;
+                }
+                
+                html += `
+                    <div class="termin-card">
+                        <div style="flex: 1; min-width: 0;">
+                            <div style="font-weight:bold; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${t.name}</div>
+                            <small style="color:#888">${new Date(t.ziel).toLocaleString()}</small>
+                            ${t.notiz ? `<div class="notiz-text">${t.notiz}</div>` : ""}
+                        </div>
+                        <div style="display:flex; align-items:center; flex-shrink: 0;">
+                            <span class="zeit ${diff <= 0 ? 'faellig' : ''}">${zeitStr}</span>
+                            <button class="btn-action btn-copy" title="Kopieren" onclick="kopiereTermin(${index})">📄</button>
+                            <button class="btn-action btn-edit" title="Edit" onclick="editTermin(${index})" style="margin:0 3px">✎</button>
+                            <button class="btn-action btn-del" title="Löschen" onclick="loescheTermin(${index})">✕</button>
+                        </div>
+                    </div>`;
+            });
+            listeDiv.innerHTML = html;
+        }
+
+        setInterval(() => { if(isLogged) updateAnzeige(); }, 1000);
+        setInterval(() => { if(isLogged) holeDaten(); }, 60000);
+    </script>
 </body>
 </html>
