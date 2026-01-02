@@ -45,6 +45,11 @@
         "notiz": ""
     },
     {
+        "name": "Fliesenleger Bajrami",
+        "ziel": "2026-01-07T08:00",
+        "notiz": "[color:#00ff00]Ganztägig[/color]"
+    },
+    {
         "name": "PVC mit Hebebühne",
         "ziel": "2026-01-07T10:00",
         "notiz": "Draußen zu Kalt fürs schneiden."
@@ -230,7 +235,7 @@
     },
     {
         "name": "Fliesenleger Bajrami",
-        "ziel": "2026-01-07T08:00",
+        "ziel": "2026-01-08T08:00",
         "notiz": "[color:#00ff00]Ganztägig[/color]"
     }
 ]
