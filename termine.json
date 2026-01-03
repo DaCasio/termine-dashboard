@@ -15,14 +15,14 @@
         "notiz": "Marcel spachtelt am 06.01 den kompletten Boden"
     },
     {
-        "name": "PVC mit Hebebühne",
-        "ziel": "2026-01-08T10:00",
-        "notiz": "Draußen zu Kalt fürs schneiden."
-    },
-    {
         "name": "Irmi/Marcel Boden schleifen",
         "ziel": "2026-01-07T16:00",
         "notiz": "Marcel spachtelt am 06.01 den kompletten Boden"
+    },
+    {
+        "name": "PVC mit Hebebühne",
+        "ziel": "2026-01-08T10:00",
+        "notiz": "Draußen zu Kalt fürs schneiden."
     },
     {
         "name": "Marcel PVC Zuschneiden / Verlegen",
@@ -222,5 +222,10 @@
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00",
         "notiz": ""
+    },
+    {
+        "name": "Irmi Rest",
+        "ziel": "2026-01-05T08:00",
+        "notiz": "[ ]Heizungen\n[ ]Boden spachteln/schleifen etc"
     }
 ]
