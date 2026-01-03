@@ -1,10 +1,5 @@
 [
     {
-        "name": "Holz Dammers Verblendung",
-        "ziel": "2026-01-10T10:00",
-        "notiz": "Für Kochnische"
-    },
-    {
         "name": "Bajrami - Übergabe & Fliesen - nachgefragt",
         "ziel": "2026-01-05T08:00",
         "notiz": "Klären was Fliesenleger machen\n[ ]Übergabe: Keller- und Haustürschlüssel\n[ ]Übergabe: Mieterbestätigung\n[ ]Übergabe: Briefkasten / Halterung Name fehlt\n[ ]Fliesenleger: Küche Fliesen komplett durchziehen?\n[ ]Fliesenleger: Küche verspachteln / Kochnische?\n[x]Fliesenleger: Bad Wird Rest noch verputzt?\n[x]Fliesenleger: Bad verfugen / Lücken schließen / Silikon?\n[x]Fliesenleger: Bad Manschette?"
@@ -15,7 +10,7 @@
         "notiz": "Marcel spachtelt am 06.01 den kompletten Boden"
     },
     {
-        "name": "Urlaub",
+        "name": "Urlaub verschieben",
         "ziel": "2026-01-06T17:00",
         "notiz": "Kero ab 7.1. bis 23.1. sicher\nCasi ab 9.1. 17 Uhr bis 18.1 sicher\nCasi ab 7.1. bis 21.1. noch in Genehmigung"
     },
@@ -28,6 +23,11 @@
         "name": "Marcel PVC Zuschneiden / Verlegen",
         "ziel": "2026-01-09T08:00",
         "notiz": ""
+    },
+    {
+        "name": "Holz Dammers Verblendung",
+        "ziel": "2026-01-10T10:00",
+        "notiz": "Für Kochnische"
     },
     {
         "name": "Marcel Boden Leisten",
