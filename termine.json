@@ -22,7 +22,7 @@
     {
         "name": "Irmi/Marcel Boden schleifen",
         "ziel": "2026-01-07T16:00",
-        "notiz": "Marcel spachtelt am 06.01 den kompletten Boden"
+        "notiz": "Irmi/Marcel schleifen am 07.01 den kompletten Boden"
     },
     {
         "name": "PVC",
@@ -111,6 +111,11 @@
     {
         "name": "Sperrmüll Neukirchen rausstellen",
         "ziel": "2026-02-08T10:00",
+        "notiz": ""
+    },
+    {
+        "name": "Sperrmüll Neukirchen Abholung",
+        "ziel": "2026-02-09T10:00",
         "notiz": ""
     },
     {
@@ -231,11 +236,6 @@
     {
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00",
-        "notiz": ""
-    },
-    {
-        "name": "Sperrmüll Neukirchen Abholung",
-        "ziel": "2026-02-09T10:00",
         "notiz": ""
     }
 ]
