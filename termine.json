@@ -1,7 +1,7 @@
 [
     {
         "name": "Bajrami Fliesenleger Bad",
-        "ziel": "2026-01-06T08:00",
+        "ziel": "2026-01-06T18:00",
         "notiz": "Mit Bajrami klären\nBadwände, Silikon, Manschetten – Rest"
     },
     {
@@ -18,6 +18,11 @@
         "name": "Bajrami – Übergabe",
         "ziel": "2026-01-06T18:00",
         "notiz": "[ ] Übergabe: Keller- und Haustürschlüssel\n[ ] Übergabe: Mieterbestätigung\n[ ] Übergabe: Briefkasten / Halterung, Name fehlt"
+    },
+    {
+        "name": "Klaus vor Ort",
+        "ziel": "2026-01-06T18:15",
+        "notiz": "Schaut sich alles an."
     },
     {
         "name": "Marcel PVC sagt Bescheid",
@@ -268,10 +273,5 @@
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00",
         "notiz": ""
-    },
-    {
-        "name": "Klaus vor Ort",
-        "ziel": "2026-01-06T18:15",
-        "notiz": "Schaut sich alles an."
     }
 ]
