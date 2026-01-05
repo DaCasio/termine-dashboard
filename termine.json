@@ -70,14 +70,14 @@
         "notiz": "Türen lackieren\n12.-14.1."
     },
     {
-        "name": "Marcel / Vertretung Boden Leisten? spätestens 13.1",
-        "ziel": "2026-01-14T10:00",
-        "notiz": "Weil Marcel krank ist kann sich das auf Montag verschieben oder spätestens 14.1."
-    },
-    {
         "name": "Boden spätestens drin",
         "ziel": "2026-01-13T22:00",
         "notiz": "Fußleisten danach?"
+    },
+    {
+        "name": "Marcel / Vertretung Boden Leisten? spätestens 14.1",
+        "ziel": "2026-01-14T10:00",
+        "notiz": "Weil Marcel krank ist kann sich das auf Montag verschieben oder spätestens 14.1."
     },
     {
         "name": "Küche Klaus Klettke",
