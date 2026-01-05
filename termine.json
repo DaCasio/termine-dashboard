@@ -75,6 +75,11 @@
         "notiz": "Türen lackieren\n12.-14.1."
     },
     {
+        "name": "Urlaub",
+        "ziel": "2026-01-16T17:00",
+        "notiz": "Status abwarten"
+    },
+    {
         "name": "Lieferung Esstisch",
         "ziel": "2026-01-19T08:00",
         "notiz": ""
@@ -244,8 +249,8 @@
         "notiz": ""
     },
     {
-        "name": "Urlaub",
-        "ziel": "2026-01-16T17:00",
+        "name": "Urlaub Ende",
+        "ziel": "2026-02-01T22:00",
         "notiz": "Status abwarten"
     }
 ]
