@@ -1,257 +1,262 @@
 [
-  {
-    "name": "Bajrami Fliesenleger Bad",
-    "ziel": "2026-01-06T08:00",
-    "notiz": "Mit Bajrami klären\nBadwände, Silikon, Manschetten – Rest"
-  },
-  {
-    "name": "Irmi Rest Heizung",
-    "ziel": "2026-01-06T08:00",
-    "notiz": "[ ] Heizungen"
-  },
-  {
-    "name": "Urlaub Kero",
-    "ziel": "2026-01-06T17:00",
-    "notiz": ""
-  },
-  {
-    "name": "Bajrami – Übergabe",
-    "ziel": "2026-01-06T18:00",
-    "notiz": "[ ] Übergabe: Keller- und Haustürschlüssel\n[ ] Übergabe: Mieterbestätigung\n[ ] Übergabe: Briefkasten / Halterung, Name fehlt"
-  },
-  {
-    "name": "Marcel PVC sagt Bescheid",
-    "ziel": "2026-01-08T08:00",
-    "notiz": "Marcel sagt Bescheid, wie es ihm geht.\nMarcel hat noch zwei Leute mitzubringen / einer könnte abspringen."
-  },
-  {
-    "name": "Marcel / Vertretung: Boden spachteln",
-    "ziel": "2026-01-09T16:00",
-    "notiz": "Marcel krank → Irman hilft und spachtelt/schleift am 09.01. den kompletten Boden.\nOder spätestens 12.01."
-  },
-  {
-    "name": "Holz-Dammers Fußleisten Küchenschränke",
-    "ziel": "2026-01-10T10:00",
-    "notiz": "Für Küchenschränke"
-  },
-  {
-    "name": "Boden schleifen fertig – spätestens",
-    "ziel": "2026-01-12T08:00",
-    "notiz": "Irmi/Marcel schleifen am 12.01. den kompletten Boden"
-  },
-  {
-    "name": "PVC zuschneiden / verlegen",
-    "ziel": "2026-01-12T16:00",
-    "notiz": "Zuschneiden und Verlegen von PVC"
-  },
-  {
-    "name": "Türen lackieren – Klaus Klettke",
-    "ziel": "2026-01-12T17:00",
-    "notiz": "Türen lackieren\n12.–14.01."
-  },
-  {
-    "name": "Bodenleisten",
-    "ziel": "2026-01-13T10:00",
-    "notiz": "Abhängig von Marcels Zustand"
-  },
-  {
-    "name": "Boden spätestens drin",
-    "ziel": "2026-01-13T22:00",
-    "notiz": "Fußleisten können auch danach gemacht werden."
-  },
-  {
-    "name": "Thorsten Türen",
-    "ziel": "2026-01-14T13:00",
-    "notiz": "Türen kürzen – abhängig vom Boden"
-  },
-  {
-    "name": "Küche – Klaus Klettke",
-    "ziel": "2026-01-15T17:00",
-    "notiz": "Verspachteln und Rest\n15.–19.01."
-  },
-  {
-    "name": "Urlaub Casi",
-    "ziel": "2026-01-16T17:00",
-    "notiz": "Status abwarten"
-  },
-  {
-    "name": "Lieferung Esstisch",
-    "ziel": "2026-01-19T08:00",
-    "notiz": ""
-  },
-  {
-    "name": "Küche Decke / Wände",
-    "ziel": "2026-01-19T08:00",
-    "notiz": "19.–23.01."
-  },
-  {
-    "name": "Urlaub Kero",
-    "ziel": "2026-01-20T00:00",
-    "notiz": ""
-  },
-  {
-    "name": "Umzug",
-    "ziel": "2026-01-22T08:00",
-    "notiz": "22.–23.01.\nProtokoll Vorfall Verfolgung/Nachstellung"
-  },
-  {
-    "name": "Telekom VDSL Umschaltung",
-    "ziel": "2026-01-26T08:00",
-    "notiz": ""
-  },
-  {
-    "name": "Sperrmüll rausstellen",
-    "ziel": "2026-01-27T15:00",
-    "notiz": ""
-  },
-  {
-    "name": "Sperrmüll Abholung",
-    "ziel": "2026-01-28T07:00",
-    "notiz": ""
-  },
-  {
-    "name": "Umzug abgeschlossen",
-    "ziel": "2026-02-01T00:00",
-    "notiz": ""
-  },
-  {
-    "name": "Urlaub Ende",
-    "ziel": "2026-02-01T22:00",
-    "notiz": "Status abwarten"
-  },
-  {
-    "name": "Sperrmüll Neukirchen rausstellen",
-    "ziel": "2026-02-08T10:00",
-    "notiz": ""
-  },
-  {
-    "name": "Sperrmüll Neukirchen Abholung",
-    "ziel": "2026-02-09T10:00",
-    "notiz": ""
-  },
-  {
-    "name": "Steuern rausschicken",
-    "ziel": "2026-03-01T18:00",
-    "notiz": ""
-  },
-  {
-    "name": "Dr. Stickelbruck Reinigung",
-    "ziel": "2026-03-11T09:00",
-    "notiz": ""
-  },
-  {
-    "name": "Eurowings Glatt",
-    "ziel": "2026-03-15T15:00",
-    "notiz": ""
-  },
-  {
-    "name": "Bülent Ceylan – Diktatürk",
-    "ziel": "2026-03-22T19:00",
-    "notiz": ""
-  },
-  {
-    "name": "Langes Wochenende",
-    "ziel": "2026-04-02T17:00",
-    "notiz": ""
-  },
-  {
-    "name": "C1E verlängern",
-    "ziel": "2026-04-06T12:00",
-    "notiz": "Frist 21.06.2026"
-  },
-  {
-    "name": "Dezor Abo prüfen",
-    "ziel": "2026-04-07T16:44",
-    "notiz": "Gekündigt, trotzdem prüfen"
-  },
-  {
-    "name": "Langes Wochenende",
-    "ziel": "2026-04-30T17:00",
-    "notiz": ""
-  },
-  {
-    "name": "Morgen frei",
-    "ziel": "2026-05-13T17:00",
-    "notiz": ""
-  },
-  {
-    "name": "Langes Wochenende",
-    "ziel": "2026-05-22T17:00",
-    "notiz": ""
-  },
-  {
-    "name": "Morgen frei",
-    "ziel": "2026-06-03T17:00",
-    "notiz": ""
-  },
-  {
-    "name": "Urlaub",
-    "ziel": "2026-07-03T17:00",
-    "notiz": ""
-  },
-  {
-    "name": "Abbait",
-    "ziel": "2026-07-09T08:00",
-    "notiz": ""
-  },
-  {
-    "name": "Urlaub",
-    "ziel": "2026-07-31T17:00",
-    "notiz": ""
-  },
-  {
-    "name": "Urlaub Kanaren – Konto check 1/2",
-    "ziel": "2026-08-01T12:00",
-    "notiz": ""
-  },
-  {
-    "name": "Abbait",
-    "ziel": "2026-08-10T08:00",
-    "notiz": ""
-  },
-  {
-    "name": "Elster Zertifikat Mutti läuft aus",
-    "ziel": "2026-08-31T08:37",
-    "notiz": ""
-  },
-  {
-    "name": "Urlaub Kanaren – Konto check 2/2",
-    "ziel": "2026-09-01T12:00",
-    "notiz": ""
-  },
-  {
-    "name": "Urlaub",
-    "ziel": "2026-09-18T17:00",
-    "notiz": ""
-  },
-  {
-    "name": "Abbait",
-    "ziel": "2026-10-05T08:00",
-    "notiz": ""
-  },
-  {
-    "name": "Konto glatt",
-    "ziel": "2026-11-27T15:00",
-    "notiz": ""
-  },
-  {
-    "name": "Termin Christoph Knierim",
-    "ziel": "2027-09-13T12:00",
-    "notiz": ""
-  },
-  {
-    "name": "Elster Zertifikat Casi läuft aus",
-    "ziel": "2028-03-24T09:24",
-    "notiz": ""
-  },
-  {
-    "name": "Elster Zertifikat Kersti läuft aus",
-    "ziel": "2028-09-11T21:04",
-    "notiz": ""
-  },
-  {
-    "name": "Darlehen Ende",
-    "ziel": "2030-05-15T18:00",
-    "notiz": ""
-  }
+    {
+        "name": "Bajrami Fliesenleger Bad",
+        "ziel": "2026-01-06T08:00",
+        "notiz": "Mit Bajrami klären\nBadwände, Silikon, Manschetten – Rest"
+    },
+    {
+        "name": "Irmi Rest Heizung",
+        "ziel": "2026-01-06T08:00",
+        "notiz": "[ ] Heizungen"
+    },
+    {
+        "name": "Urlaub Kero",
+        "ziel": "2026-01-06T17:00",
+        "notiz": ""
+    },
+    {
+        "name": "Bajrami – Übergabe",
+        "ziel": "2026-01-06T18:00",
+        "notiz": "[ ] Übergabe: Keller- und Haustürschlüssel\n[ ] Übergabe: Mieterbestätigung\n[ ] Übergabe: Briefkasten / Halterung, Name fehlt"
+    },
+    {
+        "name": "Marcel PVC sagt Bescheid",
+        "ziel": "2026-01-08T08:00",
+        "notiz": "Marcel sagt Bescheid, wie es ihm geht.\nMarcel hat noch zwei Leute mitzubringen / einer könnte abspringen."
+    },
+    {
+        "name": "Marcel / Vertretung: Boden spachteln",
+        "ziel": "2026-01-09T16:00",
+        "notiz": "Marcel krank → Irman hilft und spachtelt/schleift am 09.01. den kompletten Boden.\nOder spätestens 12.01."
+    },
+    {
+        "name": "Holz-Dammers Fußleisten Küchenschränke",
+        "ziel": "2026-01-10T10:00",
+        "notiz": "Für Küchenschränke"
+    },
+    {
+        "name": "Boden schleifen fertig – spätestens",
+        "ziel": "2026-01-12T08:00",
+        "notiz": "Irmi/Marcel schleifen am 12.01. den kompletten Boden"
+    },
+    {
+        "name": "PVC zuschneiden / verlegen",
+        "ziel": "2026-01-12T16:00",
+        "notiz": "Zuschneiden und Verlegen von PVC"
+    },
+    {
+        "name": "Türen lackieren – Klaus Klettke",
+        "ziel": "2026-01-12T17:00",
+        "notiz": "Türen lackieren\n12.–14.01."
+    },
+    {
+        "name": "Bodenleisten",
+        "ziel": "2026-01-13T10:00",
+        "notiz": "Abhängig von Marcels Zustand"
+    },
+    {
+        "name": "Boden spätestens drin",
+        "ziel": "2026-01-13T22:00",
+        "notiz": "Fußleisten können auch danach gemacht werden."
+    },
+    {
+        "name": "Thorsten Türen",
+        "ziel": "2026-01-14T13:00",
+        "notiz": "Türen kürzen – abhängig vom Boden"
+    },
+    {
+        "name": "Küche – Klaus Klettke",
+        "ziel": "2026-01-15T17:00",
+        "notiz": "Verspachteln und Rest\n15.–19.01."
+    },
+    {
+        "name": "Urlaub Casi",
+        "ziel": "2026-01-16T17:00",
+        "notiz": "Status abwarten"
+    },
+    {
+        "name": "Lieferung Esstisch",
+        "ziel": "2026-01-19T08:00",
+        "notiz": ""
+    },
+    {
+        "name": "Küche Decke / Wände",
+        "ziel": "2026-01-19T08:00",
+        "notiz": "19.–23.01."
+    },
+    {
+        "name": "Urlaub Kero",
+        "ziel": "2026-01-20T00:00",
+        "notiz": ""
+    },
+    {
+        "name": "Umzug",
+        "ziel": "2026-01-22T08:00",
+        "notiz": "22.–23.01.\nProtokoll Vorfall Verfolgung/Nachstellung"
+    },
+    {
+        "name": "Telekom VDSL Umschaltung",
+        "ziel": "2026-01-26T08:00",
+        "notiz": ""
+    },
+    {
+        "name": "Sperrmüll rausstellen",
+        "ziel": "2026-01-27T15:00",
+        "notiz": ""
+    },
+    {
+        "name": "Sperrmüll Abholung",
+        "ziel": "2026-01-28T07:00",
+        "notiz": ""
+    },
+    {
+        "name": "Umzug abgeschlossen",
+        "ziel": "2026-02-01T00:00",
+        "notiz": ""
+    },
+    {
+        "name": "Urlaub Ende",
+        "ziel": "2026-02-01T22:00",
+        "notiz": "Status abwarten"
+    },
+    {
+        "name": "Sperrmüll Neukirchen rausstellen",
+        "ziel": "2026-02-08T10:00",
+        "notiz": ""
+    },
+    {
+        "name": "Sperrmüll Neukirchen Abholung",
+        "ziel": "2026-02-09T10:00",
+        "notiz": ""
+    },
+    {
+        "name": "Steuern rausschicken",
+        "ziel": "2026-03-01T18:00",
+        "notiz": ""
+    },
+    {
+        "name": "Dr. Stickelbruck Reinigung",
+        "ziel": "2026-03-11T09:00",
+        "notiz": ""
+    },
+    {
+        "name": "Eurowings Glatt",
+        "ziel": "2026-03-15T15:00",
+        "notiz": ""
+    },
+    {
+        "name": "Bülent Ceylan – Diktatürk",
+        "ziel": "2026-03-22T19:00",
+        "notiz": ""
+    },
+    {
+        "name": "Langes Wochenende",
+        "ziel": "2026-04-02T17:00",
+        "notiz": ""
+    },
+    {
+        "name": "C1E verlängern",
+        "ziel": "2026-04-06T12:00",
+        "notiz": "Frist 21.06.2026"
+    },
+    {
+        "name": "Dezor Abo prüfen",
+        "ziel": "2026-04-07T16:44",
+        "notiz": "Gekündigt, trotzdem prüfen"
+    },
+    {
+        "name": "Langes Wochenende",
+        "ziel": "2026-04-30T17:00",
+        "notiz": ""
+    },
+    {
+        "name": "Morgen frei",
+        "ziel": "2026-05-13T17:00",
+        "notiz": ""
+    },
+    {
+        "name": "Langes Wochenende",
+        "ziel": "2026-05-22T17:00",
+        "notiz": ""
+    },
+    {
+        "name": "Morgen frei",
+        "ziel": "2026-06-03T17:00",
+        "notiz": ""
+    },
+    {
+        "name": "Urlaub",
+        "ziel": "2026-07-03T17:00",
+        "notiz": ""
+    },
+    {
+        "name": "Abbait",
+        "ziel": "2026-07-09T08:00",
+        "notiz": ""
+    },
+    {
+        "name": "Urlaub",
+        "ziel": "2026-07-31T17:00",
+        "notiz": ""
+    },
+    {
+        "name": "Urlaub Kanaren – Konto check 1/2",
+        "ziel": "2026-08-01T12:00",
+        "notiz": ""
+    },
+    {
+        "name": "Abbait",
+        "ziel": "2026-08-10T08:00",
+        "notiz": ""
+    },
+    {
+        "name": "Elster Zertifikat Mutti läuft aus",
+        "ziel": "2026-08-31T08:37",
+        "notiz": ""
+    },
+    {
+        "name": "Urlaub Kanaren – Konto check 2/2",
+        "ziel": "2026-09-01T12:00",
+        "notiz": ""
+    },
+    {
+        "name": "Urlaub",
+        "ziel": "2026-09-18T17:00",
+        "notiz": ""
+    },
+    {
+        "name": "Abbait",
+        "ziel": "2026-10-05T08:00",
+        "notiz": ""
+    },
+    {
+        "name": "Konto glatt",
+        "ziel": "2026-11-27T15:00",
+        "notiz": ""
+    },
+    {
+        "name": "Termin Christoph Knierim",
+        "ziel": "2027-09-13T12:00",
+        "notiz": ""
+    },
+    {
+        "name": "Elster Zertifikat Casi läuft aus",
+        "ziel": "2028-03-24T09:24",
+        "notiz": ""
+    },
+    {
+        "name": "Elster Zertifikat Kersti läuft aus",
+        "ziel": "2028-09-11T21:04",
+        "notiz": ""
+    },
+    {
+        "name": "Darlehen Ende",
+        "ziel": "2030-05-15T18:00",
+        "notiz": ""
+    },
+    {
+        "name": "Kero / Sabina - putzen",
+        "ziel": "2026-01-20T22:00",
+        "notiz": ""
+    }
 ]
