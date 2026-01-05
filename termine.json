@@ -26,8 +26,13 @@
     },
     {
         "name": "Irmi/Marcel Boden schleifen",
-        "ziel": "2026-01-07T16:00",
+        "ziel": "2026-01-12T16:00",
         "notiz": "Irmi/Marcel schleifen am 07.01 den kompletten Boden"
+    },
+    {
+        "name": "Marcel PVC sagt Bescheid",
+        "ziel": "2026-01-08T08:00",
+        "notiz": "Marcel sagt Bescheid wie es ihm geht, aber glaube nicht wie es geht. Marcel will noch zwei Leute mitbringen."
     },
     {
         "name": "Marcel PVC Zuschneiden / Verlegen",
@@ -262,10 +267,5 @@
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00",
         "notiz": ""
-    },
-    {
-        "name": "Marcel PVC sagt Bescheid",
-        "ziel": "2026-01-08T08:00",
-        "notiz": "Marcel sagt Bescheid wie es ihm geht, aber glaube nicht wie es geht. Marcel will noch zwei Leute mitbringen."
     }
 ]
