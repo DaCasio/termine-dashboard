@@ -65,6 +65,11 @@
         "notiz": "Bad Wände Silikon  / Küche Fliesenspiegel\n12-18.1."
     },
     {
+        "name": "Abbait",
+        "ziel": "2026-01-12T08:00",
+        "notiz": "Status abwarten"
+    },
+    {
         "name": "Türen Klaus Klettke",
         "ziel": "2026-01-12T17:00",
         "notiz": "Türen lackieren\n12.-14.1."
@@ -237,10 +242,5 @@
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00",
         "notiz": ""
-    },
-    {
-        "name": "Abbait Kero",
-        "ziel": "2026-01-12T08:00",
-        "notiz": "Status abwarten"
     }
 ]
