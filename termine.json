@@ -41,18 +41,18 @@
     },
     {
         "name": "PVC zuschneiden / verlegen",
-        "ziel": "2026-01-12T08:00",
+        "ziel": "2026-01-12T16:00",
         "notiz": "Zuschneiden und Verlegen von PVC"
-    },
-    {
-        "name": "Thorsten Türen - Abhängig vom Boden.",
-        "ziel": "2026-01-12T13:00",
-        "notiz": "Türen kürzen <<< - Brauch er das noch oder nicht?"
     },
     {
         "name": "Irmi / Marcel Boden schleifen fertig – spätestens",
         "ziel": "2026-01-12T08:00",
         "notiz": "Irmi/Marcel schleifen am 12.01. den kompletten Boden"
+    },
+    {
+        "name": "Thorsten Türen - Abhängig vom Boden.",
+        "ziel": "2026-01-12T13:00",
+        "notiz": "Türen kürzen <<< - Brauch er das noch oder nicht?"
     },
     {
         "name": "Türen lackieren Klaus Klettke",
