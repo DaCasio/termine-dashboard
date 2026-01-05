@@ -1,10 +1,5 @@
 [
     {
-        "name": "Bajrami Fliesenleger Bad",
-        "ziel": "2026-01-06T18:00",
-        "notiz": "Mit Bajrami klären\nBadwände, Silikon, Manschetten – Rest"
-    },
-    {
         "name": "Irmi Rest Heizung",
         "ziel": "2026-01-06T08:00",
         "notiz": "[ ] Heizungen"
@@ -13,6 +8,11 @@
         "name": "Urlaub Kero",
         "ziel": "2026-01-06T17:00",
         "notiz": ""
+    },
+    {
+        "name": "Bajrami Fliesenleger Bad",
+        "ziel": "2026-01-06T18:00",
+        "notiz": "Mit Bajrami klären\nBadwände, Silikon, Manschetten – Rest"
     },
     {
         "name": "Bajrami – Übergabe",
@@ -273,5 +273,10 @@
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00",
         "notiz": ""
+    },
+    {
+        "name": "Bodenverleger Ziberi",
+        "ziel": "2026-01-06T18:15",
+        "notiz": "Schaut sich alles an."
     }
 ]
