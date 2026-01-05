@@ -20,18 +20,13 @@
         "notiz": "Klären was Fliesenleger machen\n[ ]Übergabe: Keller- und Haustürschlüssel\n[ ]Übergabe: Mieterbestätigung\n[ ]Übergabe: Briefkasten / Halterung Name fehlt\n[ ]Fliesenleger: Küche Fliesen komplett durchziehen?\n[ ]Fliesenleger oder Klaus: Küche verspachteln / Kochnische?\n[x]Fliesenleger: Bad Wird Rest noch verputzt?\n[x]Fliesenleger: Bad verfugen / Lücken schließen / Silikon?\n[x]Fliesenleger: Bad Manschette?"
     },
     {
-        "name": "PVC",
-        "ziel": "2026-01-12T10:00",
-        "notiz": ""
-    },
-    {
         "name": "Marcel PVC sagt Bescheid",
         "ziel": "2026-01-08T08:00",
         "notiz": "Marcel sagt Bescheid wie es ihm geht, aber glaube nicht wie es geht. Marcel will noch zwei Leute mitbringen."
     },
     {
         "name": "Marcel PVC Zuschneiden / Verlegen",
-        "ziel": "2026-01-09T08:00",
+        "ziel": "2026-01-12T08:00",
         "notiz": ""
     },
     {
@@ -63,6 +58,11 @@
         "name": "Bajrami Fliesenleger Küche",
         "ziel": "2026-01-12T08:00",
         "notiz": "Küche Fliesenspiegel\n12-14.1."
+    },
+    {
+        "name": "PVC",
+        "ziel": "2026-01-12T10:00",
+        "notiz": ""
     },
     {
         "name": "Irmi/Marcel Boden schleifen fertig - spätestens",
