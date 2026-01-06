@@ -71,8 +71,8 @@
     },
     {
         "name": "Türen lackieren – Klaus Klettke",
-        "ziel": "2026-01-12T17:00",
-        "notiz": "Zeitraum: 12.–14.01."
+        "ziel": "2026-01-14T17:00",
+        "notiz": "Zeitraum: 14.–16.01."
     },
     {
         "name": "Bodenleisten",
@@ -83,6 +83,11 @@
         "name": "Türen kürzen – Thorsten",
         "ziel": "2026-01-14T13:00",
         "notiz": "Abhängig vom fertigen Boden."
+    },
+    {
+        "name": "Fliesenleger Bajrami 14-17.1 möglich - alternativ/zusätzlich",
+        "ziel": "2026-01-14T17:00",
+        "notiz": "Zeitraum: 14.–17.01. - als Alternative möglich\nBad, Fugen etc."
     },
     {
         "name": "Urlaub Casi",
@@ -278,10 +283,5 @@
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00",
         "notiz": ""
-    },
-    {
-        "name": "Fliesenleger Bajrami 14-17.1 möglich - alternativ/zusätzlich",
-        "ziel": "2026-01-14T17:00",
-        "notiz": "Zeitraum: 14.–17.01. - als Alternative möglich\nBad, Fugen etc."
     }
 ]
