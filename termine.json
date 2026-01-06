@@ -1,10 +1,5 @@
 [
     {
-        "name": "Übergabe – Herr Bajrami",
-        "ziel": "2026-01-07T18:00",
-        "notiz": "Restarbeiten: Silikon, Manschetten\n[ ] Keller- und Haustürschlüssel\n[ ] Mieterbestätigung\n[ ] Briefkasten / Halterung, Name fehlt"
-    },
-    {
         "name": "Klaus vor Ort (Begehung)",
         "ziel": "2026-01-06T18:15",
         "notiz": "Schaut sich alles an.\nSachen auf Balkon stellen – Wohnung muss frei bleiben (Irmi benötigt alles picobello sauber)."
@@ -18,6 +13,11 @@
         "name": "Fliesenleger Bajrami 7-8.1 möglich",
         "ziel": "2026-01-07T17:00",
         "notiz": "Zeitraum: 07.–08.01. - Ab 9.1. darf keiner rein wegen Irmi. - Sachen von Fliesenleger müssen raus und dürfen nciht im Weg sein.\nBad, Fugen etc."
+    },
+    {
+        "name": "Übergabe – Herr Bajrami",
+        "ziel": "2026-01-07T18:00",
+        "notiz": "Restarbeiten: Silikon, Manschetten\n[ ] Keller- und Haustürschlüssel\n[ ] Mieterbestätigung\n[ ] Briefkasten / Halterung, Name fehlt"
     },
     {
         "name": "Marcel meldet Status PVC",
@@ -161,7 +161,7 @@
     },
     {
         "name": "Eurowings – Konto prüfen",
-        "ziel": "2026-03-15T15:00",
+        "ziel": "2026-04-15T15:00",
         "notiz": ""
     },
     {
