@@ -1,5 +1,10 @@
 [
     {
+        "name": "Feierabend",
+        "ziel": "2026-01-06T17:00",
+        "notiz": ""
+    },
+    {
         "name": "Herr Bajrami – Übergabe",
         "ziel": "2026-01-06T18:00",
         "notiz": "Silikon, Manschetten – Rest\n\n[ ] Übergabe: Keller- und Haustürschlüssel\n[ ] Übergabe: Mieterbestätigung\n[ ] Übergabe: Briefkasten / Halterung, Name fehlt"
@@ -7,12 +12,7 @@
     {
         "name": "Klaus vor Ort",
         "ziel": "2026-01-06T18:15",
-        "notiz": "Schaut sich alles an."
-    },
-    {
-        "name": "Bodenverleger Ziberi",
-        "ziel": "2026-01-06T18:30",
-        "notiz": "Schaut sich alles an."
+        "notiz": "Schaut sich alles an.\nKlaus soll seine Klamotten dann auf den Balkon stellen, da Irmi die Bude Picobello sauber benötigt, also nichts zustellen."
     },
     {
         "name": "Marcel PVC sagt Bescheid",
@@ -22,7 +22,17 @@
     {
         "name": "Marcel / Vertretung: Boden spachteln",
         "ziel": "2026-01-09T16:00",
-        "notiz": "Marcel krank → Irman hilft und spachtelt/schleift am 09.01. den kompletten Boden.\nOder spätestens 12.01."
+        "notiz": "Marcel krank → Irman hilft und spachtelt/schleift am 09.01. den kompletten Boden.\nOder spätestens 12.01.\nIrmi meint da ist noch Kleber in der Küche, aber Marcel wollte sich kümmern und alles machen."
+    },
+    {
+        "name": "Wochenende",
+        "ziel": "2026-01-09T17:00",
+        "notiz": ""
+    },
+    {
+        "name": "Irmi Boden Arbeitszimmer fertig",
+        "ziel": "2026-01-09T18:00",
+        "notiz": "Laut Irmi soll es heute fertig werden"
     },
     {
         "name": "Holz-Dammers Fußleisten Küchenschränke",
@@ -35,14 +45,24 @@
         "notiz": ""
     },
     {
-        "name": "Boden schleifen fertig – spätestens",
-        "ziel": "2026-01-12T08:00",
-        "notiz": "Irmi/Marcel schleifen am 12.01. den kompletten Boden"
+        "name": "PVC zuschneiden / verlegen",
+        "ziel": "2026-01-11T16:00",
+        "notiz": "Zuschneiden und Verlegen von PVC\nMarcel versichert dass der PVC spätestens heute liegen soll"
     },
     {
-        "name": "PVC zuschneiden / verlegen",
+        "name": "Ende Bereitschaft",
+        "ziel": "2026-01-12T06:00",
+        "notiz": ""
+    },
+    {
+        "name": "Boden schleifen fertig – spätestens alternativ",
+        "ziel": "2026-01-12T08:00",
+        "notiz": "Irmi meint da ist noch Kleber in der Küche, aber Marcel wollte sich kümmern und alles machen.\nIrmi/Marcel schleifen am 12.01. den kompletten Boden"
+    },
+    {
+        "name": "PVC zuschneiden / verlegen alternativ",
         "ziel": "2026-01-12T16:00",
-        "notiz": "Zuschneiden und Verlegen von PVC"
+        "notiz": "Zuschneiden und Verlegen von PVC\nMarcel versichert dass der PVC spätestens heute liegen soll"
     },
     {
         "name": "Türen lackieren – Klaus Klettke",
@@ -257,6 +277,11 @@
     {
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00",
+        "notiz": ""
+    },
+    {
+        "name": "Sahand - In der Line bis 16 Uhr",
+        "ziel": "2026-01-06T16:00",
         "notiz": ""
     }
 ]
