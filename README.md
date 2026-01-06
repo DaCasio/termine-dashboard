@@ -39,7 +39,6 @@ Dieses Projekt nutzt ein Client-seitiges Token-Management. Für maximale Sicherh
 
 ---
 
-Here is the professional English version of the README.md. I’ve polished the wording to give it a high-tech "Command Center" feel, matching your code's aesthetic.
 🚀 Appointment Monitor - Orbital Control
 
 A minimalist, space-inspired dashboard for appointment management featuring real-time synchronization via the GitHub API.
