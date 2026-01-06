@@ -35,6 +35,11 @@
         "notiz": ""
     },
     {
+        "name": "Irmi Boden Arbeitszimmer fertig",
+        "ziel": "2026-01-09T18:00",
+        "notiz": "Laut Irmi soll es heute fertig werden"
+    },
+    {
         "name": "Holz-Dammers Fußleisten Küchenschränke",
         "ziel": "2026-01-10T10:00",
         "notiz": "Für Küchenschränke"
@@ -273,10 +278,5 @@
         "name": "Darlehen Ende",
         "ziel": "2030-05-15T18:00",
         "notiz": ""
-    },
-    {
-        "name": "Irmi Boden Fertig",
-        "ziel": "2026-01-09T18:00",
-        "notiz": "Laut Irmi soll es heute fertig werden"
     }
 ]
