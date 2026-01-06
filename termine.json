@@ -45,6 +45,11 @@
         "notiz": ""
     },
     {
+        "name": "Ende Bereitschaft",
+        "ziel": "2026-01-12T06:00",
+        "notiz": ""
+    },
+    {
         "name": "Boden schleifen fertig – spätestens",
         "ziel": "2026-01-12T08:00",
         "notiz": "Irmi/Marcel schleifen am 12.01. den kompletten Boden"
@@ -270,8 +275,8 @@
         "notiz": ""
     },
     {
-        "name": "Ende Bereitschaft",
-        "ziel": "2026-01-12T06:00",
-        "notiz": ""
+        "name": "Irmi Boden Fertig",
+        "ziel": "2026-01-09T18:00",
+        "notiz": "Laut Irmi soll es heute fertig werden"
     }
 ]
