@@ -105,6 +105,11 @@
         "notiz": "Zeitraum: 19.–23.01."
     },
     {
+        "name": "Deadline Fußleisten Irmi, erst dann Geld",
+        "ziel": "2026-01-19T12:00",
+        "notiz": ""
+    },
+    {
         "name": "Urlaub Kero",
         "ziel": "2026-01-20T00:00",
         "notiz": ""
@@ -285,8 +290,8 @@
         "notiz": ""
     },
     {
-        "name": "Deadline Fußleisten Irmi, erst dann Geld",
-        "ziel": "2026-01-19T12:00",
+        "name": "Kätzken zum Helge",
+        "ziel": "2026-01-21T20:00",
         "notiz": ""
     }
 ]
