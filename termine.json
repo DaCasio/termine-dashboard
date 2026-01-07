@@ -112,6 +112,14 @@
         ]
     },
     {
+        "name": "1 * Bereitschaft ",
+        "ziel": "2026-01-13T18:00",
+        "notiz": "",
+        "tags": [
+            "ARBEIT"
+        ]
+    },
+    {
         "name": "Türen kürzen – Thorsten",
         "ziel": "2026-01-14T13:00",
         "notiz": "Abhängig vom fertigen Boden.",
@@ -469,14 +477,6 @@
         "notiz": "",
         "tags": [
             "FINANZEN"
-        ]
-    },
-    {
-        "name": "1 * Bereitschaft ",
-        "ziel": "2026-01-13T18:00",
-        "notiz": "",
-        "tags": [
-            "WOHNUNG"
         ]
     }
 ]
