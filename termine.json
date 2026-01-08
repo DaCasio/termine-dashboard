@@ -470,5 +470,13 @@
         "tags": [
             "FINANZEN"
         ]
+    },
+    {
+        "name": "Urlaub",
+        "ziel": "2026-12-23T17:00",
+        "notiz": "",
+        "tags": [
+            "URLAUB"
+        ]
     }
 ]
