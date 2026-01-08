@@ -485,5 +485,14 @@
         "tags": [
             "FINANZEN"
         ]
+    },
+    {
+        "name": "asd",
+        "start": null,
+        "ziel": "2026-01-08T19:00",
+        "notiz": "asdasd\nasdasd\nasdads",
+        "tags": [
+            "ASD"
+        ]
     }
 ]
