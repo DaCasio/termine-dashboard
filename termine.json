@@ -66,7 +66,7 @@
         ]
     },
     {
-        "name": "Ende Blocker Irmi - PVC Deadline",
+        "name": "Blocker Irmi - PVC Deadline",
         "start": "2026-01-09T08:00",
         "ziel": "2026-01-13T20:00",
         "notiz": "Spätestens hier ist Feierabend, außer Fußleisten\nBoden muss liegen! Ansonsten Bajrami um Hilfe bitten",
@@ -92,15 +92,6 @@
         ]
     },
     {
-        "name": "Fliesenleger Bajrami",
-        "start": "2026-01-14T08:00",
-        "ziel": "2026-01-17T17:00",
-        "notiz": "Zeitraum: 14.–17.01.\nBad, Fugen etc.",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "Übergabe – Herr Bajrami",
         "ziel": "2026-01-16T12:00",
         "notiz": "Restarbeiten: Silikon, Manschetten\n[ ] Keller- und Haustürschlüssel\n[ ] Mieterbestätigung\n[ ] Briefkasten / Halterung, Name fehlt",
@@ -113,6 +104,15 @@
         "start": "2026-01-14T17:00",
         "ziel": "2026-01-16T17:00",
         "notiz": "Zeitraum: 14.–16.01.",
+        "tags": [
+            "WOHNUNG"
+        ]
+    },
+    {
+        "name": "Fliesenleger Bajrami",
+        "start": "2026-01-14T08:00",
+        "ziel": "2026-01-17T17:00",
+        "notiz": "Zeitraum: 14.–17.01.\nBad, Fugen etc.",
         "tags": [
             "WOHNUNG"
         ]
