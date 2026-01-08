@@ -12,7 +12,7 @@
         "name": "test (Kopie)",
         "start": null,
         "ziel": "2026-01-08T18:35",
-        "notiz": "[color:#00cae3]test[/color]\n[color:#ffff00]test[/color]\n[color:#00ff00]test[/color]\n[color:#ff4d4d]test[/color]",
+        "notiz": "[color:#00cae3]test[/color]\n\n[color:#ffff00]test[/color]\n\n[color:#00ff00]test[/color]\n\n[color:#ff4d4d]test[/color]",
         "tags": [
             "TEST"
         ]
