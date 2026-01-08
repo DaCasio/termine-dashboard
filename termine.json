@@ -8,14 +8,6 @@
         ]
     },
     {
-        "name": "Status PVC Marcel?",
-        "ziel": "2026-01-08T20:00",
-        "notiz": "Rückmeldung Gesundheitszustand. Geht so Aussage Irmi.\nEvtl. bringt Marcel zwei Leute mit, einer könnte abspringen.",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "Küche Decke und Wände (Klaus Klettke)",
         "ziel": "2026-01-08T17:00",
         "notiz": "Zeitraum: 07.–08.01. - Ab 9.1. darf keiner rein wegen Irmi.\nStreichen & Tapezieren",
@@ -27,6 +19,14 @@
         "name": "Wohnung fahren / Freiräumen",
         "ziel": "2026-01-08T17:15",
         "notiz": "Wohnung muss frei sein (Irmi benötigt alles picobello sauber).\nIrmis alter PVC liegt noch in der Küche, was ist damit?\nSollte doch entsorgt werden und hat er auch bezahlt bekommen.",
+        "tags": [
+            "WOHNUNG"
+        ]
+    },
+    {
+        "name": "Status PVC Marcel?",
+        "ziel": "2026-01-08T20:00",
+        "notiz": "Rückmeldung Gesundheitszustand. Geht so Aussage Irmi.\nEvtl. bringt Marcel zwei Leute mit, einer könnte abspringen.",
         "tags": [
             "WOHNUNG"
         ]
@@ -48,16 +48,16 @@
         ]
     },
     {
-        "name": "Fußleisten Küchenschränke – Holz Dammers",
-        "ziel": "2026-01-10T10:00",
+        "name": "PVC nach oben? Irmi!",
+        "ziel": "2026-01-10T08:00",
         "notiz": "",
         "tags": [
             "WOHNUNG"
         ]
     },
     {
-        "name": "PVC nach oben? Irmi!",
-        "ziel": "2026-01-10T08:00",
+        "name": "Fußleisten Küchenschränke – Holz Dammers",
+        "ziel": "2026-01-10T10:00",
         "notiz": "",
         "tags": [
             "WOHNUNG"
@@ -88,14 +88,6 @@
         ]
     },
     {
-        "name": "Ende Blocker Irmi - PVC Deadline",
-        "ziel": "2026-01-13T20:00",
-        "notiz": "Spätestens hier ist Feierabend, außer Fußleisten\nBoden muss liegen! Ansonsten Bajrami um Hilfe bitten",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "PANO auf 10.2.17",
         "ziel": "2026-01-13T18:00",
         "notiz": "",
@@ -109,6 +101,14 @@
         "notiz": "",
         "tags": [
             "ARBEIT"
+        ]
+    },
+    {
+        "name": "Ende Blocker Irmi - PVC Deadline",
+        "ziel": "2026-01-13T20:00",
+        "notiz": "Spätestens hier ist Feierabend, außer Fußleisten\nBoden muss liegen! Ansonsten Bajrami um Hilfe bitten",
+        "tags": [
+            "WOHNUNG"
         ]
     },
     {
@@ -142,6 +142,12 @@
         "tags": [
             "URLAUB"
         ]
+    },
+    {
+        "name": "Fußleiste Deadline",
+        "ziel": "2026-01-19T20:00",
+        "notiz": "",
+        "tags": []
     },
     {
         "name": "Lieferung Esstisch",
@@ -502,11 +508,5 @@
         "tags": [
             "FINANZEN"
         ]
-    },
-    {
-        "name": "Fußleiste Deadline",
-        "ziel": "2026-01-18T20:00",
-        "notiz": "",
-        "tags": []
     }
 ]
