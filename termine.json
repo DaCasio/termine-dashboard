@@ -440,38 +440,6 @@
         ]
     },
     {
-        "name": "Termin Christoph Knierim",
-        "ziel": "2027-09-13T12:00",
-        "notiz": "",
-        "tags": [
-            "GESUNDHEIT"
-        ]
-    },
-    {
-        "name": "Elster Zertifikat Casi läuft aus",
-        "ziel": "2028-03-24T09:24",
-        "notiz": "",
-        "tags": [
-            "STEUERN"
-        ]
-    },
-    {
-        "name": "Elster Zertifikat Kersti läuft aus",
-        "ziel": "2028-09-11T21:04",
-        "notiz": "",
-        "tags": [
-            "STEUERN"
-        ]
-    },
-    {
-        "name": "Darlehen Ende",
-        "ziel": "2030-05-15T18:00",
-        "notiz": "",
-        "tags": [
-            "FINANZEN"
-        ]
-    },
-    {
         "name": "Frei",
         "ziel": "2026-12-23T17:00",
         "notiz": "",
@@ -501,6 +469,38 @@
         "notiz": "",
         "tags": [
             "URLAUB"
+        ]
+    },
+    {
+        "name": "Termin Christoph Knierim",
+        "ziel": "2027-09-13T12:00",
+        "notiz": "",
+        "tags": [
+            "GESUNDHEIT"
+        ]
+    },
+    {
+        "name": "Elster Zertifikat Casi läuft aus",
+        "ziel": "2028-03-24T09:24",
+        "notiz": "",
+        "tags": [
+            "STEUERN"
+        ]
+    },
+    {
+        "name": "Elster Zertifikat Kersti läuft aus",
+        "ziel": "2028-09-11T21:04",
+        "notiz": "",
+        "tags": [
+            "STEUERN"
+        ]
+    },
+    {
+        "name": "Darlehen Ende",
+        "ziel": "2030-05-15T18:00",
+        "notiz": "",
+        "tags": [
+            "FINANZEN"
         ]
     }
 ]
