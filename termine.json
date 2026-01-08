@@ -502,5 +502,11 @@
         "tags": [
             "FINANZEN"
         ]
+    },
+    {
+        "name": "Fußleiste Deadline",
+        "ziel": "2026-01-18T20:00",
+        "notiz": "",
+        "tags": []
     }
 ]
