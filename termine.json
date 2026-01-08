@@ -9,6 +9,15 @@
         ]
     },
     {
+        "name": "test (Kopie)",
+        "start": null,
+        "ziel": "2026-01-08T18:35",
+        "notiz": "[color:#00cae3]test[/color]\n[color:#ffff00]test[/color]\n[color:#00ff00]test[/color]\n[color:#ff4d4d]test[/color]",
+        "tags": [
+            "TEST"
+        ]
+    },
+    {
         "name": "Boden spachteln / schleifen",
         "ziel": "2026-01-09T16:00",
         "notiz": "Marcel wie geplant am 09.01.\nBei Ausfall von Marcel hilft Irman, ist aber jetzt auf anderer Baustelle.\nSpätester Termin: 12.01.\nKleberreste Küche hat Marcel nichts zu gesagt, Ergo macht er das wie besprochen.",
@@ -492,15 +501,6 @@
         "notiz": "",
         "tags": [
             "FINANZEN"
-        ]
-    },
-    {
-        "name": "test (Kopie)",
-        "start": null,
-        "ziel": "2026-01-08T18:35",
-        "notiz": "test",
-        "tags": [
-            "TEST"
         ]
     }
 ]
