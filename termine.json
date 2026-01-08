@@ -24,6 +24,14 @@
         ]
     },
     {
+        "name": "Marcel PVC Übergabe",
+        "ziel": "2026-01-10T18:00",
+        "notiz": "Wir schauen vorbei\nEinfach ziwschendurch nachfragen",
+        "tags": [
+            "WOHNUNG"
+        ]
+    },
+    {
         "name": "PVC verlegen - PreDeadline",
         "ziel": "2026-01-11T17:00",
         "notiz": "Zuschneiden und Verlegen von PVC.\nMarcel versichert, dass der PVC spätestens heute liegt.",
@@ -475,14 +483,6 @@
         "notiz": "",
         "tags": [
             "FINANZEN"
-        ]
-    },
-    {
-        "name": "Marcel PVC Übergabe",
-        "ziel": "2026-01-10T18:00",
-        "notiz": "Wir schauen vorbei",
-        "tags": [
-            "WOHNUNG"
         ]
     }
 ]
