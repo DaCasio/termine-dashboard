@@ -8,17 +8,9 @@
         ]
     },
     {
-        "name": "Fliesenleger Bajrami 8.1",
-        "ziel": "2026-01-08T20:00",
-        "notiz": "Zeitraum: 08.01. \nAb 9.1. darf keiner rein wegen Irmi. \nSachen von Fliesenleger müssen raus und dürfen nicht im Weg sein.\nBad, Fugen etc.",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "Status PVC Marcel?",
         "ziel": "2026-01-08T15:00",
-        "notiz": "Rückmeldung Gesundheitszustand.\nEvtl. bringt Marcel zwei Leute mit, einer könnte abspringen.",
+        "notiz": "Rückmeldung Gesundheitszustand. Geht so Aussage Irmi.\nEvtl. bringt Marcel zwei Leute mit, einer könnte abspringen.",
         "tags": [
             "WOHNUNG"
         ]
@@ -35,6 +27,14 @@
         "name": "Wohnung fahren / Freiräumen",
         "ziel": "2026-01-08T17:15",
         "notiz": "Wohnung muss frei sein (Irmi benötigt alles picobello sauber).\nIrmis alter PVC liegt noch in der Küche, was ist damit?\nSollte doch entsorgt werden und hat er auch bezahlt bekommen.",
+        "tags": [
+            "WOHNUNG"
+        ]
+    },
+    {
+        "name": "Fliesenleger Bajrami 8.1",
+        "ziel": "2026-01-08T20:00",
+        "notiz": "Zeitraum: 08.01. \nAb 9.1. darf keiner rein wegen Irmi. \nSachen von Fliesenleger müssen raus und dürfen nicht im Weg sein.\nBad, Fugen etc.",
         "tags": [
             "WOHNUNG"
         ]
