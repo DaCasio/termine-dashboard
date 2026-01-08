@@ -144,12 +144,6 @@
         ]
     },
     {
-        "name": "Fußleiste Deadline",
-        "ziel": "2026-01-19T20:00",
-        "notiz": "",
-        "tags": []
-    },
-    {
         "name": "Lieferung Esstisch",
         "ziel": "2026-01-19T08:00",
         "notiz": "",
@@ -166,12 +160,10 @@
         ]
     },
     {
-        "name": "Deadline Fußleisten Irmi, erst dann Geld",
-        "ziel": "2026-01-19T12:00",
+        "name": "Fußleiste Deadline",
+        "ziel": "2026-01-19T20:00",
         "notiz": "",
-        "tags": [
-            "WOHNUNG"
-        ]
+        "tags": []
     },
     {
         "name": "Urlaub Kero",
