@@ -8,17 +8,17 @@
         ]
     },
     {
-        "name": "Status PVC Marcel?",
-        "ziel": "2026-01-08T15:00",
-        "notiz": "Rückmeldung Gesundheitszustand.\nEvtl. bringt Marcel zwei Leute mit, einer könnte abspringen.",
+        "name": "Übergabe – Herr Bajrami",
+        "ziel": "2026-01-08T12:00",
+        "notiz": "Restarbeiten: Silikon, Manschetten\n[ ] Keller- und Haustürschlüssel\n[ ] Mieterbestätigung\n[ ] Briefkasten / Halterung, Name fehlt",
         "tags": [
             "WOHNUNG"
         ]
     },
     {
-        "name": "Übergabe – Herr Bajrami",
-        "ziel": "2026-01-08T12:00",
-        "notiz": "Restarbeiten: Silikon, Manschetten\n[ ] Keller- und Haustürschlüssel\n[ ] Mieterbestätigung\n[ ] Briefkasten / Halterung, Name fehlt",
+        "name": "Status PVC Marcel?",
+        "ziel": "2026-01-08T15:00",
+        "notiz": "Rückmeldung Gesundheitszustand.\nEvtl. bringt Marcel zwei Leute mit, einer könnte abspringen.",
         "tags": [
             "WOHNUNG"
         ]
@@ -64,7 +64,7 @@
         ]
     },
     {
-        "name": "PVC zuschneiden und verlegen",
+        "name": "PVC verlegen - PreDeadline",
         "ziel": "2026-01-11T16:00",
         "notiz": "Zuschneiden und Verlegen von PVC.\nMarcel versichert, dass der PVC spätestens heute liegt.",
         "tags": [
