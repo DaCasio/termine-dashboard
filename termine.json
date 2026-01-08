@@ -486,5 +486,13 @@
         "tags": [
             "URLAUB"
         ]
+    },
+    {
+        "name": "Frei",
+        "ziel": "2026-12-30T17:00",
+        "notiz": "",
+        "tags": [
+            "URLAUB"
+        ]
     }
 ]
