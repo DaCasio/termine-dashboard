@@ -1,13 +1,5 @@
 [
     {
-        "name": "Übergabe – Herr Bajrami",
-        "ziel": "2026-01-16T12:00",
-        "notiz": "Restarbeiten: Silikon, Manschetten\n[ ] Keller- und Haustürschlüssel\n[ ] Mieterbestätigung\n[ ] Briefkasten / Halterung, Name fehlt",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "Küche Decke und Wände (Klaus Klettke)",
         "ziel": "2026-01-08T17:00",
         "notiz": "Zeitraum: 07.–08.01. - Ab 9.1. darf keiner rein wegen Irmi.\nStreichen & Tapezieren",
@@ -33,7 +25,7 @@
     },
     {
         "name": "Fliesenleger Bajrami 8.1",
-        "ziel": "2026-01-08T20:00",
+        "ziel": "2026-01-14T20:00",
         "notiz": "Zeitraum: 08.01. \nAb 9.1. darf keiner rein wegen Irmi. \nSachen von Fliesenleger müssen raus und dürfen nicht im Weg sein.\nBad, Fugen etc.",
         "tags": [
             "WOHNUNG"
@@ -131,6 +123,14 @@
         "name": "Fliesenleger Bajrami 14-18.1 möglich - alternativ/zusätzlich",
         "ziel": "2026-01-14T17:00",
         "notiz": "Bajrami hat Whatsapp Termin muss stattfinden\nZeitraum: 14.–18.01.\nBad, Fugen etc.",
+        "tags": [
+            "WOHNUNG"
+        ]
+    },
+    {
+        "name": "Übergabe – Herr Bajrami",
+        "ziel": "2026-01-16T12:00",
+        "notiz": "Restarbeiten: Silikon, Manschetten\n[ ] Keller- und Haustürschlüssel\n[ ] Mieterbestätigung\n[ ] Briefkasten / Halterung, Name fehlt",
         "tags": [
             "WOHNUNG"
         ]
