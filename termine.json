@@ -66,8 +66,9 @@
         ]
     },
     {
-        "name": "1 * Bereitschaft ",
-        "ziel": "2026-01-13T18:00",
+        "name": "Bereitschaft ",
+        "start": "2026-01-13T18:00",
+        "ziel": "2026-01-14T06:00",
         "notiz": "",
         "tags": [
             "ARBEIT"
