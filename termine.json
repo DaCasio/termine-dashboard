@@ -1,13 +1,5 @@
 [
     {
-        "name": "Küche Decke und Wände (Klaus Klettke)",
-        "ziel": "2026-01-08T17:00",
-        "notiz": "Zeitraum: 07.–08.01.\nStreichen & Tapezieren",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "Wohnung fahren / Freiräumen",
         "ziel": "2026-01-08T17:15",
         "notiz": "Wohnung muss frei sein (Irmi benötigt alles picobello sauber).\nIrmis alter PVC liegt noch in der Küche, was ist damit?\nSollte doch entsorgt werden und hat er auch bezahlt bekommen.",
@@ -93,6 +85,14 @@
         "notiz": "Spätestens hier ist Feierabend, außer Fußleisten\nBoden muss liegen! Ansonsten Bajrami um Hilfe bitten",
         "tags": [
             "WOHNUNG"
+        ]
+    },
+    {
+        "name": "1 * Bereitschaft Ende",
+        "ziel": "2026-01-14T06:00",
+        "notiz": "",
+        "tags": [
+            "ARBEIT"
         ]
     },
     {
@@ -491,14 +491,6 @@
         "notiz": "",
         "tags": [
             "FINANZEN"
-        ]
-    },
-    {
-        "name": "1 * Bereitschaft Ende",
-        "ziel": "2026-01-14T06:00",
-        "notiz": "",
-        "tags": [
-            "ARBEIT"
         ]
     }
 ]
