@@ -287,6 +287,15 @@
         ]
     },
     {
+        "name": "Dezor Abo Ende prüfen",
+        "start": null,
+        "ziel": "2026-04-06T09:00",
+        "notiz": "Gekündigt, trotzdem prüfen.",
+        "tags": [
+            "TERMINE"
+        ]
+    },
+    {
         "name": "C1E verlängern",
         "ziel": "2026-04-06T12:00",
         "notiz": "Frist: 21.06.2026",
@@ -298,7 +307,7 @@
         "name": "Dezor Abo Ende",
         "start": null,
         "ziel": "2026-04-07T16:44",
-        "notiz": "Gekündigt, trotzdem prüfen.",
+        "notiz": "Gekündigt.",
         "tags": [
             "TERMINE"
         ]
@@ -485,15 +494,6 @@
         "notiz": "",
         "tags": [
             "FINANZEN"
-        ]
-    },
-    {
-        "name": "Dezor Abo Ende prüfen",
-        "start": null,
-        "ziel": "2026-04-06T09:00",
-        "notiz": "Gekündigt, trotzdem prüfen.",
-        "tags": [
-            "TERMINE"
         ]
     }
 ]
