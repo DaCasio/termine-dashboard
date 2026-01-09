@@ -486,5 +486,14 @@
         "tags": [
             "FINANZEN"
         ]
+    },
+    {
+        "name": "Dezor Abo Ende prüfen",
+        "start": null,
+        "ziel": "2026-04-06T09:00",
+        "notiz": "Gekündigt, trotzdem prüfen.",
+        "tags": [
+            "TERMINE"
+        ]
     }
 ]
