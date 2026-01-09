@@ -170,6 +170,15 @@
         ]
     },
     {
+        "name": "Dayflat Telekom",
+        "start": "2026-01-22T20:00",
+        "ziel": "2026-01-26T07:59",
+        "notiz": "",
+        "tags": [
+            "INTERNET"
+        ]
+    },
+    {
         "name": "Sperrmüll rausstellen",
         "ziel": "2026-01-27T15:00",
         "notiz": "",
@@ -476,15 +485,6 @@
         "notiz": "",
         "tags": [
             "FINANZEN"
-        ]
-    },
-    {
-        "name": "Dayflat Telekom",
-        "start": "2026-01-22T20:00",
-        "ziel": "2026-01-26T08:00",
-        "notiz": "",
-        "tags": [
-            "INTERNET"
         ]
     }
 ]
