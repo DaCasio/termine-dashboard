@@ -77,7 +77,8 @@
     },
     {
         "name": "Türen kürzen – Thorsten",
-        "ziel": "2026-01-14T13:00",
+        "start": null,
+        "ziel": "2026-01-14T10:00",
         "notiz": "Abhängig vom fertigen Boden.",
         "tags": [
             "WOHNUNG"
