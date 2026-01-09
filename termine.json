@@ -297,7 +297,8 @@
     },
     {
         "name": "C1E verlängern",
-        "ziel": "2026-04-06T12:00",
+        "start": null,
+        "ziel": "2026-04-03T12:00",
         "notiz": "Frist: 21.06.2026",
         "tags": [
             "TERMINE"
