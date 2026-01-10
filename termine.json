@@ -1,14 +1,5 @@
 [
     {
-        "name": "Marcel PVC Übergabe",
-        "start": null,
-        "ziel": "2026-01-10T15:00",
-        "notiz": "Wir schauen vorbei\nEinfach ziwschendurch nachfragen",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "Fußleisten Küchenschränke – Holz Dammers",
         "start": null,
         "ziel": "2026-01-10T17:00",
@@ -162,20 +153,20 @@
         ]
     },
     {
-        "name": "Telekom VDSL Umschaltung",
-        "ziel": "2026-01-26T08:00",
-        "notiz": "",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "Dayflat Telekom",
         "start": "2026-01-22T20:00",
         "ziel": "2026-01-26T07:59",
         "notiz": "",
         "tags": [
             "INTERNET"
+        ]
+    },
+    {
+        "name": "Telekom VDSL Umschaltung",
+        "ziel": "2026-01-26T08:00",
+        "notiz": "",
+        "tags": [
+            "WOHNUNG"
         ]
     },
     {
