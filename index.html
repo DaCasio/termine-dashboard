@@ -65,6 +65,7 @@
             background: rgba(0, 202, 227, 0.15); padding: 4px 10px; border-radius: 4px; 
             font-family: 'Courier New', monospace; font-weight: bold; color: var(--accent); 
             font-size: 1.05em; border: 1px solid rgba(0, 202, 227, 0.3); text-align: center; min-width: 140px;
+            display: flex; flex-direction: column; justify-content: center;
         }
 
         .row-notiz { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 10px; }
@@ -174,7 +175,7 @@
     }
 
     function getCountdown(ms) {
-        if (ms < 0) return "";
+        if (ms < 0) return null; // Gebe null zurück, wenn abgelaufen
         const d = Math.floor(ms/86400000).toString().padStart(2,'0');
         const hh = Math.floor((ms%86400000)/3600000).toString().padStart(2,'0');
         const mm = Math.floor((ms%3600000)/60000).toString().padStart(2,'0');
@@ -200,20 +201,28 @@
         filteredData.forEach((t, i) => {
             const originalIndex = data.indexOf(t);
             const ziel = new Date(t.ziel), start = t.start ? new Date(t.start) : null;
-            let statusText = "FÄLLIG", countdown = "", cssClass = "faellig";
+            let statusText = "FÄLLIG", countdown = "", cssClass = "faellig", displayTime = "";
 
             if (start && jetzt < start) {
                 statusText = "START IN";
-                countdown = getCountdown(start - jetzt);
+                displayTime = getCountdown(start - jetzt);
                 cssClass = ""; 
             } else if (jetzt < ziel) {
                 statusText = start ? "ENDE IN" : "";
-                countdown = getCountdown(ziel - jetzt);
+                displayTime = getCountdown(ziel - jetzt);
                 cssClass = start ? "laufend" : ""; 
+            } else {
+                // Hier ist der Termin fällig
+                statusText = ""; 
+                displayTime = "FÄLLIG"; 
+                cssClass = "faellig";
             }
 
             const tagsHtml = t.tags ? t.tags.map(tag => `<span class="tag-mini">${tag}</span>`).join('') : '';
             const startDisplay = start ? `Start: ${start.toLocaleString('de-DE', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'})} Uhr<br>` : '';
+
+            // Wenn "FÄLLIG" angezeigt wird, machen wir die Schrift etwas größer, da der Status-Label-Text oben fehlt
+            const timeStyle = displayTime === "FÄLLIG" ? "font-size: 1.2em; padding: 10px 0;" : "";
 
             h += `
             <div class="termin-card">
@@ -228,7 +237,10 @@
                 <div class="tag-display-container">${tagsHtml}</div>
                 <div class="row-info">
                     <div class="datum-box">${startDisplay}Ende: ${ziel.toLocaleString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'})} Uhr</div>
-                    <div class="countdown-box ${cssClass}"><small style="font-size:0.65em; display:block;">${statusText}</small>${countdown}</div>
+                    <div class="countdown-box ${cssClass}" style="${timeStyle}">
+                        ${statusText ? `<small style="font-size:0.6em; display:block;">${statusText}</small>` : ''}
+                        ${displayTime}
+                    </div>
                 </div>
                 <div class="row-notiz"><div class="notiz-display">${format(t.notiz, originalIndex)}</div></div>
             </div>`;
@@ -357,11 +369,13 @@
             const summary = content.match(/SUMMARY:(.*)/)?.[1] || "ICS Import";
             const dtStartMatch = content.match(/DTSTART[:;](?:VALUE=DATE:)?(\d{8}T\d{6}|\d{8})/);
             const dtEndMatch = content.match(/DTEND[:;](?:VALUE=DATE:)?(\d{8}T\d{6}|\d{8})/);
+            
             const parseDate = (match) => {
                 if (!match) return "";
                 const d = match[1];
                 return `${d.slice(0,4)}-${d.slice(4,6)}-${d.slice(6,8)}T${d.slice(9,11) || '00'}:${d.slice(11,13) || '00'}`;
             };
+
             document.getElementById('t-name').value = summary.trim();
             document.getElementById('t-start').value = parseDate(dtStartMatch);
             document.getElementById('t-date').value = parseDate(dtEndMatch);
