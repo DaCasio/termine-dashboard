@@ -9,14 +9,6 @@
         ]
     },
     {
-        "name": "PVC verlegen - PreDeadline",
-        "ziel": "2026-01-11T17:00",
-        "notiz": "Zuschneiden und Verlegen von PVC.\nMarcel versichert, dass der PVC spätestens heute liegt.",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "Bereitschaft",
         "start": "2026-01-06T18:00",
         "ziel": "2026-01-12T06:00",
@@ -86,6 +78,15 @@
         ]
     },
     {
+        "name": "Urlaub Casi",
+        "start": null,
+        "ziel": "2026-01-16T17:00",
+        "notiz": "",
+        "tags": [
+            "URLAUB"
+        ]
+    },
+    {
         "name": "Fliesenleger Bajrami",
         "start": "2026-01-14T08:00",
         "ziel": "2026-01-17T17:00",
@@ -100,6 +101,15 @@
         "notiz": "",
         "tags": [
             "WOHNUNG"
+        ]
+    },
+    {
+        "name": "Urlaub Kero",
+        "start": null,
+        "ziel": "2026-01-19T18:00",
+        "notiz": "",
+        "tags": [
+            "URLAUB"
         ]
     },
     {
@@ -183,24 +193,6 @@
         "notiz": "",
         "tags": [
             "WOHNUNG"
-        ]
-    },
-    {
-        "name": "Urlaub Kero",
-        "start": null,
-        "ziel": "2026-01-19T18:00",
-        "notiz": "",
-        "tags": [
-            "URLAUB"
-        ]
-    },
-    {
-        "name": "Urlaub Casi",
-        "start": null,
-        "ziel": "2026-01-16T17:00",
-        "notiz": "",
-        "tags": [
-            "URLAUB"
         ]
     },
     {
