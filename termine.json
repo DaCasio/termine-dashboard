@@ -1,5 +1,14 @@
 [
     {
+        "name": "test",
+        "start": "2026-01-10T10:45",
+        "ziel": "2026-01-10T10:46",
+        "notiz": "**dick**\n--durchgestrichen--\n[color:#ff4d4d]rot[/color]\n[color:#00ff00]grün[/color]\n[color:#ffff00]gelb[/color]\n[color:#00cae3]blau[/color]\n\n[ ]checkbox",
+        "tags": [
+            "TEST"
+        ]
+    },
+    {
         "name": "Marcel PVC",
         "start": "2026-01-10T08:00",
         "ziel": "2026-01-10T17:00",
@@ -461,15 +470,6 @@
         "notiz": "",
         "tags": [
             "FINANZEN"
-        ]
-    },
-    {
-        "name": "test",
-        "start": "2026-01-10T10:45",
-        "ziel": "2026-01-10T10:46",
-        "notiz": "**dick**\n--schräg--\n[color:#ff4d4d]rot[/color]\n[color:#00ff00]grün[/color]\n[color:#ffff00]gelb[/color]\n[color:#00cae3]blau[/color]\n\n[ ]checkbox",
-        "tags": [
-            "TEST"
         ]
     }
 ]
