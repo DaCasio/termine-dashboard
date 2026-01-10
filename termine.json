@@ -187,8 +187,8 @@
     },
     {
         "name": "Urlaub Kero",
-        "start": "2026-01-19T18:00",
-        "ziel": "2026-02-01T22:00",
+        "start": null,
+        "ziel": "2026-01-19T18:00",
         "notiz": "",
         "tags": [
             "URLAUB"
