@@ -174,7 +174,7 @@
     }
 
     function getCountdown(ms) {
-        if (ms < 0) return "00d 00:00:00";
+        if (ms < 0) return "";
         const d = Math.floor(ms/86400000).toString().padStart(2,'0');
         const hh = Math.floor((ms%86400000)/3600000).toString().padStart(2,'0');
         const mm = Math.floor((ms%3600000)/60000).toString().padStart(2,'0');
@@ -188,17 +188,11 @@
         document.getElementById('counter-display').innerText = `AKTIVE TERMINE: ${filteredData.length}`;
         updateFilterBar();
 
-        // Dynamische Sortierung
         filteredData.sort((a, b) => {
             const zielA = new Date(a.ziel), startA = a.start ? new Date(a.start) : null;
             const zielB = new Date(b.ziel), startB = b.start ? new Date(b.start) : null;
-
-            // Logik: Welcher Zeitpunkt ist für die Sortierung JETZT relevant?
-            // 1. Wenn noch nicht gestartet -> Startzeitpunkt
-            // 2. Wenn bereits läuft oder kein Start vorhanden -> Endzeitpunkt
             const relevantA = (startA && jetzt < startA) ? startA : zielA;
             const relevantB = (startB && jetzt < startB) ? startB : zielB;
-
             return relevantA - relevantB;
         });
 
@@ -206,7 +200,7 @@
         filteredData.forEach((t, i) => {
             const originalIndex = data.indexOf(t);
             const ziel = new Date(t.ziel), start = t.start ? new Date(t.start) : null;
-            let statusText = "FÄLLIG", countdown = "00d 00:00:00", cssClass = "faellig";
+            let statusText = "FÄLLIG", countdown = "", cssClass = "faellig";
 
             if (start && jetzt < start) {
                 statusText = "START IN";
@@ -234,7 +228,7 @@
                 <div class="tag-display-container">${tagsHtml}</div>
                 <div class="row-info">
                     <div class="datum-box">${startDisplay}Ende: ${ziel.toLocaleString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'})} Uhr</div>
-                    <div class="countdown-box ${cssClass}"><small style="font-size:0.6em; display:block;">${statusText}</small>${countdown}</div>
+                    <div class="countdown-box ${cssClass}"><small style="font-size:0.65em; display:block;">${statusText}</small>${countdown}</div>
                 </div>
                 <div class="row-notiz"><div class="notiz-display">${format(t.notiz, originalIndex)}</div></div>
             </div>`;
@@ -363,13 +357,11 @@
             const summary = content.match(/SUMMARY:(.*)/)?.[1] || "ICS Import";
             const dtStartMatch = content.match(/DTSTART[:;](?:VALUE=DATE:)?(\d{8}T\d{6}|\d{8})/);
             const dtEndMatch = content.match(/DTEND[:;](?:VALUE=DATE:)?(\d{8}T\d{6}|\d{8})/);
-            
             const parseDate = (match) => {
                 if (!match) return "";
                 const d = match[1];
                 return `${d.slice(0,4)}-${d.slice(4,6)}-${d.slice(6,8)}T${d.slice(9,11) || '00'}:${d.slice(11,13) || '00'}`;
             };
-
             document.getElementById('t-name').value = summary.trim();
             document.getElementById('t-start').value = parseDate(dtStartMatch);
             document.getElementById('t-date').value = parseDate(dtEndMatch);
