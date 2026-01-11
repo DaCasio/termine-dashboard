@@ -1,8 +1,8 @@
 [
     {
         "name": "test",
-        "start": "2026-01-10T10:45",
-        "ziel": "2026-01-10T10:46",
+        "start": null,
+        "ziel": "2027-01-01T00:00",
         "notiz": "**dick**\n--durchgestrichen--\n[color:#ff4d4d]rot[/color]\n[color:#00ff00]grün[/color]\n[color:#ffff00]gelb[/color]\n[color:#00cae3]blau[/color]\n\n[ ]checkbox",
         "tags": [
             "ARCHIV"
