@@ -48,7 +48,7 @@
         
         .termin-info { flex: 1; min-width: 0; }
         .termin-name { font-size: 1.6em; font-weight: bold; color: black; margin-bottom: 5px; }
-        .termin-datum { font-size: 1.0em; color: #444; line-height: 1.3; }
+        .termin-datum { font-size: 1.05em; color: #444; line-height: 1.4; font-weight: 500; }
 
         .notiz-text { 
             margin-top: 10px; 
@@ -64,7 +64,7 @@
         .cb-line.done { text-decoration: line-through; color: #888; }
         
         .zeit-box { text-align: right; margin-left: 20px; min-width: 180px; }
-        .status-label { display: block; font-size: 0.7em; text-transform: uppercase; font-weight: bold; color: #666; margin-bottom: -5px; }
+        .status-label { display: block; font-size: 0.75em; text-transform: uppercase; font-weight: bold; color: #666; margin-bottom: -2px; }
         .zeit { 
             font-family: 'Courier New', monospace; 
             font-size: 1.8em; 
@@ -149,12 +149,9 @@
             const counterDiv = document.getElementById('counter-display');
             const jetzt = new Date();
 
-            // 1. ARCHIV FILTER: Nur Termine behalten, die NICHT mit "ARCHIV" getaggt sind
             const sichtbareTermine = termineDaten.filter(t => !t.tags || !t.tags.includes("ARCHIV"));
-
             counterDiv.innerText = `AKTIVE TERMINE: ${sichtbareTermine.length}`;
 
-            // 2. SORTIERUNG (nur der sichtbaren Termine)
             sichtbareTermine.sort((a, b) => {
                 const zielA = new Date(a.ziel), startA = a.start ? new Date(a.start) : null;
                 const zielB = new Date(b.ziel), startB = b.start ? new Date(b.start) : null;
@@ -165,9 +162,7 @@
 
             let html = "";
             sichtbareTermine.forEach((t) => {
-                // Den originalen Index für Checkbox-Toggles finden
                 const originalIdx = termineDaten.indexOf(t);
-                
                 const ziel = new Date(t.ziel);
                 const start = t.start ? new Date(t.start) : null;
                 
@@ -196,7 +191,18 @@
                     zeitClass = "faellig";
                 }
                 
-                const startHtml = start ? `Start: ${start.toLocaleString('de-DE', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'})} Uhr<br>` : '';
+                // Formatierungseinstellungen
+                const optWithYear = { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+                const optNoYear = { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
+
+                // Jahr beim Start nur anzeigen, wenn es sich vom End-Jahr unterscheidet
+                const startYear = start ? start.getFullYear() : null;
+                const endYear = ziel.getFullYear();
+                const startFormat = (startYear && startYear !== endYear) ? optWithYear : optNoYear;
+
+                const startHtml = start ? `Start: ${start.toLocaleString('de-DE', startFormat)} Uhr<br>` : '';
+                const zielHtml = `Ende: ${ziel.toLocaleString('de-DE', optWithYear)} Uhr`;
+                
                 const notizHtml = t.notiz ? `<div class="notiz-text">${formatNotiz(t.notiz, originalIdx)}</div>` : "";
 
                 html += `
@@ -204,7 +210,7 @@
                         <div class="termin-info">
                             <div class="termin-name">${t.name}</div>
                             <div class="termin-datum">
-                                ${startHtml}Ende: ${ziel.toLocaleString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })} Uhr
+                                ${startHtml}${zielHtml}
                             </div>
                             ${notizHtml}
                         </div>
