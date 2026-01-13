@@ -507,5 +507,12 @@
         "tags": [
             "WOHNUNG"
         ]
+    },
+    {
+        "name": "Feierabend",
+        "start": null,
+        "ziel": "2026-01-13T17:00",
+        "notiz": "",
+        "tags": []
     }
 ]
