@@ -1,69 +1,67 @@
-Hier ist eine strukturierte **README.md** für dein GitHub-Repository, die beide Dateien (`index.html` für die Verwaltung und `display.html` für die Anzeige) erklärt.
+# 🛰️ Termin Monitor - Orbital Control
+
+![Version](https://img.shields.io/badge/Version-2.5-00cae3.svg)
+![License](https://img.shields.io/badge/License-Private-ff4d4d.svg)
+
+Ein hochmoderner, browserbasierter Termin-Planer mit orbitalem Design und direkter Cloud-Synchronisation via GitHub API.
 
 ---
 
-# 🚀 Orbital Termin Monitor
+## 🚀 Kernfunktionen / Core Features
 
-Ein minimalistisches, GitHub-basiertes Termin-Management-System. Es besteht aus einem interaktiven Dashboard zur Verwaltung und einer optimierten Anzeige für Color E-Ink Displays oder Wandmonitore.
+### 🇩🇪 Deutsch
+* **Echtzeit-Synchronisation:** Speichert Daten direkt in deinem GitHub-Repo als `termine.json`.
+* **Intelligentes Filtersystem:** Automatische "LIVE NOW" Erkennung und Filterung nach Tags (Kategorien).
+* **Dynamische Suche:** Echtzeit-Suche über alle Titel, Notizen und Checkboxen.
+* **Präzisions-Countdown:** Live-Anzeige der verbleibenden Zeit bis zum Start oder Ende.
+* **Markdown & Checkboxen:** Unterstützt Fett-Text, Farben und interaktive Aufgabenlisten.
+* **ICS-Import:** Importiert Termine direkt aus Kalender-Dateien.
 
-## 📋 Features
-
-* **Zwei-Komponenten-System:**
-* `index.html`: Admin-Panel mit PIN-Schutz, Erstellung, Bearbeitung und Archivierung von Terminen.
-* `display.html`: Clean-Display-Ansicht, optimiert für E-Ink (keine Gradients, hoher Kontrast).
-
-
-* **Archiv-Funktion:** Termine mit dem Tag `ARCHIV` werden automatisch aus der Hauptansicht ausgeblendet und in einen separaten Archiv-Bereich verschoben.
-* **Serverless:** Nutzt die GitHub API als Backend (JSON-Datenbank).
-* **Smart Features:** Countdown-Anzeige, Checklisten-Support in den Notizen, Farbcodes und ICS-Import.
-
----
-
-## 🛠 Einrichtung / Setup
-
-1. Erstelle eine Datei namens `termine.json` in deinem Repository mit folgendem Inhalt: `[]`.
-2. Stelle sicher, dass dein **GitHub Personal Access Token (PAT)** in den HTML-Dateien hinterlegt ist (Variablen `t1` und `t2`).
-3. Passe die `G_URL` / `GITHUB_URL` an dein Repository an.
+### 🇺🇸 English
+* **Real-Time Sync:** Saves data directly to your GitHub repo as `termine.json`.
+* **Smart Filtering:** Automatic "LIVE NOW" detection and tag-based categorization.
+* **Dynamic Search:** Real-time search across all titles, notes, and checkboxes.
+* **Precision Countdown:** Live display of remaining time until start or expiration.
+* **Markdown & Checkboxes:** Supports bold text, colors, and interactive to-do lists.
+* **ICS Import:** Import appointments directly from calendar files.
 
 ---
 
-## 📖 Komponenten / Components
+## 🛠️ Technische Einrichtung / Setup Instructions
 
-### 1. Termin-Verwaltung (`index.html`)
+### 1. GitHub Repository
+* Erstelle ein **privates** Repository (z.B. `info-board`).
+* Erstelle eine leere Datei namens `termine.json` mit folgendem Inhalt: `[]`.
 
-Das Kontrollzentrum für deine Termine.
+### 2. GitHub Token (PAT)
+* Gehe zu **Settings > Developer Settings > Personal Access Tokens (classic)**.
+* Erstelle ein neues Token mit dem Scope `repo`.
+* Teile das Token in zwei Hälften auf und trage sie in die Variablen `t1` und `t2` im Code ein (um automatische Scans durch GitHub zu erschweren).
 
-* **Login:** Gesichert durch eine PIN (Base64 kodiert).
-* **Tags:** Nutze Tags zur Kategorisierung.
-* **Archivierung:** Füge das Tag `ARCHIV` hinzu, um einen Termin aus der aktiven Liste zu entfernen. Er bleibt in der Datenbank, ist aber nur noch über den "Archiv"-Filter sichtbar.
-* **Editor:** Unterstützt Fett-Text (`**`), Durchstreichen (`--`), Farben und interaktive Checkboxen (`[ ]` / `[x]`).
+### 3. API URL
+* Passe die `G_URL` im Script-Teil an: 
+  `https://api.github.com/repos/DEIN_NUTZERNAME/DEIN_REPO/contents/termine.json`
 
-### 2. E-Ink Display (`display.html`)
-
-Die reine Anzeige-Oberfläche.
-
-* **Auto-Filter:** Blendet alle Termine mit dem Tag `ARCHIV` automatisch aus.
-* **Optimiertes Design:** Klare Linien und kräftige Farben für eine perfekte Lesbarkeit auf digitalen Bilderrahmen oder E-Paper Displays.
-* **Live-Update:** Aktualisiert die Daten alle 30 Sekunden automatisch von GitHub.
+### 4. PIN Schutz
+* Der Standard-PIN ist `0508`. 
+* Um den PIN zu ändern, generiere einen neuen Base64-String deines PINs und ersetze den Wert in `P_ENC`.
 
 ---
 
-# 🇬🇧 English Version
+## 📖 Bedienung / How to Use
 
-## 📋 Overview
+| Aktion | Beschreibung |
+| :--- | :--- |
+| **Speichern** | Titel und Enddatum sind Pflichtfelder. |
+| **Suchen** | Nutze das Suchfeld, um Inhalte sofort zu filtern. |
+| **Formatierung** | Nutze die Toolbar für **B** (Fett), **S** (Durchgestrichen) oder Farben. |
+| **Checklisten** | Klicke auf `+ CHECKBOX` im Editor oder direkt auf die Box in der Kartenansicht. |
+| **Archivieren** | Füge das Tag `ARCHIV` hinzu, um einen Termin aus der Hauptliste zu entfernen. |
 
-A minimalist appointment monitoring system using GitHub as a backend.
+---
 
-* `index.html`: Administrative dashboard for creating and managing tasks.
-* `display.html`: High-contrast view optimized for Color E-Ink displays.
+## 🔒 Sicherheitshinweis / Security Note
+Da dieses Tool Client-seitig im Browser läuft und das GitHub-Token im Quellcode enthält, sollte die HTML-Datei **niemals in einem öffentlichen Repository** hochgeladen werden. Nutze es lokal oder hoste es in einer privaten, passwortgeschützten Umgebung.
 
-## 📁 Archive Logic
-
-* **Archiving:** Any appointment tagged with `ARCHIV` (case-insensitive) will be hidden from the "ALL" view in the dashboard and completely hidden from the `display.html`.
-* **Restoring:** Simply remove the `ARCHIV` tag to make the appointment visible on the monitor again.
-
-## 🚀 Deployment
-
-1. Initialize a `termine.json` file in your repo: `[]`.
-2. Update the GitHub Token and Repo URL in both HTML files.
-3. Open `index.html` to start managing your orbital schedule.
+---
+*Developed for Orbital Control Systems. Status: Operational.*
