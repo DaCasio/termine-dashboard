@@ -473,10 +473,10 @@
         ]
     },
     {
-        "name": "Lampen anschrauben",
+        "name": "Lampen Schlafzimmer",
         "start": null,
         "ziel": "2026-01-14T17:00",
-        "notiz": "",
+        "notiz": "Steckdosen Arbeitszimmer",
         "tags": [
             "WOHNUNG"
         ]
