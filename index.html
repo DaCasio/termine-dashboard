@@ -40,6 +40,10 @@
         input, textarea { background: rgba(0,0,0,0.6); border: 1px solid #444; color: white; padding: 10px; border-radius: 5px; width: 100%; box-sizing: border-box; margin-bottom: 8px; font-size: 0.95em; }
         textarea { min-height: 80px; font-family: inherit; resize: vertical; }
 
+        /* Suchfeld Styling */
+        .search-container { margin-bottom: 10px; }
+        .search-input { border-color: var(--accent); border-style: dashed; background: rgba(0, 202, 227, 0.05); }
+
         .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 8px; }
         .tag-pill { background: #333; color: #aaa; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; cursor: pointer; border: 1px solid #444; transition: 0.2s; font-weight: bold; }
         .tag-pill.active { background: var(--accent); color: black; border-color: var(--accent); }
@@ -140,6 +144,10 @@
             <button class="btn-main" id="save-btn" onclick="save()">TERMIN SPEICHERN</button>
         </div>
 
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="🔍 Termin oder Inhalt suchen..." oninput="render()">
+        </div>
+
         <div id="filter-display" class="filter-bar"></div>
         <div id="counter-display" class="termin-counter">AKTIVE TERMINE: 0</div>
         <div id="liste">Lade Daten aus Orbit...</div>
@@ -155,15 +163,13 @@
     window.onload = () => { if(localStorage.getItem('termin_monitor_auth') === 'true') login(true); };
 
     function login(auto = false) {
-        if(auto || btoa(document. PIN.value) === P_ENC) { // Error in user source code fixed
-             const pinVal = document.getElementById('pin').value;
-             if(auto || btoa(pinVal) === P_ENC) {
-                localStorage.setItem('termin_monitor_auth', 'true');
-                document.getElementById('login-overlay').style.display='none';
-                document.getElementById('main-content').style.display='block';
-                isLogged = true; load();
-             } else { alert("PIN inkorrekt."); }
-        }
+         const pinField = document.getElementById('pin');
+         if(auto || (pinField.value && btoa(pinField.value) === P_ENC)) {
+            localStorage.setItem('termin_monitor_auth', 'true');
+            document.getElementById('login-overlay').style.display='none';
+            document.getElementById('main-content').style.display='block';
+            isLogged = true; load();
+         } else if(!auto) { alert("PIN inkorrekt."); }
     }
 
     function logout() { localStorage.removeItem('termin_monitor_auth'); location.reload(); }
@@ -191,14 +197,16 @@
 
     function render() {
         const jetzt = new Date();
+        const searchQuery = document.getElementById('search-input').value.toLowerCase();
         
         let filteredData;
+        
+        // 1. Basis-Filter (Tags/Status)
         if (activeFilter === "ALL") {
             filteredData = data.filter(t => !t.tags || !t.tags.includes("ARCHIV"));
         } else if (activeFilter === "ARCHIV") {
             filteredData = data.filter(t => t.tags && t.tags.includes("ARCHIV"));
         } else if (activeFilter === "LIVE") {
-            // SPEZIELLER FILTER: Start existiert, jetzt ist nach Start und vor Ende
             filteredData = data.filter(t => {
                 const s = t.start ? new Date(t.start) : null;
                 const z = new Date(t.ziel);
@@ -206,6 +214,14 @@
             });
         } else {
             filteredData = data.filter(t => t.tags && t.tags.includes(activeFilter));
+        }
+
+        // 2. Such-Filter (Titel und Notizen)
+        if (searchQuery) {
+            filteredData = filteredData.filter(t => 
+                t.name.toLowerCase().includes(searchQuery) || 
+                (t.notiz && t.notiz.toLowerCase().includes(searchQuery))
+            );
         }
 
         document.getElementById('counter-display').innerText = `${activeFilter} TERMINE: ${filteredData.length}`;
@@ -240,14 +256,11 @@
             }
 
             const tagsHtml = t.tags ? t.tags.map(tag => `<span class="tag-mini">${tag}</span>`).join('') : '';
-            
             const optionsFull = { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
             const optionsNoYear = { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
-            
             const showStartYear = start && ziel && start.getFullYear() !== ziel.getFullYear();
             const startStr = start ? `Start: ${start.toLocaleString('de-DE', showStartYear ? optionsFull : optionsNoYear)} Uhr<br>` : '';
             const zielStr = `Ende: ${ziel.toLocaleString('de-DE', optionsFull)} Uhr`;
-
             const timeStyle = displayTime === "FÄLLIG" ? "font-size: 1.2em; padding: 10px 0;" : "";
 
             h += `
@@ -271,7 +284,7 @@
                 <div class="row-notiz"><div class="notiz-display">${format(t.notiz, originalIndex)}</div></div>
             </div>`;
         });
-        document.getElementById('liste').innerHTML = h || "<p style='text-align:center;'>Keine Termine in dieser Ansicht vorhanden!</p>";
+        document.getElementById('liste').innerHTML = h || "<p style='text-align:center;'>Keine Termine gefunden!</p>";
     }
 
     function updateFilterBar() {
@@ -281,27 +294,18 @@
 
         data.forEach(t => { 
             if(t.tags) t.tags.forEach(tag => allTags.add(tag)); 
-            // Check für Live-Existenz
             const s = t.start ? new Date(t.start) : null;
             const z = new Date(t.ziel);
             if(s && jetzt >= s && jetzt <= z) hasLive = true;
         });
 
         let fHtml = `<span class="tag-pill ${activeFilter === 'ALL' ? 'active' : ''}" onclick="setFilter('ALL')">ALLE</span>`;
-        
-        // LIVE Filter Button
-        if(hasLive) {
-            fHtml += `<span class="tag-pill live-pill ${activeFilter === 'LIVE' ? 'active' : ''}" onclick="setFilter('LIVE')">● LIVE NOW</span>`;
-        }
+        if(hasLive) fHtml += `<span class="tag-pill live-pill ${activeFilter === 'LIVE' ? 'active' : ''}" onclick="setFilter('LIVE')">● LIVE NOW</span>`;
 
         allTags.forEach(tag => {
-            if(tag !== "ARCHIV") {
-                fHtml += `<span class="tag-pill ${activeFilter === tag ? 'active' : ''}" onclick="setFilter('${tag}')">${tag}</span>`;
-            }
+            if(tag !== "ARCHIV") fHtml += `<span class="tag-pill ${activeFilter === tag ? 'active' : ''}" onclick="setFilter('${tag}')">${tag}</span>`;
         });
-        if(allTags.has("ARCHIV")) {
-            fHtml += `<span class="tag-pill arch-pill ${activeFilter === 'ARCHIV' ? 'active' : ''}" onclick="setFilter('ARCHIV')">📁 ARCHIV</span>`;
-        }
+        if(allTags.has("ARCHIV")) fHtml += `<span class="tag-pill arch-pill ${activeFilter === 'ARCHIV' ? 'active' : ''}" onclick="setFilter('ARCHIV')">📁 ARCHIV</span>`;
         document.getElementById('filter-display').innerHTML = fHtml;
     }
 
