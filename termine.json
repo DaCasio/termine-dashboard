@@ -471,5 +471,14 @@
         "tags": [
             "WOHNUNG"
         ]
+    },
+    {
+        "name": "Küche Doings",
+        "start": null,
+        "ziel": "2026-01-17T19:38",
+        "notiz": "[ ]Brett kochnische, Bohrung Abzugsrohr\n[ ]Brett Mikro, mit Kabelbohrung",
+        "tags": [
+            "WOHNUNG"
+        ]
     }
 ]
