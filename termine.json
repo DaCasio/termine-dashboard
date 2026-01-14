@@ -500,15 +500,6 @@
         ]
     },
     {
-        "name": "Feierabend",
-        "start": null,
-        "ziel": "2026-01-14T17:00",
-        "notiz": "",
-        "tags": [
-            "ARBEIT"
-        ]
-    },
-    {
         "name": "Schnubbi holt mich ab",
         "start": null,
         "ziel": "2026-01-14T17:15",
