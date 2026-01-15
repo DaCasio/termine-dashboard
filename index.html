@@ -24,6 +24,23 @@
             padding: 15px; margin-bottom: 20px; box-shadow: 0 0 25px rgba(0,0,0,0.6);
         }
 
+        /* View Toggle */
+        .view-toggle { display: flex; gap: 10px; margin-bottom: 20px; width: 100%; justify-content: center; }
+        .view-btn { background: rgba(0,0,0,0.5); color: white; border: 1px solid var(--accent); padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; flex: 1; transition: 0.3s; }
+        .view-btn.active { background: var(--accent); color: black; }
+
+        /* Calendar Styles */
+        #calendar-view { display: none; }
+        .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-weight: bold; font-size: 1.2em; color: var(--accent); }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; }
+        .cal-day-label { font-size: 0.7em; color: #777; padding-bottom: 5px; }
+        .cal-cell { background: rgba(255,255,255,0.05); min-height: 80px; border-radius: 4px; padding: 4px; font-size: 0.8em; border: 1px solid rgba(255,255,255,0.1); position: relative; }
+        .cal-cell.today { border-color: var(--accent); background: rgba(0, 202, 227, 0.1); }
+        .cal-cell.other-month { opacity: 0.3; }
+        .cal-dot-container { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+        .cal-event { background: var(--accent); color: black; font-size: 0.7em; padding: 2px 4px; border-radius: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+        .cal-event.archived { opacity: 0.5; background: #666; color: white; }
+
         .input-row { display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
         .input-row input#t-name { flex: 2; min-width: 250px; }
         .input-row input#t-tags { flex: 1; min-width: 150px; }
@@ -40,7 +57,6 @@
         input, textarea { background: rgba(0,0,0,0.6); border: 1px solid #444; color: white; padding: 10px; border-radius: 5px; width: 100%; box-sizing: border-box; margin-bottom: 8px; font-size: 0.95em; }
         textarea { min-height: 80px; font-family: inherit; resize: vertical; }
 
-        /* Suchfeld Styling */
         .search-container { margin-bottom: 10px; }
         .search-input { border-color: var(--accent); border-style: dashed; background: rgba(0, 202, 227, 0.05); }
 
@@ -92,6 +108,7 @@
         
         @media (max-width: 600px) {
             .date-group { flex-direction: column; min-width: 100%; }
+            .cal-cell { min-height: 60px; font-size: 0.7em; }
         }
     </style>
 </head>
@@ -109,6 +126,11 @@
         <button class="logout-btn" onclick="logout()">LOGOUT</button>
         <h1 style="text-align:center; text-transform:uppercase; letter-spacing:5px; margin-bottom:20px;">Termin Monitor</h1>
         
+        <div class="view-toggle">
+            <button id="btn-list" class="view-btn active" onclick="switchView('list')">MONITOR</button>
+            <button id="btn-cal" class="view-btn" onclick="switchView('cal')">KALENDER</button>
+        </div>
+
         <div class="card">
             <input type="hidden" id="edit-id" value="-1">
             
@@ -144,13 +166,23 @@
             <button class="btn-main" id="save-btn" onclick="save()">TERMIN SPEICHERN</button>
         </div>
 
-        <div class="search-container">
-            <input type="text" id="search-input" class="search-input" placeholder="🔍 Termin oder Inhalt suchen..." oninput="render()">
+        <div id="list-view">
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="🔍 Termin oder Inhalt suchen..." oninput="render()">
+            </div>
+            <div id="filter-display" class="filter-bar"></div>
+            <div id="counter-display" class="termin-counter">AKTIVE TERMINE: 0</div>
+            <div id="liste">Lade Daten aus Orbit...</div>
         </div>
 
-        <div id="filter-display" class="filter-bar"></div>
-        <div id="counter-display" class="termin-counter">AKTIVE TERMINE: 0</div>
-        <div id="liste">Lade Daten aus Orbit...</div>
+        <div id="calendar-view" class="card">
+            <div class="cal-header">
+                <button class="tool-btn" onclick="changeMonth(-1)">◀</button>
+                <span id="cal-month-title">Monat Jahr</span>
+                <button class="tool-btn" onclick="changeMonth(1)">▶</button>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+        </div>
     </div>
 
 <script>
@@ -159,6 +191,7 @@
     const t2 = "_SfPbmFFMu5S4O8kX6AdanuVfPsNY6k84nVv35qdNOgAV5OKWJ5NnW3tS9qH";
     const G_URL = 'https://api.github.com/repos/dacasio/info-board/contents/termine.json';
     let data = [], currentSha = "", isLogged = false, activeFilter = "ALL";
+    let calDate = new Date();
 
     window.onload = () => { if(localStorage.getItem('termin_monitor_auth') === 'true') login(true); };
 
@@ -186,6 +219,78 @@
         } catch(e) { console.error("Sync-Fehler", e); }
     }
 
+    function switchView(view) {
+        document.getElementById('list-view').style.display = view === 'list' ? 'block' : 'none';
+        document.getElementById('calendar-view').style.display = view === 'cal' ? 'block' : 'none';
+        document.getElementById('btn-list').classList.toggle('active', view === 'list');
+        document.getElementById('btn-cal').classList.toggle('active', view === 'cal');
+        if(view === 'cal') renderCalendar();
+    }
+
+    function changeMonth(dir) {
+        calDate.setMonth(calDate.getMonth() + dir);
+        renderCalendar();
+    }
+
+    function renderCalendar() {
+        const grid = document.getElementById('cal-grid');
+        const title = document.getElementById('cal-month-title');
+        grid.innerHTML = "";
+        
+        const year = calDate.getFullYear();
+        const month = calDate.getMonth();
+        title.innerText = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'numeric' }).format(calDate);
+
+        ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].forEach(d => {
+            grid.innerHTML += `<div class="cal-day-label">${d}</div>`;
+        });
+
+        const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+        for (let i = firstDay - 1; i >= 0; i--) {
+            createCalCell(grid, daysInPrevMonth - i, true);
+        }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+            const isToday = d === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear();
+            createCalCell(grid, d, false, isToday, year, month);
+        }
+
+        const totalCells = grid.children.length - 7;
+        const remaining = (42 - totalCells) % 42;
+        for (let i = 1; i <= remaining; i++) {
+            createCalCell(grid, i, true);
+        }
+    }
+
+    function createCalCell(container, day, otherMonth, isToday, year, month) {
+        const cell = document.createElement('div');
+        cell.className = `cal-cell ${otherMonth ? 'other-month' : ''} ${isToday ? 'today' : ''}`;
+        cell.innerHTML = `<b>${day}</b><div class="cal-dot-container"></div>`;
+        
+        if (!otherMonth) {
+            const cellDateStr = `${year}-${(month+1).toString().padStart(2,'0')}-${day.toString().padStart(2,'0')}`;
+            const events = data.filter(t => t.ziel.startsWith(cellDateStr));
+            const dotContainer = cell.querySelector('.cal-dot-container');
+            
+            events.forEach(t => {
+                const isArchived = t.tags && t.tags.includes("ARCHIV");
+                const evDiv = document.createElement('div');
+                evDiv.className = `cal-event ${isArchived ? 'archived' : ''}`;
+                evDiv.innerText = t.name;
+                evDiv.onclick = (e) => {
+                    e.stopPropagation();
+                    edit(data.indexOf(t));
+                    switchView('list');
+                };
+                dotContainer.appendChild(evDiv);
+            });
+        }
+        container.appendChild(cell);
+    }
+
     function getCountdown(ms) {
         if (ms < 0) return null;
         const d = Math.floor(ms/86400000).toString().padStart(2,'0');
@@ -198,10 +303,8 @@
     function render() {
         const jetzt = new Date();
         const searchQuery = document.getElementById('search-input').value.toLowerCase();
-        
         let filteredData;
         
-        // 1. Basis-Filter (Tags/Status)
         if (activeFilter === "ALL") {
             filteredData = data.filter(t => !t.tags || !t.tags.includes("ARCHIV"));
         } else if (activeFilter === "ARCHIV") {
@@ -216,7 +319,6 @@
             filteredData = data.filter(t => t.tags && t.tags.includes(activeFilter));
         }
 
-        // 2. Such-Filter (Titel und Notizen)
         if (searchQuery) {
             filteredData = filteredData.filter(t => 
                 t.name.toLowerCase().includes(searchQuery) || 
@@ -226,6 +328,7 @@
 
         document.getElementById('counter-display').innerText = `${activeFilter} TERMINE: ${filteredData.length}`;
         updateFilterBar();
+        if(document.getElementById('calendar-view').style.display === 'block') renderCalendar();
 
         filteredData.sort((a, b) => {
             const zielA = new Date(a.ziel), startA = a.start ? new Date(a.start) : null;
@@ -291,17 +394,14 @@
         const jetzt = new Date();
         const allTags = new Set();
         let hasLive = false;
-
         data.forEach(t => { 
             if(t.tags) t.tags.forEach(tag => allTags.add(tag)); 
             const s = t.start ? new Date(t.start) : null;
             const z = new Date(t.ziel);
             if(s && jetzt >= s && jetzt <= z) hasLive = true;
         });
-
         let fHtml = `<span class="tag-pill ${activeFilter === 'ALL' ? 'active' : ''}" onclick="setFilter('ALL')">ALLE</span>`;
         if(hasLive) fHtml += `<span class="tag-pill live-pill ${activeFilter === 'LIVE' ? 'active' : ''}" onclick="setFilter('LIVE')">● LIVE NOW</span>`;
-
         allTags.forEach(tag => {
             if(tag !== "ARCHIV") fHtml += `<span class="tag-pill ${activeFilter === tag ? 'active' : ''}" onclick="setFilter('${tag}')">${tag}</span>`;
         });
@@ -365,22 +465,17 @@
               note = document.getElementById('t-note').value, 
               tagsRaw = document.getElementById('t-tags').value,
               id = document.getElementById('edit-id').value;
-              
         if(!name || !ziel) { alert("Bitte Titel und Enddatum angeben."); return; }
-        
         saveBtn.disabled = true;
         saveBtn.innerText = "SYNCHRONISIERE...";
-
         const tags = tagsRaw.split(',').map(s => s.trim().toUpperCase()).filter(s => s !== "");
         let fullNote = note;
         document.querySelectorAll('.cb-edit-row').forEach(row => {
             const txt = row.querySelector('input[type="text"]').value, chk = row.querySelector('input[type="checkbox"]').checked;
             if(txt) fullNote += `\n${chk ? '[x]' : '[ ]'}${txt}`;
         });
-        
         const entry = { name, start: start || null, ziel, notiz: fullNote.trim(), tags };
         if(id === "-1") data.push(entry); else data[id] = entry;
-        
         await saveToGit();
         resetForm();
         saveBtn.disabled = false;
