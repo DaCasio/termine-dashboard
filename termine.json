@@ -491,15 +491,6 @@
         ]
     },
     {
-        "name": "Pause",
-        "start": "2026-01-15T12:00",
-        "ziel": "2026-01-15T13:00",
-        "notiz": "",
-        "tags": [
-            "ARBEIT"
-        ]
-    },
-    {
         "name": "Feierabend",
         "start": null,
         "ziel": "2026-01-15T17:00",
