@@ -480,5 +480,14 @@
         "tags": [
             "WOHNUNG"
         ]
+    },
+    {
+        "name": "Casi Früh",
+        "start": null,
+        "ziel": "2026-02-02T06:00",
+        "notiz": "Ggf tauschen",
+        "tags": [
+            "ARBEIT"
+        ]
     }
 ]
