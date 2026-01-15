@@ -501,8 +501,8 @@
     },
     {
         "name": "Daily",
-        "start": null,
-        "ziel": "2026-01-16T09:40",
+        "start": "2026-01-16T09:40",
+        "ziel": "2026-01-16T10:00",
         "notiz": "",
         "tags": [
             "ARBEIT"
