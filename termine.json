@@ -464,15 +464,6 @@
         ]
     },
     {
-        "name": "Casi Früh",
-        "start": null,
-        "ziel": "2026-02-02T06:00",
-        "notiz": "Ggf tauschen",
-        "tags": [
-            "ARBEIT"
-        ]
-    },
-    {
         "name": "Daily",
         "start": "2026-01-16T09:40",
         "ziel": "2026-01-16T10:00",
