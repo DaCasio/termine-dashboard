@@ -1,6 +1,6 @@
 [
     {
-        "name": "Herr Ziberi treffen",
+        "name": "Herrn Ziberi treffen",
         "start": "2026-01-17T12:00",
         "ziel": "2026-01-17T15:00",
         "notiz": "",
@@ -9,7 +9,7 @@
         ]
     },
     {
-        "name": "Bajrami Maler",
+        "name": "Maler Bajrami",
         "start": null,
         "ziel": "2026-01-17T17:00",
         "notiz": "Bad, Fugen etc.",
@@ -18,10 +18,10 @@
         ]
     },
     {
-        "name": "Bajrami Übergabe",
+        "name": "Übergabe Bajrami",
         "start": null,
         "ziel": "2026-01-17T18:00",
-        "notiz": "[ ] Keller- und Haustürschlüssel - abholen\n[ ] Mieterbestätigung - Ausdrucken und unterschreiben lassen",
+        "notiz": "[ ] Keller- und Haustürschlüssel abholen\n[ ] Mieterbestätigung ausdrucken und unterschreiben lassen",
         "tags": [
             "WOHNUNG"
         ]
@@ -47,7 +47,7 @@
         "name": "Umzug",
         "start": "2026-01-22T08:00",
         "ziel": "2026-01-23T15:00",
-        "notiz": "22-23.1\n\nGucken dass der Scherge nicht hinterherfährt\n**Protokoll Vorfall Verfolgung/Nachstellung**\n\nDatum/Uhrzeit: \nOrt: \nBeschreibung: (Kennzeichen, Person, Verhalten)\nZeugen: \nFotos/Video: \n\n1. Polizei anrufen (110): „Verdacht Nachstellung § 238 StGB\"\n2. Anwältin informieren: Unterlassungsklage vorbereiten.\n3. Strafanzeige stellen.\n\n**Vertraulichkeitsvereinbarung – Umzug am 14.01.2026**\n\nSehr geehrte Damen und Herren,\n\nwir beauftragen Sie mit unserem Umzug von der ***straße **, *12345* *Ort* zum [Zielort nicht angeben].\n\n**Wichtige Datenschutzhinweise:**\n1. Der Zielort ist streng vertraulich. Geben Sie **keine Auskunft** über Zieladresse, Route oder Umzugszeit an Dritte (Nachbarn, Vermieter, Mitfahrer).\n2. Bei Nachfragen oder Beobachtung durch Dritte (z.B. Mitmieter, Nachbarn) bitte Sie diese höflich abzuweisen mit: „Datenschutz – keine Auskunft möglich.\"\n3. Bei Belästigung oder Verfolgung melden Sie dies umgehend an uns (Tel: [Ihre Nummer]).\n\nVielen Dank!\n[Unterschrift + Datum]",
+        "notiz": "22.–23.01.\n\nPrüfen, dass der Scherge nicht hinterherfährt.\n**Protokoll Vorfall Verfolgung/Nachstellung**\n\nDatum/Uhrzeit: \nOrt: \nBeschreibung: (Kennzeichen, Person, Verhalten)\nZeugen: \nFotos/Video: \n\n1. Polizei anrufen (110): „Verdacht auf Nachstellung § 238 StGB\"\n2. Anwältin informieren: Unterlassungsklage vorbereiten.\n3. Strafanzeige stellen.\n\n**Vertraulichkeitsvereinbarung – Umzug am 22.01.2026**\n\nSehr geehrte Damen und Herren,\n\nwir beauftragen Sie mit unserem Umzug von der ***straße **, *12345* *Ort* zum [Zielort nicht angeben].\n\n**Wichtige Datenschutzhinweise:**\n1. Der Zielort ist streng vertraulich. Geben Sie **keine Auskunft** über Zieladresse, Route oder Umzugszeit an Dritte (Nachbarn, Vermieter, Mitfahrer).\n2. Bei Nachfragen oder Beobachtung durch Dritte (z. B. Mitmieter, Nachbarn) bitten wir Sie, diese höflich abzuweisen mit: „Datenschutz – keine Auskunft möglich.“\n3. Bei Belästigung oder Verfolgung melden Sie dies umgehend an uns (Tel: [Ihre Nummer]).\n\nVielen Dank!\n[Unterschrift + Datum]",
         "tags": [
             "WOHNUNG"
         ]
@@ -79,7 +79,7 @@
         ]
     },
     {
-        "name": "Sperrmüll Abholung",
+        "name": "Sperrmüll-Abholung",
         "ziel": "2026-01-28T07:00",
         "notiz": "",
         "tags": [
@@ -87,7 +87,7 @@
         ]
     },
     {
-        "name": "Fuck off Kleiststraße",
+        "name": "Auszug Kleiststraße",
         "ziel": "2026-02-01T00:00",
         "notiz": "",
         "tags": [
@@ -122,7 +122,7 @@
         "name": "Steuern rausschicken",
         "start": "2026-03-01T18:00",
         "ziel": "2026-04-13T18:00",
-        "notiz": "Start wenn Lohnsteuerabruf möglich.\n6 Wochen Dauer bis Auszahlung abwarten.",
+        "notiz": "Start, sobald Lohnsteuerabruf möglich ist.\n6 Wochen Dauer bis zur Auszahlung abwarten.",
         "tags": [
             "STEUERN"
         ]
@@ -139,7 +139,7 @@
         "name": "Bülent Ceylan – Diktatürk",
         "start": null,
         "ziel": "2026-03-22T19:00",
-        "notiz": "[ ]Bereitschaft für den Sonntag abgeben!",
+        "notiz": "[ ] Bereitschaft für den Sonntag abgeben!",
         "tags": [
             "TERMINE"
         ]
@@ -153,7 +153,7 @@
         ]
     },
     {
-        "name": "Dezor Abo Ende prüfen",
+        "name": "Dezor-Abo: Ende prüfen",
         "start": null,
         "ziel": "2026-04-06T09:00",
         "notiz": "Gekündigt, trotzdem prüfen.",
@@ -171,7 +171,7 @@
         ]
     },
     {
-        "name": "Dezor Abo Ende",
+        "name": "Dezor-Abo Ende",
         "start": null,
         "ziel": "2026-04-07T16:44",
         "notiz": "Gekündigt.",
@@ -228,7 +228,7 @@
         ]
     },
     {
-        "name": "Abbait",
+        "name": "Arbeit",
         "ziel": "2026-07-09T08:00",
         "notiz": "",
         "tags": [
@@ -252,7 +252,7 @@
         ]
     },
     {
-        "name": "Abbait",
+        "name": "Arbeit",
         "ziel": "2026-08-10T08:00",
         "notiz": "",
         "tags": [
@@ -260,7 +260,7 @@
         ]
     },
     {
-        "name": "Elster Zertifikat Mutti läuft aus",
+        "name": "Elster-Zertifikat Mutti läuft aus",
         "ziel": "2026-08-31T08:37",
         "notiz": "",
         "tags": [
@@ -284,7 +284,7 @@
         ]
     },
     {
-        "name": "Abbait",
+        "name": "Arbeit",
         "ziel": "2026-10-05T08:00",
         "notiz": "",
         "tags": [
@@ -309,7 +309,7 @@
         ]
     },
     {
-        "name": "Abbait",
+        "name": "Arbeit",
         "ziel": "2026-12-28T08:00",
         "notiz": "",
         "tags": [
@@ -325,7 +325,7 @@
         ]
     },
     {
-        "name": "Abbait",
+        "name": "Arbeit",
         "ziel": "2027-01-04T08:00",
         "notiz": "",
         "tags": [
@@ -341,7 +341,7 @@
         ]
     },
     {
-        "name": "Elster Zertifikat Casi läuft aus",
+        "name": "Elster-Zertifikat Casi läuft aus",
         "ziel": "2028-03-24T09:24",
         "notiz": "",
         "tags": [
@@ -349,7 +349,7 @@
         ]
     },
     {
-        "name": "Elster Zertifikat Kersti läuft aus",
+        "name": "Elster-Zertifikat Kersti läuft aus",
         "ziel": "2028-09-11T21:04",
         "notiz": "",
         "tags": [
@@ -357,7 +357,7 @@
         ]
     },
     {
-        "name": "Darlehen Ende",
+        "name": "Darlehen-Ende",
         "ziel": "2030-05-15T18:00",
         "notiz": "",
         "tags": [
@@ -365,7 +365,7 @@
         ]
     },
     {
-        "name": "RbB",
+        "name": "Rufbereitschaft (RbB)",
         "start": "2026-02-16T18:00",
         "ziel": "2026-02-23T06:00",
         "notiz": "",
@@ -383,10 +383,10 @@
         ]
     },
     {
-        "name": "RbB",
+        "name": "Rufbereitschaft (RbB)",
         "start": "2026-03-16T18:00",
         "ziel": "2026-03-22T06:00",
-        "notiz": "Verkürzt. RB an Sahand abgegeben 22.3.2026",
+        "notiz": "Verkürzt. RB am 22.03.2026 an Sahand abgegeben.",
         "tags": [
             "ARBEIT"
         ]
@@ -401,7 +401,7 @@
         ]
     },
     {
-        "name": "Bajrami Elektriker",
+        "name": "Elektriker Bajrami",
         "start": "2026-01-19T09:00",
         "ziel": "2026-01-19T12:00",
         "notiz": "",
@@ -422,7 +422,7 @@
         "name": "Datagroup: Failed to fetch device certificate.",
         "start": null,
         "ziel": "2026-04-14T14:39",
-        "notiz": "MAG#2026011217353450 — Failed to fetch device certificate. TPM public key match failed. PA-5430 LEVFRW03\nReminder: Schauen ob das Problem nach dem Fix nochmal auftritt. (Cert generiert 14.1.26 CET 13:39 (CEST 14:39))\nReferenzieren auf den Case 03867695\n\nProdukt ID: PA-5430\nSystem ID: LEVFRW03\nSerial ID: 025401001734\nVendor Ticket: Referenz - > 03867695\n\n## Fix Validation Priority\nWe've tried **commit force** multiple times → **No success** on Panorama-managed firewalls.\n\n**Please prioritize validating:**\n1. **debug system reset-ztp** → TPM impact?\n2. **Public key update via admin portal** → Addresses hash key root cause?",
+        "notiz": "MAG#2026011217353450 — Failed to fetch device certificate. TPM public key match failed. PA-5430 LEVFRW03\nReminder: Schauen, ob das Problem nach dem Fix nochmal auftritt. (Zertifikat generiert 14.01.26 CET 13:39 (CEST 14:39))\nReferenzieren auf Case 03867695\n\nProdukt-ID: PA-5430\nSystem-ID: LEVFRW03\nSerien-ID: 025401001734\nVendor-Ticket: Referenz -> 03867695\n\n## Fix Validation Priority\nWe've tried **commit force** multiple times → **No success** on Panorama-managed firewalls.\n\n**Please prioritize validating:**\n1. **debug system reset-ztp** → TPM impact?\n2. **Public key update via admin portal** → Addresses hash key root cause?",
         "tags": [
             "ARBEIT"
         ]
@@ -437,10 +437,10 @@
         ]
     },
     {
-        "name": "Küche Doings",
+        "name": "Küche Erledigungen",
         "start": null,
         "ziel": "2026-01-17T15:00",
-        "notiz": "[ ]Brett kochnische, Bohrung für Abzugsrohr DAH\n[ ]Brett Mikrowelle, mit kleiner Kabelbohrung\n[ ]Unterschränke Abschlussleisten",
+        "notiz": "[ ] Brett Kochnische, Bohrung für Abzugsrohr DAH\n[ ] Brett Mikrowelle mit kleiner Kabelbohrung\n[ ] Abschlussleisten Unterschränke",
         "tags": [
             "WOHNUNG"
         ]
