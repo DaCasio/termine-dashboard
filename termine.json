@@ -446,5 +446,12 @@
         "tags": [
             "WOHNUNG"
         ]
+    },
+    {
+        "name": "Ende Paramount+",
+        "start": null,
+        "ziel": "2026-01-25T19:37",
+        "notiz": "Abo vorher beenden",
+        "tags": []
     }
 ]
