@@ -381,15 +381,6 @@
         ]
     },
     {
-        "name": "Küche Bretter",
-        "start": null,
-        "ziel": "2026-01-22T15:00",
-        "notiz": "[color:#008800]Bei Holz Dammers in der Mache[/color]\n\n[ ][color:#008800]Brett Kochnische, Bohrung für Abzugsrohr DAH[/color]\n[ ][color:#008800]Brett Mikrowelle mit kleiner Kabelbohrung[/color]",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "Wohnung ToDo List",
         "start": "2026-01-23T08:00",
         "ziel": "2026-01-23T20:00",
