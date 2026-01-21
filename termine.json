@@ -195,10 +195,11 @@
     },
     {
         "name": "Arbeit",
+        "start": null,
         "ziel": "2026-07-09T08:00",
         "notiz": "",
         "tags": [
-            "URLAUB"
+            "ARBEIT"
         ]
     },
     {
