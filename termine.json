@@ -415,5 +415,14 @@
         "tags": [
             "STEUERN"
         ]
+    },
+    {
+        "name": "Steuern Kohle check 8w",
+        "start": null,
+        "ziel": "2026-03-30T12:00",
+        "notiz": "",
+        "tags": [
+            "STEUERN"
+        ]
     }
 ]
