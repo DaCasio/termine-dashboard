@@ -9,15 +9,6 @@
         ]
     },
     {
-        "name": "Telekom VDSL Umschaltung",
-        "start": "2026-01-26T08:00",
-        "ziel": "2026-01-26T16:00",
-        "notiz": "",
-        "tags": [
-            "WOHNUNG"
-        ]
-    },
-    {
         "name": "Sperrmüll rausstellen",
         "ziel": "2026-01-27T15:00",
         "notiz": "",
