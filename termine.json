@@ -381,5 +381,14 @@
         "tags": [
             "ARBEIT"
         ]
+    },
+    {
+        "name": "Kleiststraße",
+        "start": null,
+        "ziel": "2026-01-29T10:00",
+        "notiz": "[ ]Wohnung leer machen",
+        "tags": [
+            "WOHNUNG"
+        ]
     }
 ]
