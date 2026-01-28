@@ -426,5 +426,14 @@
         "tags": [
             "WOHNUNG"
         ]
+    },
+    {
+        "name": "Transporter abgeben",
+        "start": null,
+        "ziel": "2026-01-29T14:00",
+        "notiz": "",
+        "tags": [
+            "WOHNUNG"
+        ]
     }
 ]
