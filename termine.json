@@ -395,7 +395,7 @@
         "name": "Transporter abholen",
         "start": null,
         "ziel": "2026-01-29T09:00",
-        "notiz": "[ ]Wohnung leer machen",
+        "notiz": "",
         "tags": [
             "WOHNUNG"
         ]
