@@ -408,5 +408,14 @@
         "tags": [
             "WOHNUNG"
         ]
+    },
+    {
+        "name": "Schlüsselübergabe Zeugen",
+        "start": null,
+        "ziel": "2026-01-28T15:00",
+        "notiz": "[ ]Zeugen Schlüsselübergabe suchen",
+        "tags": [
+            "WOHNUNG"
+        ]
     }
 ]
